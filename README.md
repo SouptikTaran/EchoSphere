@@ -33,10 +33,10 @@ npm install
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`MONGO_URL` : Add the MongoDB url 
-`JWT_SECRET` : Add a Secret key
-`CLIENT_ID` : Add a google client id for NodeMailer
-`CLIENT_SECRET` : Add a google client Secret for NodeMailer
+- `MONGO_URL` : Add the MongoDB url 
+- `JWT_SECRET` : Add a Secret key
+- `CLIENT_ID` : Add a google client id for NodeMailer
+- `CLIENT_SECRET` : Add a google client Secret for NodeMailer
 
 
 
