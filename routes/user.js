@@ -12,7 +12,10 @@ router.post('/login', userController.loginUser)
 router.get('/Signup', tokenExist ,userController.Signup)
 router.post('/Signup', userController.SignupUser)
 router.get('/logout', userController.logout)
-router.get('/forgotPassword' , tokenExist,userController.forgotpassword)
+router.post('/forgotPassword' ,userController.forgotpassword)
+router.get('/forgotemail' , tokenExist ,userController.userEmailGet )
+router.post('/forgotemail' ,  userController.userEmail)
+router.post('/newpassword' ,  userController.newPassword)
 
 //google auth routes
 router.get('/login/google', passport.authenticate('google', {

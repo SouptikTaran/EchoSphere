@@ -21,6 +21,9 @@ const userSchema  = new Schema({
     password :{
         type : String ,
         required : true ,
+    },
+    otp :{
+        type : String,
     }
 } ,{timestamps: true});
 
@@ -42,7 +45,7 @@ userSchema.static("matchPasswordandGenerateToken", async function (email, passwo
     const salt = user.salt;
     const hashedPassword = user.password;
     const userProvideHash = createHmac('sha256', salt).update(password).digest("hex")
-    if(hashedPassword !== userProvideHash){
+    if(hashedPassword != userProvideHash){
         throw new Error('Incorrect Password')
     }
     const token = createTokenForUser(user);

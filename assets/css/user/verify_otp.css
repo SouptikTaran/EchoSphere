@@ -28,3 +28,13 @@
 	font-family: "Poppins", sans-serif;
 	text-align: center;
 }
+
+#user-mail{
+  margin: 10px 20px;
+  border-radius: 10px;
+  padding: 10px 10px ;
+  width: 20vw;
+  text-decoration: none;
+}
+
+
