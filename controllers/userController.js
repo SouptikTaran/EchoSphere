@@ -97,19 +97,18 @@ module.exports.userEmailGet = (req, res) => {
 module.exports.userEmail = async (req, res) => {
   const { email } = req.body;
   res.cookie('email', email);
+
   const user = await User.findOne({ email });
-  if (user == '') {
-    return res.render('verifyOtp')
+  if (!user) {
+    return res.render('verifyOtp');
   }
   const otp = generateOTP();
-  console.log(otp)
-  await User.updateOne({
-    otp: otp
-  })
-  verifyEmail(email , otp);
-  return res.render('verifyOtp')
-}
-
+  await user.updateOne( 
+    { $set: { otp: otp } }
+  );
+  verifyEmail(email, otp);
+  return res.render('verifyOtp');
+};
 /**USER GOOGLE ROUTES */
 
 module.exports.googleRedirect = (req, res) => {
