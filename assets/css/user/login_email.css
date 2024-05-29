@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Poppins:wght@600&display=swap');
+
+*{
+	margin: 0;
+	padding: 0;
+}
+.login,
+.image {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url('/van.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
+.intro-text{
+	font-family: "Poppins", sans-serif;
+	/* font-weight: 600; */
+	text-align: center;
+}
+.buttonn{
+	top:10%;
+    background-color:#010101;
+    color: #ffffff;
+    border-radius:30px;
+	padding: 10px;
+	width: 400px;
+	margin-bottom: 2vh;
+}
+
+.forgot{
+	padding: 0;
+	background: none;
+	border: none;
+	text-align: end;
+	float: right;
+}
+
+
+
+
+

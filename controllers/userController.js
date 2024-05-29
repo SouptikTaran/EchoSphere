@@ -5,7 +5,7 @@ const { matchPasswordandGenerateToken } = require('../models/user')
 
 /** USER AUTHENTICATION CONTROLLERS */ 
 module.exports.Signup = (req, res) => {
-  res.send("signup new user page");
+  res.render('signup_page');
 };
 
 module.exports.SignupUser = async (req, res) => {
@@ -43,7 +43,7 @@ module.exports.SignupUser = async (req, res) => {
 
 
 module.exports.login = (req, res) => {
-  res.render('login')
+  res.render('mainlogin')
 }
 
 module.exports.loginUser = async (req, res) => {
