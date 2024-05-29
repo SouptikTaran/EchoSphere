@@ -3,7 +3,7 @@ const userController = require('../controllers/userController')
 const passport = require('passport')
 
 //Middlewares
-const {tokenValidity} = require('../middlewares/jwtMiddleware')
+const { tokenValidity } = require('../middlewares/jwtMiddleware')
 
 //Login User Routes
 router.get('/login', userController.login)
@@ -21,5 +21,6 @@ router.get('/google/redirect', passport.authenticate('google', { session: false 
 
 
 //user profile routes
-router.get('/profile' , tokenValidity , userController.userProfile)
+router.get('/profile', tokenValidity, userController.userProfile)
+router.get('/feed', (req, res) => { res.status(200).render('feed') })
 module.exports = router

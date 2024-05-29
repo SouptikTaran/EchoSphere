@@ -26,6 +26,9 @@ app.set("views", path.join(__dirname, "views", "user"));
 //setting up the app engine
 app.set("view engine", "ejs");
 
+// static files
+app.use(express.static(__dirname + '/assets'));
+
 //Middleware to pass json data
 app.use(express.json());
 

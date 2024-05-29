@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Outfit:wght@100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+/*navbar*/
+    .navbar-custom{
+    display: flex;
+    padding: 10px;
+    background-color:#121921;
+    color:lightgray;
+    height:65px;
+    border-bottom: 2px solid white;
+    font-family: 'Rubik', nunito-sans;
+    justify-content: space-between;
+    /*padding:12px 40px 12px 40px;*/
+    }
+    .navbar-brand{
+        color:white;
+        display:flex;
+        align-items: center;
+        align-items: center;
+        margin-left:70px;
+
+    }
+    .navbar-brand img{
+      margin-right:20px;
+    }
+    .search{
+        display:flex;
+        height:41px;    
+        margin-left:200px;
+    }
+    .search-button{
+        
+        border-top-left-radius: 0.8rem;
+        border-bottom-left-radius:0.8rem;
+        border-right:none;
+        border-color:transparent;
+        background-color:rgb(35, 56, 71);
+        color:rgb(126, 151, 195);
+        height:41px;
+        width:50px;
+        border:none;
+        padding-bottom:4px;
+        padding-top:4px;
+    }
+
+    .search-input{
+      
+      border-top-right-radius: 0.85rem;
+      border-bottom-right-radius: 0.85rem;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      width:600px;
+      background-color:rgb(35, 56, 71);
+      outline:none;
+      border:transparent;
+
+    }
+    
+    .search-input:focus{
+        background-color:rgb(56, 81, 99);
+        outline:none;
+        border-color:solid transparent;
+        box-shadow:none;
+        color:white;
+
+    }
+    .search-input::placeholder{
+        color:rgb(126, 151, 195);
+        font-size:17px;
+    }
+    
+    .navbar-nav {
+      flex-direction: row;
+    }
+    .nav-item {
+      margin-left:15px;
+      padding:2px;
+      /*background-color:rgb(35, 56, 71);*/
+      border-radius:0.8rem;
+      display:flex;
+      /*align-items: center;
+      justify-content: center;*/
+    }
+    .navbar-nav{
+        display:flex;
+        align-items:center;
+        margin-left:none;
+    }
+    .nav-link{
+        color:white;
+    }
+    .user{
+        margin-right:30px;
+        margin-left:40px;
+        background-color:rgb(35, 56, 71);
+        border-radius:50%;
+        height:50px;
+        width:50px;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
+    /*For transforming b/w default profile and user profile*/
+    .profile-icon {
+        display: flex;
+        align-items: center;
+      }
+      
+      .profile-icon img {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        display: none;
+    
+      }
+      
+      .profile-icon i {
+        font-size: 17px;
+      }
+    .form-inline {
+      display: flex;
+      flex: 1;
+      justify-content: center;
+    }
+    .navbar .form-inline {
+      flex: 0 1 auto;
+    }
+/*main*/
+    .main{
+    background-color:#121921;
+    color:white;
+    height:100%;
+    }
+    .main h1{
+        padding-left:250px;
+        padding-top:50px;
+    }
+    .post-form-container{
+      
+      border:10px white;
+      width:1000px;
+      height:160px;
+      border:2px solid rgb(35, 56, 71);
+      border-radius: 0.8rem;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      margin-left:250px;
+      position:relative;
+    
+    }
+    .post-form{
+      display:flex;
+      justify-content:center;
+      margin-left:5px;
+      padding-top:-10px;
+      margin-top: 0%;
+      
+    }
+    .post-form textarea{
+      background-color: #121921;
+      outline:none;
+      border:transparent;
+      color: white;
+      margin-top:-10px;
+      resize:none;
+    
+      
+    }
+    .post-form a{
+        margin:-13px;
+        margin-right:5px;
+        color:white;
+    }
+    .post-options button {
+      border:none;
+      background: none;
+      color: white;
+      height:25px;
+      width:25px;
+      display: flex;
+      align-items:center;
+      outline:none;
+      margin:10px;
+      justify-content: space-evenly;
+    }
+    .post-options button:focus{
+      background-color: #21344b;
+    }
+    .post-options img{
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      margin-left:-10px;
+    }
+    .post-options{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:absolute;
+      bottom:5px;
+      right:10px;
+      margin-right:10px;
+      margin-left: 10px;
+  
+    }
+    
+/*post feed*/
+    .post-feed-container{
+      width:1000px;
+      margin-top:30px;
+      margin-left:250px;
+    }
+    .post-feed-container:hover{
+      border: 1px solid white;
+      border-radius: 0.85rem;
+    }
+    .post-header{
+      display:flex;
+      align-items: center;
+      justify-content: flex-start;   
+      margin-left: 90px;
+      flex-direction: row;
+    }
+
+    .post-header p{
+      margin-top:50px;
+      margin-left:-50px;
+
+      font-size:13px;
+      display:flex;
+    
+    }
+    .post-header button{
+      margin-left:730px;
+      margin-top:-20px;
+      background-color: #0d1723;
+      color: white;
+      outline: none;
+      border: transparent;
+    }
+    .post-header button:focus{
+      background-color:#21344b;
+    }
+    .post-profile{
+      display:flex;
+    }
+    .post-profile h6{
+      display:flex;
+      align-items: center;
+      color:white;
+    }
+    .post-profile img{
+      margin:10px;
+      
+    }
+
+    .post-content{
+      width:1000px;
+      height:500px;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .post-content img{
+      width:80%;
+      height:inherit;
+      
+    }
+
+    .post-footer{
+      display: flex;
+      align-self: center;
+      justify-content: space-evenly;
+    }
+    .post-footer button{
+      background-color: #0d1723;
+      color:rgb(104, 135, 158);
+      outline:none;
+      border-color: transparent;
+    }
+    .post-footer button:focus{
+      background-color:#21344b;
+    }
+
+    @media (max-width:700px) {
+      .navbar-nav {
+        flex-direction: row;
+        align-items:flex-start;
+      }
+      .form-inline {
+        width: 100%;
+      }
+      .navbar-brand{
+        margin-left:20px;
+      }
+      .navbar-custom{
+        height:70px;
+        width:100%;
+        display:flex;
+        align-items: center;
+        justify-self:space-evenly;
+        font-size: 10px;
+      }
+      .nav-item {
+        margin-left: 0;
+      }
+      .search{
+        margin-left: -5px;
+      }
+      .search-input{
+        width:200px;
+
+      }
+      
+    }
+
+    
