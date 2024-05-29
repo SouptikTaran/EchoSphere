@@ -15,8 +15,16 @@ passport.use(
     }, async (accessToken, refreshToken, profile, done) => {
       try {
         // Find the user based on their Google ID
-        let currentUser = await User.findOne({ googleId: profile.id });
+        
+        let currentUser = await User.findOne({ email : profile.emails[0].value});
         if (currentUser) {
+          console.log(currentUser);
+          const id = currentUser.googleId;
+            if(id === undefined){
+              await currentUser.updateOne({
+                googleId : profile.id
+              })
+            }
           // If the user already exists, log and return the user to home screen with the token
           console.log('User Already Existed');
           const token = createTokenForUser(currentUser);

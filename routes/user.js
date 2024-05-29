@@ -3,14 +3,16 @@ const userController = require('../controllers/userController')
 const passport = require('passport')
 
 //Middlewares
-const { tokenValidity } = require('../middlewares/jwtMiddleware')
+const { tokenValidity  , tokenExist} = require('../middlewares/jwtMiddleware')
 
 //Login User Routes
-router.get('/login', userController.login)
+router.get('/' , tokenExist,userController.home)
+router.get('/login', tokenExist,userController.login)
 router.post('/login', userController.loginUser)
-router.get('/Signup', userController.Signup)
+router.get('/Signup', tokenExist ,userController.Signup)
 router.post('/Signup', userController.SignupUser)
 router.get('/logout', userController.logout)
+router.get('/forgotPassword' , tokenExist,userController.forgotpassword)
 
 //google auth routes
 router.get('/login/google', passport.authenticate('google', {
@@ -22,5 +24,5 @@ router.get('/google/redirect', passport.authenticate('google', { session: false 
 
 //user profile routes
 router.get('/profile', tokenValidity, userController.userProfile)
-router.get('/feed', (req, res) => { res.status(200).render('feed') })
+router.get('/feed', tokenValidity , userController.feed);
 module.exports = router

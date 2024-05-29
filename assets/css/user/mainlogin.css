@@ -10,7 +10,7 @@
 }
 
 .bg-image {
-  background-image: url('/van.jpg');
+  background-image: url('/images/van.jpg');
   background-size: cover;
   background-position: center center;
 }
@@ -71,4 +71,15 @@
   }
 
 
+.social-ico{
+	margin: auto 2px;
+	width: 50px;
+}
 
+#google-ico{
+	text-decoration: none;
+}
+
+#text-design{
+	text-decoration: none;
+}

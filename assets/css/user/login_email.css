@@ -10,7 +10,7 @@
 }
 
 .bg-image {
-  background-image: url('/van.jpg');
+  background-image: url('/images/van.jpg');
   background-size: cover;
   background-position: center center;
 }
@@ -36,7 +36,14 @@
 	border: none;
 	text-align: end;
 	float: right;
+	text-decoration: none;
 }
+
+a:hover {
+	font-weight:  500;
+	text-decoration: none;
+	cursor: pointer;
+  }
 
 
 

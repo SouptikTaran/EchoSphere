@@ -10,7 +10,7 @@
 }
 
 .bg-image {
-  background-image: url('/van.jpg');
+  background-image: url('/images/van.jpg');
   background-size: cover;
   background-position: center center;
 }

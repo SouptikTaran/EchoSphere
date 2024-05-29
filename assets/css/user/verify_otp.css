@@ -8,7 +8,7 @@
 }
 
 .bg-image {
-  background-image: url('/van.jpg');
+  background-image: url('/images/van.jpg');
   background-size: cover;
   background-position: center center;
 }
@@ -23,8 +23,8 @@
 #first,#second,#third,#fourth{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
 .intro-text{
 	font-family: "Poppins", sans-serif;
-	/* font-weight: 600; */
 	text-align: center;
 }
