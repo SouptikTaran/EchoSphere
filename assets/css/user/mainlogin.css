@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Poppins:wght@600&display=swap');
+
+*{
+	margin: 0;
+	padding: 0;
+}
+.login,
+.image {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url('/van.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
+.intro-text{
+	font-family: "Poppins", sans-serif;
+	/* font-weight: 600; */
+	text-align: center;
+}
+
+.ot-text{
+	text-align: center;
+}
+
+.button {
+    top:10%;
+    background-color:#ffffff;
+    color: #000000;
+	border-color: #000000;
+    border-radius:30px;
+	padding: 10px;
+	width: 400px;
+  }
+
+  .buttonn{
+	top:10%;
+    background-color:#010101;
+    color: #ffffff;
+    border-radius:30px;
+	padding: 10px;
+	width: 400px;
+	margin-bottom: 2vh;
+}
+
+.sho{
+	background-color: #000000;
+	color: #ffffff;
+	border: white;
+	border-radius:30px;
+	width: 80px;
+	padding: 1px;
+}
+
+.or {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 1 2rem;
+	align-items: center;
+	padding: 0 20px;
+	margin: 2vh 2vw;
+  }
+  
+.or .bar {
+	flex: auto;
+	border: none;
+	height: 1px;
+	background: #aaa;
+  }
+
+
+
