@@ -6,7 +6,10 @@ Echosphere is a dynamic social media platform built on Node.js, offering essenti
 
 - **User Authentication** : Secure user registration and login system to protect user data and ensure privacy.
 
-- **Google Authentication** : Integrate Google authentication functionality, enabling users to log in using their Google accounts for added convenience and security.
+- **Google Authentication** : Integrate Google authentication functionality, enabling users to log in using their Google accounts for added 
+convenience and security.
+
+- **Forgot Password With NodeMailer** : Integrate Nodemailer for password recovery via email.
 
 ## Todo Features
 - [ ]  **Profiles** : Customizable user profiles where users can showcase information about themselves.  
