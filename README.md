@@ -38,8 +38,10 @@ To run this project, you will need to add the following environment variables to
 
 - `MONGO_URL` : Add the MongoDB url 
 - `JWT_SECRET` : Add a Secret key
-- `CLIENT_ID` : Add a google client id for NodeMailer
-- `CLIENT_SECRET` : Add a google client Secret for NodeMailer
+- `CLIENT_ID` : Add a google client id for Authentication
+- `CLIENT_SECRET` : Add a google client for Authentication
+- `MAIL` : Add a Mail for NodeMailer
+- `MAIL_KEY` : Add a key to access your Mail
 
 
 

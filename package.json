@@ -1,6 +1,6 @@
 {
   "name": "EchoSphere",
-  "version": "1.6.2",
+  "version": "1.6.4",
   "description": "This is an social media app",
   "main": "index.js",
   "scripts": {

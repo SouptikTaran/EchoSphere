@@ -176,3 +176,7 @@ module.exports.userProfile = (req, res) => {
 module.exports.feed = (req, res) => {
   res.status(200).render('feed');
 }
+
+module.exports.explorer = (req,res)=>{
+  res.render('explorer')
+}

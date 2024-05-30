@@ -28,4 +28,5 @@ router.get('/google/redirect', passport.authenticate('google', { session: false 
 //user profile routes
 router.get('/profile', tokenValidity, userController.userProfile)
 router.get('/feed', tokenValidity , userController.feed);
+router.get('/explorer' , tokenValidity ,userController.explorer);
 module.exports = router
