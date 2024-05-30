@@ -180,3 +180,7 @@ module.exports.feed = (req, res) => {
 module.exports.explorer = (req,res)=>{
   res.render('explorer')
 }
+
+module.exports.userHome = (req , res)=>{
+  res.render('frontPage');
+}
