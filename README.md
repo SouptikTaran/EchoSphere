@@ -26,7 +26,7 @@ more features will be added soon
 To get started with EchoSphere, clone the repository and install the necessary dependencies:
 
 ```bash
-git clone https://github.com/SouptikTaran/EchoSphere.git.
+git clone https://github.com/SouptikTaran/EchoSphere.git
 cd EchoSphere
 npm install
 ```
