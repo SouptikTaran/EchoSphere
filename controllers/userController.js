@@ -2,7 +2,7 @@ const { userSchema, userValidSchema } = require("../zodSchema/userSchema");
 const User = require('../models/user')
 const { matchPasswordandGenerateToken } = require('../models/user')
 const { createHmac, randomBytes } = require('crypto');
-const {verifyEmail} = require('../services/mail')
+const { verifyEmail } = require('../services/mail')
 
 /** OTP GENERATION FUNCTION */
 function generateOTP() {
@@ -103,7 +103,7 @@ module.exports.userEmail = async (req, res) => {
     return res.render('verifyOtp');
   }
   const otp = generateOTP();
-  await user.updateOne( 
+  await user.updateOne(
     { $set: { otp: otp } }
   );
   verifyEmail(email, otp);
@@ -117,6 +117,7 @@ module.exports.googleRedirect = (req, res) => {
     res.cookie('token', req.authInfo.token, { httpOnly: true, secure: true });
     // console.log('token after set : ' , res.cookie);
     // console.log('Token set:', req.authInfo.token);
+
     res.redirect('/'); // Redirect to the home page
   } else {
     console.log('Authentication failed');
@@ -134,26 +135,26 @@ module.exports.forgotpassword = async (req, res) => {
   if (user == '') {
     return res.render('verifyOtp')
   }
-  console.log('user.otp :' , user.otp);
+  console.log('user.otp :', user.otp);
   console.log('code :', token);
-  if(token == user.otp){
+  if (token == user.otp) {
     return res.render('newPassword')
-  }else{
+  } else {
     res.render('verifyOTP')
   }
 }
 
-module.exports.newPassword = async (req ,res)=>{
-  const {password , confirmpassword} = req.body ;
-  if(password != confirmpassword){
+module.exports.newPassword = async (req, res) => {
+  const { password, confirmpassword } = req.body;
+  if (password != confirmpassword) {
     return res.render('newPassword');
   }
-  const email = req.cookies.email ;
-  const user = await User.findOne({email});
+  const email = req.cookies.email;
+  const user = await User.findOne({ email });
   const salt = user.salt;
   const hashedPassword = createHmac('sha256', salt).update(password).digest('hex');
   await user.updateOne({
-    password : hashedPassword
+    password: hashedPassword
   })
 
   console.log('successfully updates')
@@ -177,10 +178,73 @@ module.exports.feed = (req, res) => {
   res.status(200).render('feed');
 }
 
-module.exports.explorer = (req,res)=>{
+module.exports.explorer = (req, res) => {
   res.render('explorer')
 }
 
-module.exports.userHome = (req , res)=>{
+module.exports.userHome = (req, res) => {
   res.render('frontPage');
+}
+
+/** USER PROFILE - FOLLOW - UNFOLLOW */
+
+// User Profile
+module.exports.userId = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id)
+      .populate('followers', 'username email profilePic')
+      .populate('followings', 'username email profilePic');
+
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(404).json({ msg: "User not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+module.exports.followUser = async (req, res) => {
+  if (req.body.userId !== req.params.id) {
+    try {
+      const user = await User.findById(req.params.id);
+      const currentUser = await User.findById(req.body.userId);
+
+      if (!user.followers.includes(req.body.userId)) {
+        await user.updateOne({ $push: { followers: req.body.userId } });
+        await currentUser.updateOne({ $push: { followings: req.params.id } });
+
+        res.status(200).json({ msg: "User has been followed" });
+      } else {
+        res.status(403).json({ msg: "You already follow this user" });
+      }
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  } else {
+    res.status(403).json({ msg: "You can't follow yourself" });
+  }
+}
+
+module.exports.unfollowUser = async (req, res) => {
+  if (req.body.userId !== req.params.id) {
+    try {
+      const user = await User.findById(req.params.id);
+      const currentUser = await User.findById(req.body.userId);
+
+      if (user.followers.includes(req.body.userId)) {
+        await user.updateOne({ $pull: { followers: req.body.userId } });
+        await currentUser.updateOne({ $pull: { followings: req.params.id } });
+
+        res.status(200).json({ msg: "User has been Unfollowed" });
+      } else {
+        res.status(403).json({ msg: "You Don't follow this user" });
+      }
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  } else {
+    res.status(403).json({ msg: "You can't Unfollow yourself" });
+  }
 }

@@ -30,8 +30,8 @@ app.use(passport.initialize())
 //setting up the app engine
 app.set("view engine", "ejs");
 app.set('views', [
-    PATH.resolve('./views/user'),
-    PATH.resolve('./views')
+  PATH.resolve('./views/user'),
+  PATH.resolve('./views')
 ]);
 // static files
 app.use(express.static(__dirname + '/assets'));
@@ -42,7 +42,7 @@ app.use(express.json());
 //Importing the controllers
 const userRoutes = require("./routes/user");
 
-app.get('/' , (req ,res)=>{
+app.get('/', (req, res) => {
   res.render('home')
 })
 

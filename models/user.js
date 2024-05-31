@@ -1,31 +1,43 @@
-const {Schema , model} = require('mongoose');
+const mongoose = require('mongoose');
 const { createHmac, randomBytes } = require('crypto');
-const {createTokenForUser} = require('../services/authentication')
+const { createTokenForUser } = require('../services/authentication')
 
-const userSchema  = new Schema({
-    username : {
-        type : String,
+const userSchema = new mongoose.Schema({
+    username: {
+        type: String,
     },
-    email :{
-        type: String ,
-        required : true ,
-        unique : true ,
+    email: {
+        type: String,
+        required: true,
+        unique: true,
     },
-    googleId :{
-        type : String,
-        unique : true,
+    googleId: {
+        type: String,
+        unique: true,
     },
     salt: {
         type: String,
     },
-    password :{
-        type : String ,
-        required : true ,
+    password: {
+        type: String,
+        required: true,
     },
-    otp :{
-        type : String,
-    }
-} ,{timestamps: true});
+    otp: {
+        type: String,
+    },
+    profilePic: {
+        type: String,
+        default: "",
+    },
+    followers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    }],
+    followings: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    }],
+}, { timestamps: true });
 
 //This function is executed just before creating a user 
 userSchema.pre("save", function (next) {
@@ -40,17 +52,17 @@ userSchema.pre("save", function (next) {
 
 
 userSchema.static("matchPasswordandGenerateToken", async function (email, password) {
-    const user = await this.findOne({email :  email}); 
+    const user = await this.findOne({ email: email });
     if (!user) throw new Error("User not found!");
     const salt = user.salt;
     const hashedPassword = user.password;
     const userProvideHash = createHmac('sha256', salt).update(password).digest("hex")
-    if(hashedPassword != userProvideHash){
+    if (hashedPassword != userProvideHash) {
         throw new Error('Incorrect Password')
     }
     const token = createTokenForUser(user);
-    return token 
+    return token
 })
 
-const User = model('user', userSchema);
+const User = mongoose.model('user', userSchema);
 module.exports = User

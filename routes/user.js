@@ -2,6 +2,7 @@ const router = require('express').Router();
 const userController = require('../controllers/userController')
 const passport = require('passport')
 
+
 //Middlewares
 const { tokenValidity  , tokenExist} = require('../middlewares/jwtMiddleware')
 
@@ -18,10 +19,7 @@ router.post('/forgotemail' ,  userController.userEmail)
 router.post('/newpassword' ,  userController.newPassword)
 
 //google auth routes
-router.get('/login/google', passport.authenticate('google', {
-    scope: ['email', 'profile']
-}))
-
+router.get('/login/google', passport.authenticate('google', {scope: ['email', 'profile']}))
 router.get('/google/redirect', passport.authenticate('google', { session: false }), userController.googleRedirect)
 
 
@@ -30,5 +28,15 @@ router.get('/profile', tokenValidity, userController.userProfile)
 router.get('/feed', tokenValidity , userController.feed);
 router.get('/explorer' , tokenValidity ,userController.explorer);
 router.get('/home' , tokenValidity ,userController.userHome);
+router.get('/chatting'  ,(req , res)=>{
+    res.render('userChat')
+});
+
+
+// User follow and unfollow
+router.get('/:id', userController.userId);
+router.put('/:id/follow',userController.followUser);
+router.put('/:id/unfollow', userController.unfollowUser);
+
 
 module.exports = router
