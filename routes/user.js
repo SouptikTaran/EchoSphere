@@ -29,7 +29,7 @@ router.get('/feed', tokenValidity , userController.feed);
 router.get('/explorer' , tokenValidity ,userController.explorer);
 router.get('/home' , tokenValidity ,userController.userHome);
 router.get('/chatting'  ,(req , res)=>{
-    res.render('userChat')
+    res.render('chats')
 });
 
 

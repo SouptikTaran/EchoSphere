@@ -1,138 +1,126 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="/css/user/post.css">
-  <title>Feed</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/user/post.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<body>
-    <nav class="navbar-custom">
-        <a class="navbar-brand" href="link1">
-          <img src="/icons/logo.png" class="d-inline-block align-top" alt="">
-          Mingle
+<header>
+    <nav class="navbar-container">
+        <a href="#" >
+            <div class="logo">
+                <img src="/icons/logo.svg" alt="img"><h3>Mingle</h3>
+            </div>
         </a>
-        <form class="form-inline my-2 my-lg-0 ml-auto ">
-          <div class="search">
-            <button class="search-button" type="submit">
-              <img src="/icons/search-ico.png" alt="src">
-            </button>
-            <input class="search-input" type="search" placeholder="Search" aria-label="Search">
-          </div>
-        </form>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="link 2">
-                <img src="/icons/explore-ico.png">
+        <!--search-->
+        
+        <div class="search">
+            <img src="/icons/search-ico.svg" alt="img">
+            <input type="text" placeholder="Search">
+        </div>
+        <!--navlist-->
+        <div class="nav-options">
+            
+            <a href="#"class="search-icon">
+                <img src="icons/search-ico.svg">
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="link3">
-              <img src="/icons/heart-ico.png">
+        
+            <ul>    
+                <li>
+                    <a href="#"><img src="/icons/explore-ico.svg" alt="img"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="/icons/heart-ico.svg"alt="img"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="/icons/comment-ico.svg" alt="img"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="/icons/save-ico.svg" alt="img"></a>
+                </li>
+                
+            </ul>
+            <!--profile div-->
+            <a href="#"class="user">
+                <div ><i class="fa-solid fa-user"></i></div>
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="link 4">
-              <img src="/icons/comment-ico.png">
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="link 5">
-              <img src="/icons/bookmark-ico.png">
-            </a>
-          </li>
-          <li class="user">
-            <a class="nav-link profile-icon" href="link 6">
-                <img class="profile-img" src="" alt="profile picture">
-              <i class="fas fa-user default-icon"></i>
-            </a>
-          </li>
-         
-        </ul>
+        </div>
+        
     </nav>
+
+    
+</header>
+<body>
+    <!--main-->
     <main class="main">
-        <h1>Home</h1>
-        <!--post form-->
-        <div class="post-form-container">
-          <!--profile-->
-            <div class="post-form">
-              <a class="user profile-icon" href="link 6">
-                <img id="profile-img" src="" alt="profile picture" style="display: none">
-                <i class="fas fa-user default-icon" aria-hidden="true"></i>
-              </a>
-              <!--text area-->
-              <form id="post-form_id" class="post-form" action="" method="get">
-                <textarea id="post-text_id" name="post-text" placeholder="What's on your mind?" rows="4" cols="120"></textarea>
-              </form>
-              
+        <div class="main-section">
+            <h1>Home</h1>
+            <!--text post area-->
+            <div class="post-text-div">
+                
+                <div class="post-text-section">
+                    <a href="#"><div class="user2"><i class="fa-solid fa-user "></i></div></a>
+                    <textarea id="post-text_id" placeholder="Whats's on your mind" rows="2" cols="58"></textarea>
+                </div>
+                
+                <div class="post-text-options">
+                    <button><img src="/icons/gallery-ico.svg"></button>
+                    <button><img src="/icons/gif-ico.svg"></button>
+                    <button><img src="/icons/bold-ico.svg"></button>
+                    <button><img src="/icons/emoji-ico.svg"></button>
+                    <button><img src="/icons/italics-ico.svg"></button>  
+                </div>
             </div>
-            <!--post options-->
-            <div class="post-options">
-              <button><img src="/icons/gallery-ico.png" alt="src"><!--gallery-->
-              <button><img src="/icons/gif-ico.png" alt="src"></button><!--gif-->
-              <button><img src="/icons/emoji-ico.png" alt="src"></button><!--emoji-->
-              <button><img src="/icons/bold-ico.png" alt="src"></button><!--bold-->
-              <button><img src="/icons/italics-ico.png" alt="src"></button><!--italic-->
+            <!--post feed-->
+            <div class="post-feed">
+                <!--post-head-->
+                <div class="post-feed-head">
+                    <a class="user1" href="#"><img src="/icons/profile1.jpeg"></a>
+                    <div class="feed-profile">
+                        <a href="#"><h3>Caroline</h3></a>
+                        <p>2h ago</p>
+                    </div> 
+                    <div class="see-more"><img src="/icons/see_more-ico.svg" alt="img" ></div>
+                </div>
+                <!--main post-->
+                <div class="post-feed-main">
+                    <p>Exam season!!</p>
+                    <img src="/images/user-images/post6.jpg">
+                </div>
+                <!--post footer-->
+                <div class="post-feed-foot">
+                    <button><img src="/icons/heart-post-ico.svg"></button>
+                    <button><img src="/icons/comment-post-ico.svg"></button>
+                    <button><img src="/icons/share-ico.svg"></button>  
+                </div>
+            </div>
+            <!--post feed-->
+            <div class="post-feed">
+                <!--post-head-->
+                <div class="post-feed-head">
+                    <a class="user1" href="#"><img src="/icons/profile2.jpeg"></a>
+                    <div class="feed-profile">
+                        <a href="#"><h3>Megan</h3></a>
+                        <p>2h ago</p>
+                    </div> 
+                    <div class="see-more"><img src="/icons/see_more-ico.svg" alt="img" ></div>
+                </div>
+                <!--main post-->
+                <div class="post-feed-main">
+                    <p>Another name of therapy: Books</p>
+                    <img src="/images/user-images/post5.jpg">
+                </div>
+                <!--post footer-->
+                <div class="post-feed-foot">
+                    <button><img src="/icons/heart-post-ico.svg"></button>
+                    <button><img src="/icons/comment-post-ico.svg"></button>
+                    <button><img src="/icons/share-ico.svg"></button>  
+                </div>
             </div>
         </div>
-
-        <!--post feed-->
-        <div class="post-feed-container">
-            <div class="post-header">
-                <a class="post-profile" href="#">
-                  <img src="/icons/profile1.jpeg" alt="img" class="user">
-                  <h6>Caroline</h6>
-                </a>
-                <p>2h ago</p>
-                <button>
-                  <img src="/icons/see-more-ico.png" alt="img">
-                </button>
-            </div>
-            <div class="post-content">
-              <p></p>
-              <img src="/images/user-images/post6.jpg" alt="photo" height="400px" width="400px">
-              
-                          
-            </div>
-            <div class="post-footer">
-                <button><img src="/icons/heart-post-ico.png"></button>
-                <button><img src="/icons/comment-post-icon.png"></button>
-                <button><img src="/icons/share-post-ico.png"></button>
-            </div>
-            
-        </div>
-        <hr>
-        <div class="post-feed-container">
-          <div class="post-header">
-              <a class="post-profile" href="#">
-                <img src="/icons/profile2.jpeg" alt="img" class="user">
-                <h6>Megan</h6>
-              </a>
-              <p>2h ago</p>
-              <button>
-                <img src="/icons/see-more-ico.png" alt="img">
-              </button>
-          </div>
-          <div class="post-content">
-            <p></p>
-            <img src="/images/user-images/post5.jpg" alt="photo" height="400px" width="400px">
-            
-                        
-          </div>
-          <div class="post-footer">
-            <button><img src="/icons/heart-post-ico.png"></button>
-            <button><img src="/icons/comment-post-icon.png"></button>
-            <button><img src="/icons/share-post-ico.png"></button>
-          </div>
-          
-      </div>
-
     </main>
-      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-      <script src="script.js"></script>
-    </body>
+</body>
 </html>

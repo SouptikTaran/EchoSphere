@@ -171,7 +171,7 @@ module.exports.userProfile = (req, res) => {
   if (!req.user) {
     return res.redirect('/login');
   }
-  res.status(200).send('Welcome to Profile');
+  res.status(200).render('userProfile');
 }
 
 module.exports.feed = (req, res) => {
