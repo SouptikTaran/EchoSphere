@@ -1,0 +1,459 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    text-decoration: none;
+    font-family:'Plus Jakarta Sans',sans-serif;
+}
+
+/*navbar*/
+nav{
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgba(18, 26, 33, 1);
+    color: white;
+    height:65px;
+    width:100%;
+    border-bottom: 1px solid white;
+}
+    .logo{
+        display: flex;
+        gap:8px;
+        font-family:'Nunito sans',sans-serif ;
+        color:white;
+    }
+    /*search*/
+    .search{
+        display:flex;
+        align-items:center ;
+        gap:10px;
+        background-color: rgba(217, 217, 217, 1);
+        height:40px;
+        width:40%;
+        border-radius: 0.85rem;
+    }
+        .search img{
+            padding-left:15px;
+        
+
+        }
+        .search input{
+            height: 24px;
+            width:80%;
+            background-color:rgba(217, 217, 217, 1);
+            
+            outline:none;
+            border:none;
+            color:rgb(0, 0, 0);
+        }
+    
+        .search input::placeholder{
+            color:rgba(18, 26, 33, 1);
+            font-size:17px;
+        }
+    /*nav options*/
+    .nav-options{
+        display:flex;
+        align-items:center;
+        justify-content: space-evenly;
+        width:45%;
+        height:40px;
+        
+        /*border: 1px solid white;*/
+    }
+        .nav-options ul{
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content:space-evenly;
+            gap:0px;
+            /*border:1px solid white;*/
+            width:70%;
+            height:inherit;
+        }
+        .nav-options ul li a{
+            /*background-color: rgba(36, 54, 71, 1);*/
+            color:white;
+            font-size: 100%;
+            width: 40px;
+            height:100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.85rem;
+        }
+        
+        .nav-options ul li a:hover{
+            color:rgb(88, 121, 152);
+        }
+        .search-mini{
+            display:none;
+            border: none;
+
+        }
+    .user{
+        width:40px;
+        height:40px;
+        background-color:rgba(36, 54, 71, 1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        color: white;
+    }
+    .user:hover{
+        background-color:rgb(74, 106, 136)
+    }
+
+/*main section*/
+main{
+    width:100%;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    background: rgba(18, 26, 33, 1);
+    color:white;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+}
+.hero-section{
+    display:flex;
+    margin-top: 30px;
+    width:100%;
+}
+.profile{
+    display:flex;
+    flex-direction:column;
+    width:70%;
+    height:auto;
+    border:1px solid rgb(144, 172, 211);
+    margin-left:30px;
+    border-radius:1.6rem;   
+}
+.profile-img{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    background-image: url('/images/user-images/profile-bg.png');
+    /*border:2px solid #f98a21;*/
+    width:100%;
+    height:400px;
+    background-position:top;
+    position: relative;
+    background-size: contain;
+    border-radius:1.6rem;
+    background-repeat: no-repeat;
+    
+}
+.profile-img p{
+    color:white;
+    position: absolute;
+    top:90%;
+    left:10%;
+    font-size: large;
+}
+.bg-cover-bottom{
+    position:absolute;
+    height: 20%;
+    width:100%;
+    /*border:3px solid white;*/
+    top:65%;
+    background: rgba(18, 26, 33, 1);
+}
+.profile-user{
+    display:flex;
+    height: 40%;
+    width:40%;
+    position:absolute;
+    top:40%;
+    right:65%
+}
+
+.follow-count{
+    display:flex;
+    margin-left:10%;
+    gap:5%;
+    /*border:1px solid white;*/
+}
+
+.follow-count a{
+    display: flex;
+    align-items: center;
+    gap:2px;
+    color:white;
+    padding-top:2%;
+    
+}
+.follow-count a p{
+    font-size: smaller;
+}
+.follow-button{
+    display:flex;
+    align-items: center;
+    margin-left:10%;
+    padding-top:3%;
+    padding-bottom:3%;
+    gap:5%;
+    height:40px;
+    /*border:1px solid white;*/
+}
+.follow-button button{
+    width:15%;
+    height:100%;
+    font-family: 'Inter';
+    font-size: large;
+    border-radius: 0.85rem;
+}
+.follow-button button:hover{
+    background-color: rgb(71, 120, 173);
+    color:white;
+    
+}
+.follow-button a{
+    color:white;
+}
+.follow-button a:hover{
+    color: rgb(71, 120, 173);
+    
+}
+.chats{
+    display:flex;
+    flex-direction: column;
+    width:25%;
+    justify-content: space-evenly;
+    margin-left:2%;
+    
+   /* border: 1px solid white;*/
+}
+
+.chat{
+    display:flex;
+    align-items: center;
+
+    gap:3%;
+    padding-left: 2%;
+}
+.chat:hover{
+    background-color: rgba(36, 54, 71, 1);
+}
+.chat-prof{
+    height: 56px;
+    width:56px;
+}
+.chat-name h4{
+    font-size:15px;
+}
+.chat-name p{
+    font-size:12px;
+    color:rgba(148, 173, 199, 1);
+    
+}
+
+.post__s{
+    height:10%;
+    width:95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:5%;
+    /*border: 3px solid white;*/
+}
+.user-post1{
+    display:flex;
+    align-items: center;
+    justify-content: space-evenly;    
+}
+.user-post1 .post {
+    height: 100%;
+    width:100%;
+    padding:1%;
+}
+
+
+.user-post1 img{
+    height:100%;
+    width:100%;
+}
+@media screen and (max-width:830px){
+    .nav-options{
+        display:flex;
+        
+        justify-content:center;
+        width:75%;
+        height:40px;
+        font-size: medium;
+    }
+    .logo{
+        width:100%;
+        /*border: 1px solid white;*/
+    }
+    .logo h3{
+        font-size: 90%;
+    }
+    .logo img{
+        width:30%;
+    }
+    .search{
+        display:none;
+    }
+    .search-mini{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        
+        height:40px;
+        width:40px;
+        border-radius:0.9rem;
+    
+
+    }
+    .search-mini button{
+        background: rgba(36, 54, 71, 1);
+        height:40px;
+        width:40px;
+        outline:none;
+        border:none;
+        border-radius:1rem;
+    }
+    .search-mini button:hover{
+       background-color:rgb(55, 84, 112);
+    }
+    .search-mini button img{
+        height:15px;
+        width:15px;
+    }
+    .user{
+        width:40px;
+        height:40px;
+    }
+    .user i{
+        font-size: 15px;
+    }
+    .hero-section{
+        display:flex;
+    }
+    .chats{
+        width:30%;
+    }
+    .profile{
+        width:60%;
+        margin-left:5px;
+    }
+    .profile-img{
+        width:100%;
+        height: 95%;
+        background-image: url('/images/user-images/profile-bg.png');
+        background-size:100% 80%;
+    }
+    .bg-cover-bottom{
+        width: 100%;
+    }
+    .profile-img img{
+        left:1%;
+        top:45%;
+    }
+    .follow-button{
+        font-size: small;
+    }
+    .follow-button button{
+        font-size: small;
+    }
+    .chat-name h4{
+        font-size:12px;
+    }
+    .chat-name p{
+        font-size: 10px;
+    }
+    .chat-prof img{
+        height:40px;
+        width:40px;
+    }
+    .follow-button button{
+        font-size: 10px;
+        width:30%
+    }
+}
+@media screen and (max-width:500px){
+    nav{
+        width:100%;
+    }
+    .nav-options{
+        height:30px;
+        font-size: 70%;
+        display:flex;
+        justify-content: space-evenly;
+    }
+    .search-mini{
+        width:30px;
+        height: 28px;
+    }
+    .search-mini button{
+        width:30px;
+        height:28px;
+    }
+    .search-mini button img{
+        width:14px;
+        height:14px;
+    }
+    .user{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 25px;
+        height: 25px;
+    }
+    .user i{
+        font-size: 10px;
+    }
+    .main{
+        display: flex;
+        align-items:center;
+    }
+    .chats{
+        display:none;
+    }
+    main{
+        display: flex;
+        align-items:center;
+    }
+    .profile{
+        width:100%;
+        height:350px;
+        margin-left:10px;
+        margin-top:-10px;
+        margin-right:10px;
+        
+    }
+    .profile p{
+        font-size: 13px;
+    }
+    .profile h3{
+        font-size: 15px;
+    }
+    .profile-img p{
+        left:13%;
+    }
+    .profile-img img{
+        width:30%;
+        height:30%;
+        top:55%;
+        left:7%;
+    }
+    
+}
+
+@media screen and (max-width:380px){
+    .nav-options{
+        height:30px;
+        font-size: 60%;
+    }
+    .search-mini{
+        width:30px;
+        height: 28px;
+    }
+    
+}
