@@ -216,19 +216,23 @@ nav{
 .chats-section{
     display:flex;
     flex-direction: column;
-    width:25%;
+    width:30%;
     margin-left:2%;
-    justify-content: space-evenly;
+    justify-content: space-between;
    /* border: 1px solid white;*/
 }
 
 .chat{
     display:flex;
     gap:3%;
+    align-items: center;
     padding-left: 2%;
 }
 .chat-prof{
-    height: 56px;
+    height:56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width:56px;
     overflow:hidden;
     border-radius: 50%;
@@ -237,17 +241,17 @@ nav{
     height:100%;
     width:100%;
 }
-.chat-name .chat-profile-name{
+.chat-profile-name{
     font-size:15px;
     color:white;
 }
-.chat-name .chat-message{
+.chat-message{
     font-size:12px;
     color:rgba(148, 173, 199, 1);
 }
 
 .user-post-section{
-    height:900px;
+    height:auto;
     width:95%;
     display: flex;
     flex-direction: column;
@@ -264,8 +268,8 @@ nav{
 }
 .post {
     height: 400px;
-    width:400px; 
-    margin:1%;
+    width:25%; 
+    margin:1.3%;
     border-radius:1rem;
     overflow:hidden ;
     /*border: 1px solid red;*/
@@ -281,7 +285,7 @@ nav{
 
 
 
-@media screen and (max-width:830px){
+@media screen and (max-width:853px){
     .nav-options{
         display:flex;
         
@@ -336,9 +340,59 @@ nav{
     .user i{
         font-size: 15px;
     }
-
+    .profile-section{
+        width:60%
+    }
+    .profile-section{
+        height:400px;
+        
+    }
+    .profile-img-container{
+        height:80px;
+        width:80px;
+    }
+    .user-profile-name {
+        font-size: 12px;
+        height:100px;
+        width:100px;
+        margin-bottom: 40px;
+    }
+    .link1{
+        font-size: 12px;
+    }
+    .follow-button{
+        font-size: 12px;
+        height: 30px;
+    }
+    .link{
+        font-size: 12px;
+    }
+    .chats-section{
+        /*border: 1px solid white;*/
+        width:40%;
+    }
+    .chat-prof{
+        height:45px;
+        width:45px;
+        /*border:1px solid white;*/
+    }
+    .chat-prof-img{
+        height: 100%;
+        width:100%;
+    }
+    .chat-profile-name{
+        font-size: 12px
+    
+    }
+    .chat-message{
+        font-size: 10px;
+    }
+    .post{
+        width:25%;
+        height:200px;
+    }
 }
-@media screen and (max-width:500px){
+@media screen and (max-width:550px){
     nav{
         width:100%;
     }
@@ -374,7 +428,7 @@ nav{
         display: flex;
         align-items:center;
     }
-    .chats{
+    .chats-section{
         display:none;
     }
     .main-section{
@@ -404,6 +458,15 @@ nav{
         top:55%;
         left:7%;
     }
-    
+    .profile-section{
+        width:500px;
+    }
+    .chats-section{
+        display:none;
+    }
+    .post{
+        height:130px;
+        width:30%;
+    }
     
 }
