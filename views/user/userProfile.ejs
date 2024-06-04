@@ -37,7 +37,7 @@
                 </li>
                 
                 <li>
-                    <a href="#">Upload</a>
+                    <button id="myButton">Upload</button>
                 </li>
                 
                 <li>
@@ -200,6 +200,54 @@
                 </div>
             </div>
         </main>
+        <div class="popup-overlay" id="popupOverlay">
+            <div class="popup" id="popup">
+                <span class="close" id="closePopup">&times;</span>
+                <div class="popup-content">
+        
+                    <div class="square">
+                        <div class="flex-child">
+                         <div class="drag-area">
+                            <div class="icon"><i class="fa-solid fa-file-arrow-up"></i></div>
+                             <header>Drag and Drop </header>
+                             <span>OR</span>
+                             <button>Browse file</button>
+                            <input type ="file" hidden>
+                          </div>
+                       </div>
+                
+                       <div>
+                        <div class="flex-child">
+                            <div class="info-area">
+                                <b>Uploaded Files</b>
+                                <br>
+                
+                                <div class="img">
+                                    <div class="uplo">
+                                        <div class="upo"><i class="fa-solid fa-file-arrow-up"></i></div>
+                                    <h3>img1.png</h3>
+                                     <button>delete</button>
+                                    </div>
+                                
+                                    <div class="uplo">
+                                        <div class="upo"><i class="fa-solid fa-file-arrow-up"></i></div>
+                                <h3>img2.png</h3>
+                                     <button>delete</button>
+                                </div>
+                                    </div>
+
+                                    <div>
+                                     <button class="uploa" >Upload</button>
+                                </div>
+                                    
+                             </div>
+                             </div>
+                       </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <script src="/js/profile.js"></script>
         <script src="" async defer></script>
     </body>
 </html>
