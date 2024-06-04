@@ -206,43 +206,26 @@
                 <div class="popup-content">
         
                     <div class="square">
-                        <div class="flex-child">
-                         <div class="drag-area">
-                            <div class="icon"><i class="fa-solid fa-file-arrow-up"></i></div>
-                             <header>Drag and Drop </header>
-                             <span>OR</span>
-                             <button>Browse file</button>
-                            <input type ="file" hidden>
-                          </div>
-                       </div>
-                
-                       <div>
-                        <div class="flex-child">
-                            <div class="info-area">
-                                <b>Uploaded Files</b>
-                                <br>
-                
-                                <div class="img">
-                                    <div class="uplo">
-                                        <div class="upo"><i class="fa-solid fa-file-arrow-up"></i></div>
-                                    <h3>img1.png</h3>
-                                     <button>delete</button>
-                                    </div>
-                                
-                                    <div class="uplo">
-                                        <div class="upo"><i class="fa-solid fa-file-arrow-up"></i></div>
-                                <h3>img2.png</h3>
-                                     <button>delete</button>
+                        <div class="te">
+                            <h1>Upload Profile Picture</h1>
+                        </div>
+                            <form id="uploadForm" method="POST" action="/post/profile" enctype="multipart/form-data">
+                                <div class="drop-zone">
+                                    <span class="drop-zone__prompt">Drop file here</span>
+                                    <input type="file" name="myFile" class="drop-zone__input">
+                                  </div>
+                                <div class="upl">
+                                    <label for="email">email:</label>
+                                    <input type="text" id="email" name="email">
+                                    <label for="username">username:</label>
+                                    <input type="text" id="username" name="username">
+                                    <br><br>
+                                    <label for="avatar">Choose a profile picture:</label>
+                                    <input type="file" id="avatar" name="avatar"  >
+                                    <br><br>
+                                    <button type="submit">Upload</button>
                                 </div>
-                                    </div>
-
-                                    <div>
-                                     <button class="uploa" >Upload</button>
-                                </div>
-                                    
-                             </div>
-                             </div>
-                       </div>
+                             </form>
                     </div> 
                 </div>
             </div>
