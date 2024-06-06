@@ -35,12 +35,14 @@ app.set('views', [
 ]);
 // static files
 app.use(express.static(__dirname + '/assets'));
+app.use(express.static(__dirname + '/uploads'));
 
 //Middleware to pass json data
 app.use(express.json());
 
 //Importing the controllers
 const userRoutes = require("./routes/user");
+const postRoutes = require("./routes/post");
 
 app.get('/', (req, res) => {
   res.render('home')
@@ -48,6 +50,7 @@ app.get('/', (req, res) => {
 
 
 app.use("/user", userRoutes);
+app.use("/post", postRoutes);
 
 app.listen(PORT, () => {
   console.log(`SERVER STARTED : http://localhost:${PORT}`.bgWhite.black);

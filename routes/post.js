@@ -16,19 +16,23 @@ const createUploadDir = (dir) => {
 // Multer disk storage configuration
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const uploadDir = path.join(__dirname, ".." ,'uploads', req.body.username); 
+        const user = localStorage.getItem('username')
+        const uploadDir = path.join(__dirname,'..','uploads', user); 
         createUploadDir(uploadDir);
         cb(null, uploadDir);
     },
     filename: (req, file, cb) => {
+        const user = localStorage.getItem('username')
         const name = "profilePicture";
-        const uniqueSuffix = name + " - " +req.body.username + path.extname(file.originalname); 
+        const uniqueSuffix = name + "-" +user + path.extname(file.originalname); 
         cb(null, uniqueSuffix);
     }
 });
 
 // Multer upload configuration
-const upload = multer({ storage: storage });
+const upload = multer({ 
+    storage: storage,
+});
 
 // GET route to render the upload form
 router.get("/profile", (req, res) => {
@@ -37,8 +41,7 @@ router.get("/profile", (req, res) => {
 
 // POST route to handle file upload
 router.post("/profile", upload.single('avatar'), async (req, res) => {
-    const { email, username } = req.body;
-
+    const email= localStorage.getItem('email');
     try {
         // Find user by email
         const user = await User.findOne({ email });
@@ -51,7 +54,8 @@ router.post("/profile", upload.single('avatar'), async (req, res) => {
             return res.status(400).send('File is required');
         }
         console.log(req.file);
-        const profilePicPath = path.join('uploads', req.body.username);
+        const profilePicPath =  '/' + user.username + '/'+ 'profilePicture' + '-' + user.username ;
+        // /Souptik Taran/profilePicture-Souptik Taran.jpg
         console.log('done1')
 
         // Update user profile picture path

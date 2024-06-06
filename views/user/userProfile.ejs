@@ -33,7 +33,7 @@
             </div>
             <ul>
                 <li>
-                    <a href="#">Home</a>
+                    <a href="/user/profile">Home</a>
                 </li>
                 
                 <li>
@@ -45,7 +45,7 @@
                 </li>
 
                 <li>
-                    <a href="#">Chat</a>
+                    <a href="/user/chatting">Chat</a>
                 </li>
 
                 <li>
@@ -67,12 +67,12 @@
                         <div class="profile-img">
                             <div class="bg-cover-bottom"></div>
                             
-                            <img src="/icons/user-ico.svg" class="profile-user">
-                            <p>Alice Victoria</p>
+                            <img src="<%=user.profilePic%>" class="profile-user">
+                            <p><%= user.username%></p>
                         </div>
                         <div class="follow-count">
-                            <a href="#"><h3>59,460</h3><p>Followers</p></a>
-                            <a href="#"><h3>469</h3><p>Following</p></a>
+                            <a href="#"><h3 class="follows"><%= user.followers.length%></h3><p> Followers</p></a>
+                            <a href="#"><h3 class="follows"><%= user.followings.length%></h3><p> Following</p></a>
                         </div>
                         <div class="follow-button">
                             <button>Follow</button>
@@ -215,7 +215,7 @@
                                   </div>
                                 <div class="upl">
                                     <label for="avatar">Choose a profile picture:</label>
-                                    <input type="file" id="avatar" name="avatar"  >
+                                    <input type="file" id="avatar" name="avatar" required>
                                     <br><br>
                                     <button type="submit">Upload</button>
                                 </div>

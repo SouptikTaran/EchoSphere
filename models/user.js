@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
     },
     profilePic: {
         type: String,
-        default: "",
+        default: "/images/defaultProfile.jpg",
     },
     followers: [{
         type: mongoose.Schema.Types.ObjectId,
