@@ -204,7 +204,6 @@
             <div class="popup" id="popup">
                 <span class="close" id="closePopup">&times;</span>
                 <div class="popup-content">
-        
                     <div class="square">
                         <div class="te">
                             <h1>Upload Profile Picture</h1>
@@ -212,14 +211,9 @@
                             <form id="uploadForm" method="POST" action="/post/profile" enctype="multipart/form-data">
                                 <div class="drop-zone">
                                     <span class="drop-zone__prompt">Drop file here</span>
-                                    <input type="file" name="myFile" class="drop-zone__input">
+                                    <input type="file" name="avatar" class="drop-zone__input" id="avatar">
                                   </div>
                                 <div class="upl">
-                                    <label for="email">email:</label>
-                                    <input type="text" id="email" name="email">
-                                    <label for="username">username:</label>
-                                    <input type="text" id="username" name="username">
-                                    <br><br>
                                     <label for="avatar">Choose a profile picture:</label>
                                     <input type="file" id="avatar" name="avatar"  >
                                     <br><br>
