@@ -27,7 +27,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Trigger the popup to open (you can call this function on a button click or any other event)
   var button = document.getElementById("myButton");
+  var button2 = document.getElementById("profileUpload");
   button.addEventListener("click", openPopup);
+  button2.addEventListener("click", openPopup);
 
   // Close the popup when the close button is clicked
 

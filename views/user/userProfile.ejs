@@ -1,230 +1,237 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/user/profile.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    </head>
-    <nav>
-         <!--logo-->
-         <a href="#">
-            <div class="logo">
-                
-                    <img src="/icons/logo.svg">
-                    <h3>Mingle</h3>
-                
-            </div>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/user/profile.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<nav>
+    <!--logo-->
+    <a href="#">
+        <div class="logo">
+            <img src="/icons/logo.svg" />
+            <h3>Mingle</h3>
+        </div>
+    </a>
+    <!--search-->
+    <div class="search">
+        <img src="/icons/search-mini-ico.svg" />
+        <input type="search" placeholder="Search" />
+    </div>
+    <!--nav options-->
+    <div class="nav-options">
+        <div class="search-mini">
+            <button><img src="/icons/search-ico.svg" /></button>
+        </div>
+        <ul>
+            <li>
+                <a href="/user/profile">Home</a>
+            </li>
+
+            <li>
+                <button id="myButton">Upload</button>
+            </li>
+
+            <li>
+                <a href="/user/chatting">Chat</a>
+            </li>
+
+            <li>
+                <a href="#">Setting</a>
+            </li>
+
+            <li>
+                <a href="/user/logout">Logout</a>
+            </li>
+        </ul>
+        <a href="#">
+            <div class="user"><i class="fa-solid fa-user"></i></div>
         </a>
-        <!--search-->
-        <div class="search">
-            <img src="/icons/search-mini-ico.svg">
-            <input type="search" placeholder="Search">
-        </div>
-        <!--nav options-->
-        <div class="nav-options">
-            <div class="search-mini">
-                <button><img src="/icons/search-ico.svg"></button>
-            </div>
-            <ul>
-                <li>
-                    <a href="/user/profile">Home</a>
-                </li>
-                
-                <li>
-                    <button id="myButton">Upload</button>
-                </li>
-                
-                <li>
-                    <a href="#">Network</a>
-                </li>
+    </div>
+</nav>
 
-                <li>
-                    <a href="/user/chatting">Chat</a>
-                </li>
+<body>
+    <main>
+        <div class="hero-section">
+            <div class="profile">
+                <div class="profile-img">
+                    <div class="bg-cover-bottom"></div>
 
-                <li>
-                    <a href="#">Setting</a>
-                </li>
-                
-            </ul>    
-            <a href="#">
-                <div class="user"><i class="fa-solid fa-user"></i></div>
-            </a>
-            
-            
-        </div>       
-    </nav>
-    <body>
-        <main>
-            <div class="hero-section">
-                    <div class="profile">
-                        <div class="profile-img">
-                            <div class="bg-cover-bottom"></div>
-                            
-                            <img src="<%=user.profilePic%>" class="profile-user">
-                            <p><%= user.username%></p>
-                        </div>
-                        <div class="follow-count">
-                            <a href="#"><h3 class="follows"><%= user.followers.length%></h3><p> Followers</p></a>
-                            <a href="#"><h3 class="follows"><%= user.followings.length%></h3><p> Following</p></a>
-                        </div>
-                        <div class="follow-button">
-                            <button>Follow</button>
-                            <a href="#">...More</a>
-                        </div>
-                    </div>
-                    <!--chats section-->
-                    <div class="chats">
-                        <!--chat 1-->
-                        <div class="chat" role="button">
-                            <div class="chat-prof">
-                                <img src="/icons/chat-profile1-ico.svg">
-                            </div>
-                            <div class="chat-name">
-                                <h4>Tim He</h4>
-                                <p>Hey Tim,thank you for the message</p>
-                            </div>
-                        </div>
-                        
-                        <!--chat 2-->
-                        <div class="chat" role="button">
-                            <div class="chat-prof">
-                                <img src="/icons/chat-profile2-ico.svg">
-                            </div>
-                            <div class="chat-name">
-                                <h4>Carol Lei</h4>
-                                <p>Hey Helen,it's nice to meet you</p>
-                            </div>
-                        </div>
-                        <!--chat 3-->
-                        <div class="chat" role="button">
-                            <div class="chat-prof" role="button">
-                                <img src="/icons/chat-profile3-ico.svg">
-    
-                            </div>
-                            <div class="chat-name">
-                                <h4>Christina Chen</h4>
-                                <p>I saw your article, it is really interesting</p>
-                            </div>
-                        </div>
-                        <!--chat 4-->
-                        <div class="chat" role="button">
-                            <div class="chat-prof">
-                                <img src="/icons/chat-profile4-ico.svg">
-                            </div>
-                            <div class="chat-name">
-                                <h4>Carl Barenbrug</h4>
-                                <p>Is the job SF based or remote?</p>
-                            </div>
-                        </div>
-                        <!--chat 5-->
-                    
-                        <div class="chat" role="button">
-                            <div class="chat-prof">
-                                <img src="/icons/chat-profile5-ico.svg">
-                            </div>
-                            <div class="chat-name">
-                                <h4>Gavriel Sharabi</h4>
-                                <p>Hey,how can I help?</p>
-                            </div>
-                        </div>
-                    
-                        <!--chat 6-->
-                        
-                        <div class="chat" role="button">
-                            <div class="chat-prof">
-                                <img src="/icons/chat-profile6-ico.svg">
-                            </div>
-                            <div class="chat-name">
-                                <h4>Jesse Vermeulen</h4>
-                                <p>This is really good</p>
-                            </div>
-                        </div>
-                        
-                        <!--chat 7-->
-                        
-                        <div class="chat" role="button">
-                            <div class="chat-prof">
-                                <img src="/icons/chat-profile7-ico.svg">
-                            </div>
-                            <div class="chat-name">
-                                <h4>Praveen Soni</h4>
-                                <p>I'm interested on the job you posted</p>
-                            </div>
-                        </div>    
-                    </div>   
-            </div>
-            <div class="post__s">
-                <div class="user-post1">
-                    <!--post 1-->
-                    <div class="post">
-                        <img src="/images/user-images/post1-user.svg">
-                    </div>
-                    <!--post 2-->
-                    <div class="post">
-                        <img src="/images/user-images/post2-user.svg">
-                    </div>
-                    <!--post 3-->
-                    <div class="post">
-                        <img src="/images/user-images/post3-user.svg">
-                    </div>
-                     <!--post 4-->
-                     <div class="post">
-                        <img src="/images/user-images/post4-user.svg">
-                    </div>
+                    <img src="<%= user.profilePic%>" class="profile-user" />
+                    <p>
+                        <%= user.username%>
+                    </p>
                 </div>
-                <div class="user-post1">
-                    <!--post 5-->
-                    <div class="post">
-                        <img src="/images/user-images/post 5-user.svg">
-                    </div>
-                     <!--post 6-->
-                     <div class="post">
-                        <img src="/images/user-images/post 6-user.svg">
-                    </div>
-                     <!--post 7-->
-                     <div class="post">
-                        <img src="/images/user-images/post 7-user.svg">
-                    </div>
-                     <!--post 8-->
-                     <div class="post">
-                        <img src="/images/user-images/post 8-user.svg">
-                    </div>
-                
+                <div class="follow-count">
+                    <a href="#">
+                        <h3 class="follows">
+                            <%= user.followers.length%>
+                        </h3>
+                        <p>Followers</p>
+                    </a>
+                    <a href="#">
+                        <h3 class="follows">
+                            <%= user.followings.length%>
+                        </h3>
+                        <p>Following</p>
+                    </a>
+                </div>
+                <div class="follow-button">
+                    <button>Follow</button>
+                    <button id="createPost">Post</button>
                 </div>
             </div>
-        </main>
-        <div class="popup-overlay" id="popupOverlay">
-            <div class="popup" id="popup">
-                <span class="close" id="closePopup">&times;</span>
-                <div class="popup-content">
-                    <div class="square">
-                        <div class="te">
-                            <h1>Upload Profile Picture</h1>
-                        </div>
-                            <form id="uploadForm" method="POST" action="/post/profile" enctype="multipart/form-data">
-                                <div class="drop-zone">
-                                    <span class="drop-zone__prompt">Drop file here</span>
-                                    <input type="file" name="avatar" class="drop-zone__input" id="avatar">
-                                  </div>
-                                <div class="upl">
-                                    <label for="avatar">Choose a profile picture:</label>
-                                    <input type="file" id="avatar" name="avatar" required>
-                                    <br><br>
-                                    <button type="submit">Upload</button>
-                                </div>
-                             </form>
-                    </div> 
+            <!--chats section-->
+            <div class="chats">
+                <!--chat 1-->
+                <div class="chat" role="button">
+                    <div class="chat-prof">
+                        <img src="/icons/chat-profile1-ico.svg" />
+                    </div>
+                    <div class="chat-name">
+                        <h4>Tim He</h4>
+                        <p>Hey Tim,thank you for the message</p>
+                    </div>
+                </div>
+
+                <!--chat 2-->
+                <div class="chat" role="button">
+                    <div class="chat-prof">
+                        <img src="/icons/chat-profile2-ico.svg" />
+                    </div>
+                    <div class="chat-name">
+                        <h4>Carol Lei</h4>
+                        <p>Hey Helen,it's nice to meet you</p>
+                    </div>
+                </div>
+                <!--chat 3-->
+                <div class="chat" role="button">
+                    <div class="chat-prof" role="button">
+                        <img src="/icons/chat-profile3-ico.svg" />
+                    </div>
+                    <div class="chat-name">
+                        <h4>Christina Chen</h4>
+                        <p>I saw your article, it is really interesting</p>
+                    </div>
+                </div>
+                <!--chat 4-->
+                <div class="chat" role="button">
+                    <div class="chat-prof">
+                        <img src="/icons/chat-profile4-ico.svg" />
+                    </div>
+                    <div class="chat-name">
+                        <h4>Carl Barenbrug</h4>
+                        <p>Is the job SF based or remote?</p>
+                    </div>
+                </div>
+                <!--chat 5-->
+
+                <div class="chat" role="button">
+                    <div class="chat-prof">
+                        <img src="/icons/chat-profile5-ico.svg" />
+                    </div>
+                    <div class="chat-name">
+                        <h4>Gavriel Sharabi</h4>
+                        <p>Hey,how can I help?</p>
+                    </div>
+                </div>
+
+                <!--chat 6-->
+
+                <div class="chat" role="button">
+                    <div class="chat-prof">
+                        <img src="/icons/chat-profile6-ico.svg" />
+                    </div>
+                    <div class="chat-name">
+                        <h4>Jesse Vermeulen</h4>
+                        <p>This is really good</p>
+                    </div>
+                </div>
+
+                <!--chat 7-->
+
+                <div class="chat" role="button">
+                    <div class="chat-prof">
+                        <img src="/icons/chat-profile7-ico.svg" />
+                    </div>
+                    <div class="chat-name">
+                        <h4>Praveen Soni</h4>
+                        <p>I'm interested on the job you posted</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <script src="/js/profile.js"></script>
-        <script src="" async defer></script>
-    </body>
+        <div class="post__s">
+            <div class="user-post1">
+                <!--post 1-->
+                <div class="post">
+                    <img src="/images/user-images/post1-user.svg" />
+                </div>
+                <!--post 2-->
+                <div class="post">
+                    <img src="/images/user-images/post2-user.svg" />
+                </div>
+                <!--post 3-->
+                <div class="post">
+                    <img src="/images/user-images/post3-user.svg" />
+                </div>
+                <!--post 4-->
+                <div class="post">
+                    <img src="/images/user-images/post4-user.svg" />
+                </div>
+            </div>
+            <div class="user-post1">
+                <!--post 5-->
+                <div class="post">
+                    <img src="/images/user-images/post 5-user.svg" />
+                </div>
+                <!--post 6-->
+                <div class="post">
+                    <img src="/images/user-images/post 6-user.svg" />
+                </div>
+                <!--post 7-->
+                <div class="post">
+                    <img src="/images/user-images/post 7-user.svg" />
+                </div>
+                <!--post 8-->
+                <div class="post">
+                    <img src="/images/user-images/post 8-user.svg" />
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup" id="popup">
+            <span class="close" id="closePopup">&times;</span>
+            <div class="popup-content">
+                <div class="square">
+                    <div class="te">
+                        <h1>Upload Profile Picture</h1>
+                    </div>
+                    <form id="uploadForm" method="POST" action="/post/profile" enctype="multipart/form-data">
+                        <div class="drop-zone">
+                            <span class="drop-zone__prompt">Drop file here</span>
+                            <input type="file" name="avatar" class="drop-zone__input" id="avatar" />
+                        </div>
+                        <div class="upl">
+                            <label for="avatar">Choose a profile picture:</label>
+                            <input type="file" id="avatar" name="avatar" required />
+                            <br /><br />
+                            <button type="submit">Upload</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/profile.js"></script>
+    <script src="" async defer></script>
+</body>
+
 </html>

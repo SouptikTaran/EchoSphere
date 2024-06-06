@@ -53,8 +53,8 @@ router.post("/profile", upload.single('avatar'), async (req, res) => {
         if (!req.file) {
             return res.status(400).send('File is required');
         }
-        console.log(req.file);
-        const profilePicPath =  '/' + user.username + '/'+ 'profilePicture' + '-' + user.username ;
+        console.log("req.file : " , req.file) ;
+        const profilePicPath =  '/' + user.username + '/'+ req.file.filename ;
         // /Souptik Taran/profilePicture-Souptik Taran.jpg
         console.log('done1')
 

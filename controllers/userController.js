@@ -3,8 +3,8 @@ const User = require('../models/user')
 const { matchPasswordandGenerateToken } = require('../models/user')
 const { createHmac, randomBytes } = require('crypto');
 const { verifyEmail } = require('../services/mail')
-const {LocalStorage} = require("node-localstorage")
-const {validateToken} = require("../services/authentication")
+const { LocalStorage } = require("node-localstorage")
+const { validateToken } = require("../services/authentication")
 localStorage = new LocalStorage('./scratch');
 
 
@@ -191,43 +191,42 @@ module.exports.userProfile = async (req, res) => {
     return res.redirect('/login');
   }
   // console.log(req.user)
-  const {email} = req.user ;
-  const user = await User.findOne({email}) ;
+  const { email } = req.user;
+  const user = await User.findOne({ email });
   console.log(user);
-  localStorage.setItem('email' , user.email);
-  localStorage.setItem('username' , user.username);
-  res.status(200).render('userProfile' , {user});
+  localStorage.setItem('email', user.email);
+  localStorage.setItem('username', user.username);
+  res.status(200).render('userProfile', { user });
 }
 
 // User Profile
 module.exports.userSearch = async (req, res) => {
-  const username = req.params.username ;
-  const currentUser =req.cookies.token ;
+  const username = req.params.username;
+  const currentUser = req.cookies.token;
   const ans = validateToken(currentUser);
   console.log(ans);
-  if(username === ans.username){
-    
+  if (username === ans.username) {
     console.log("main user")
-  }else{
-    console.log("another user")
-  }
+  } else {
+    try {
+      const user = await User.findOne({ username })
+        .populate('followers', 'username email profilePic')
+        .populate('followings', 'username email profilePic');
 
-  try {
-    const user = await User.findOne({username})
-      .populate('followers', 'username email profilePic')
-      .populate('followings', 'username email profilePic');
-
-    if (user) {
-
-      res.status(200).render('userProfile' , {user});
-    } else {
-      res.status(404).json({ msg: "User not found" });
+      if (user) {
+        console.log(user)
+        res.status(200).render('userProfile', { user });
+      }
+      else {
+        res.status(404).json({ msg: "User not found" });
+      }
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
   }
-
 }
+
+
 
 
 module.exports.followUser = async (req, res) => {
