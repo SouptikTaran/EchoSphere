@@ -207,10 +207,7 @@ main {
   font-size: large;
   border-radius: 0.85rem;
 }
-.follow-button button:hover {
-  background-color: rgb(71, 120, 173);
-  color: white;
-}
+
 .follow-button a {
   color: white;
 }
@@ -571,3 +568,50 @@ main {
   color: #ffffff;
 }
 
+
+/* Button 1 */
+.Btn {
+  width: 150px;
+  height: 50px;
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  border-width: 2px;
+  border-color: #6FA8DC;
+  border-radius: 20px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.Btn:hover {
+  transform: translateY(-10px);
+  background-color: #6FA8DC;
+}
+
+.Btn::after {
+  transform: translateY(0);
+}
+
+
+/* Button 1 */
+.Btn-red {
+  width: 150px;
+  height: 50px;
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  border-width: 2px;
+  border-color: #FF5858;
+  border-radius: 20px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.Btn-red:hover {
+  transform: translateY(-10px);
+  background-color: #FF5858;
+}
+
+.Btn-red::after {
+  transform: translateY(0);
+}

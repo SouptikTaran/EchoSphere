@@ -204,9 +204,12 @@ module.exports.userSearch = async (req, res) => {
   const username = req.params.username;
   const currentUser = req.cookies.token;
   const ans = validateToken(currentUser);
+  const button = false ;
   console.log(ans);
   if (username === ans.username) {
     console.log("main user")
+    
+    
   } else {
     try {
       const user = await User.findOne({ username })
