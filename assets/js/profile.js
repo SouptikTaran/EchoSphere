@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const closePopup = document.getElementById('closePopup');
 
 
+
   // Function to open the popup
 
   function openPopup() {
@@ -23,13 +24,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
   }
 
-  // Event listeners
 
+  
+  // Event listeners
+  
   // Trigger the popup to open (you can call this function on a button click or any other event)
-  var button = document.getElementById("myButton");
-  var button2 = document.getElementById("profileUpload");
+  
+  const button = document.getElementById("myButton"); // Assuming you have a button with id="myButton"
   button.addEventListener("click", openPopup);
+
+  const button2 = document.getElementById("myBtn"); // Assuming you have a button with id="myButton"
   button2.addEventListener("click", openPopup);
+
+  const button3 = document.getElementById("myprof"); // Assuming you have a button with id="myButton"
+  button3.addEventListener("click", openPopup);
+  
+
 
   // Close the popup when the close button is clicked
 
@@ -44,6 +54,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
+
 
 
 
@@ -110,3 +122,43 @@ function updateThumbnail(dropZoneElement, file) {
     thumbnailElement.style.backgroundImage = null;
   }
 }
+
+
+const profile = document.getElementById("pic")
+const option = document.getElementById("ppic")
+const profileIcon = document.getElementById("myprof")
+
+const post1 = document.getElementById("myButton")
+const post2 = document.getElementById("myBtn")
+
+profileIcon.addEventListener("click",()=>{
+  profile.style.display="none"
+  option.style.display="block"
+})
+
+post1.addEventListener("click",()=>{
+  profile.style.display="block"
+  option.style.display="none"
+})
+
+post2.addEventListener("click",()=>{
+  profile.style.display="block"
+  option.style.display="none"
+})
+
+
+
+
+let isProfileVisible = true; // Track profile visibility state
+
+profileIcon.addEventListener("click", () => {
+  if (isProfileVisible) {
+    profile.style.display = "none";
+    option.style.display = "block";
+    isProfileVisible = false; // Update state after hiding profile
+  } else {
+    // Optional: Handle the case where option is already visible
+    console.log("Option is already visible.");
+  }
+});
+
