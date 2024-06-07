@@ -3,6 +3,7 @@
 *{
 	margin: 0;
 	padding: 0;
+	background:  rgba(18, 26, 33, 1);
 }
 
 .login,
@@ -20,6 +21,7 @@
 	font-family: "Poppins", sans-serif;
 	/* font-weight: 600; */
 	text-align: center;
+	color:white;
 }
 .buttonn{
 	top:10%;
@@ -45,6 +47,8 @@ a:hover {
 	text-decoration: none;
 	cursor: pointer;
   }
+
+  
 
 
 
