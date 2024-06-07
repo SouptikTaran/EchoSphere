@@ -1,6 +1,7 @@
 *{
 	margin: 0;
 	padding: 0;
+  background:  rgba(18, 26, 33, 1);
 }
 .login,
 .image {
@@ -27,6 +28,7 @@
 .intro-text{
 	font-family: "Poppins", sans-serif;
 	text-align: center;
+  color: white;
 }
 
 #user-mail{
@@ -35,6 +37,9 @@
   padding: 10px 10px ;
   width: 20vw;
   text-decoration: none;
+}
+.cul{
+  background:  rgba(18, 26, 33, 1);
 }
 
 

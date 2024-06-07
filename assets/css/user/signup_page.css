@@ -22,7 +22,7 @@
 }
 .buttonn{
 	top:10%;
-    background-color:#010101;
+    background-color:rgba(18, 26, 33, 1);
     color: #ffffff;
     border-radius:30px;
 	padding: 10px;
@@ -39,16 +39,10 @@
 	border: 0;
 	background: none;
 }
-.sho{
-	background-color: #000000;
-	color: #ffffff;
-	border: white;
-	border-radius:30px;
-	width: 80px;
-	padding: 1px;
+
+.blu{
+	color: rgba(18, 26, 33, 1);
 }
-
-
 
 
 
