@@ -665,3 +665,8 @@ main {
 #check{
   display: none;
 }
+
+#profileIcon{
+  height: 5vh;
+  border-radius: 20px;
+}

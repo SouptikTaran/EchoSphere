@@ -196,7 +196,7 @@ module.exports.userProfile = async (req, res) => {
   console.log(user);
   localStorage.setItem('email', user.email);
   localStorage.setItem('username', user.username);
-  res.status(200).render('userProfile', { user });
+  res.status(200).render('userProfile', { user, userMain: null });
 }
 
 // User Profile
@@ -208,17 +208,16 @@ module.exports.userSearch = async (req, res) => {
   console.log(ans);
   if (username === ans.username) {
     console.log("main user")
-    
-    
-  } else {
-    try {
-      const user = await User.findOne({ username })
+    } else {
+      console.log("another user")
+      try {
+        const user = await User.findOne({ username })
         .populate('followers', 'username email profilePic')
         .populate('followings', 'username email profilePic');
-
-      if (user) {
-        console.log(user)
-        res.status(200).render('userProfile', { user });
+        const userMain = await User.findOne({username :ans.username});
+      if (user && userMain) {
+        console.log(userMain)
+        res.status(200).render('userProfile', { user , userMain});
       }
       else {
         res.status(404).json({ msg: "User not found" });

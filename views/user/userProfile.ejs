@@ -42,7 +42,7 @@
         </li>
 
         <li>
-          <button id="myButton">Post</button>
+          <button id="myButton" onclick="openPop(this.id)"> Post</button>
         </li>
 
         <li>
@@ -57,7 +57,12 @@
           <a href="/user/logout">Logout</a>
         </li>
       </ul>
-      <button class="user" id="myprof"><i id="profileIcon" class="fa-solid fa-user"></i></button>
+      <!-- <button class="user" id="myprof"><i id="profileIcon" class="fa-solid fa-user"></i></button> -->
+       <% if (userMain != null) { %>
+        <button class="user" id="myprof"><img src="<%= userMain.profilePic%>" alt="" id="profileIcon"></button>
+        <% }else{ %>
+        <button class="user" id="myprof"><img src="<%= user.profilePic%>" alt="" id="profileIcon"></button>
+       <%}%>
     </div>
   </nav>
 
@@ -85,7 +90,7 @@
             <button class="Btn">Follow</button>
             <button class="Btn-red">Unfollow</button>
 
-            <button id="myBtn">Post</button>
+            <button id="myBtn" onclick="openPop(this.id)">Post</button>
           </div>
         </div>
         <!--chats section-->
@@ -209,7 +214,7 @@
     </main>
     <div class="popup-overlay" id="popupOverlay">
       <div class="popup" id="popup">
-          <span class="close" id="closePopup">&times;</span>
+          <span class="close" id="closePopup" onclick="closePop(this.id)">&times;</span>
           <div class="popup-content">
               <div class="square">
                   <div class="te">
@@ -222,7 +227,7 @@
                           <input type="file" name="avatar" class="drop-zone__input" id="avatar" />
                       </div>
                       <div class="upl">
-                          <label for="avatar">Choose a profile picture:</label>
+                          <label for="avatar">Choose a picture:</label>
                           <input type="file" id="avatar" name="avatar" />
                           <br /><br />
                           <button type="submit">Upload</button>
