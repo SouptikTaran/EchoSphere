@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT | 8000;
+const PORT = process.env.PORT || 8000;
 const PATH = require("path");
 const cookieParser = require('cookie-parser');
 
@@ -24,9 +24,6 @@ const DB = require("./configs/DB")
 
 app.use(passport.initialize())
 
-//setting user static pages
-// app.set("views", path.join(__dirname, "views", "user"));
-
 //setting up the app engine
 app.set("view engine", "ejs");
 app.set('views', [
@@ -40,17 +37,16 @@ app.use(express.static(__dirname + '/uploads'));
 //Middleware to pass json data
 app.use(express.json());
 
-//Importing the controllers
-const userRoutes = require("./routes/user");
-const postRoutes = require("./routes/post");
-
-app.get('/', (req, res) => {
-  res.render('home')
-})
+//Importing the Routes
+const routes = require("./routes/indexRoutes");
+app.use('/', routes);
 
 
-app.use("/user", userRoutes);
-app.use("/post", postRoutes);
+//Global Middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json("Internal error");
+});
 
 app.listen(PORT, () => {
   console.log(`SERVER STARTED : http://localhost:${PORT}`.bgWhite.black);
