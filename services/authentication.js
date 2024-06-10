@@ -14,6 +14,7 @@ module.exports.createTokenForUser = (user) => {
 
 module.exports.validateToken= (token)=> {
     const payload = JWT.verify(token, secretKey);
+    console.log("valid Token : " , payload);
     return payload;
 }
 

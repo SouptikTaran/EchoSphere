@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const { createHmac, randomBytes } = require("crypto");
 const { createTokenForUser } = require("../services/authentication");
 const Otp = require("./otp");
+const LoginUser = require("./userLogin")
 
 const userSchema = new mongoose.Schema(
   {
@@ -57,22 +58,12 @@ userSchema.pre("save", function (next) {
   next();
 });
 
-// Helper function to update LoginUser
-const updateLoginUser = async (doc) => {
-  const loginUserUpdate = {
-    email: doc.email,
-    username: doc.username,
-    profilePic: doc.profilePic,
-    followers: doc.followers.length,
-    followings: doc.followings.length,
-  };
-};
-
 // Post-save hook to create OTP and Loginuser detai,s
 userSchema.post("save", async function (doc, next) {
   console.log("post hook");
   try {
     await Otp.create({ email: doc.email });
+    await LoginUser.create({email : doc.email , username : doc.username , profilePic : doc.profilePic , followers : doc.followers.length , followings : doc.followings.length  })
   } catch (err) {
     next(err);
   }

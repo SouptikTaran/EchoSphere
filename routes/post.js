@@ -5,7 +5,8 @@ const path = require('path');
 const router = express.Router();
 const User = require("../models/user");
 const Post = require("../models/posts");
-const LoginUser = require('../models/userLogin');
+const LoginUser = require('../models/userLogin')
+const {tokenValidity}  = require('../middlewares/jwtMiddleware')
 
 // Ensure upload directory exists
 const createUploadDir = (dir) => {
@@ -17,13 +18,13 @@ const createUploadDir = (dir) => {
 // Multer disk storage configuration
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const user = localStorage.getItem('username')
+        const user = req.user.username ;
         const uploadDir = path.join(__dirname,'..','uploads', user); 
         createUploadDir(uploadDir);
         cb(null, uploadDir);
     },
     filename: (req, file, cb) => {
-        const user = localStorage.getItem('username')
+        const user = req.user.username ;
         const name = "profilePicture";
         const uniqueSuffix = name + "-" +user + path.extname(file.originalname); 
         cb(null, uniqueSuffix);
@@ -36,19 +37,22 @@ const upload = multer({
 });
 
 // GET route to render the upload form
-router.get("/profile", (req, res) => {
+router.get("/profile", tokenValidity ,(req, res) => {
     res.render("upload");
 });
 
 // POST route to handle file upload
-router.post("/profile", upload.single('avatar'), async (req, res) => {
-    const email= localStorage.getItem('email');
+router.post("/profile", tokenValidity ,upload.single('avatar'), async (req, res) => {
+    const email= req.user.email;
+    console.log("profile : " , req.user.email);
     try {
+        
         // Find user by email
         const user = await User.findOne({ email });
         const userLogin = await LoginUser.findOne({email})
-
-        if (!user) {
+        console.log("USERS : " , user , userLogin)
+        
+        if (!user && !userLogin) {
             return res.status(404).send('User not found');
         }
         // Check if file is uploaded
@@ -65,7 +69,8 @@ router.post("/profile", upload.single('avatar'), async (req, res) => {
             email : req.body.email ,
             profilePic : profilePicPath ,
         })
-        await LoginUser.updateOne({
+        await userLogin.updateOne({
+            email : req.body.email,
             profilePic : profilePicPath ,
         })
         console.log('done2')

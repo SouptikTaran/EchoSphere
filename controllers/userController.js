@@ -5,10 +5,8 @@ const Otp = require('../models/otp')
 const { matchPasswordandGenerateToken } = require('../models/user')
 const { createHmac, randomBytes } = require('crypto');
 const { verifyEmail } = require('../services/mail')
-const { LocalStorage } = require("node-localstorage")
 const { validateToken } = require("../services/authentication")
 const {generateOTP} = require("../services/otpGeneration")
-localStorage = new LocalStorage('./scratch');
 
 
 /** USER AUTHENTICATION CONTROLLERS */
@@ -196,8 +194,6 @@ module.exports.userProfile = async (req, res) => {
   const { email } = req.user;
   const user = await LoginUser.findOne({ email });
   console.log(user);
-  localStorage.setItem('email', user.email);
-  localStorage.setItem('username', user.username);
   res.status(200).render('userProfile', { user, userMain: null });
 }
 
