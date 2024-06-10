@@ -1,5 +1,6 @@
 const { userSchema, userValidSchema  , validEmailSchema , validPasswordSchema} = require("../zodSchema/userSchema");
 const User = require('../models/user')
+const LoginUser = require('../models/userLogin');
 const Otp = require('../models/otp')
 const { matchPasswordandGenerateToken } = require('../models/user')
 const { createHmac, randomBytes } = require('crypto');
@@ -193,7 +194,7 @@ module.exports.userProfile = async (req, res) => {
   }
   // console.log(req.user)
   const { email } = req.user;
-  const user = await User.findOne({ email });
+  const user = await LoginUser.findOne({ email });
   console.log(user);
   localStorage.setItem('email', user.email);
   localStorage.setItem('username', user.username);
@@ -212,10 +213,10 @@ module.exports.userSearch = async (req, res) => {
     } else {
       console.log("another user")
       try {
-        const user = await User.findOne({ username })
+        const user = await LoginUser.findOne({ username })
         .populate('followers', 'username email profilePic')
         .populate('followings', 'username email profilePic');
-        const userMain = await User.findOne({username :ans.username});
+        const userMain = await LoginUser.findOne({username :ans.username});
       if (user && userMain) {
         console.log(userMain)
         res.status(200).render('userProfile', { user , userMain});

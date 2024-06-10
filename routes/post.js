@@ -5,6 +5,7 @@ const path = require('path');
 const router = express.Router();
 const User = require("../models/user");
 const Post = require("../models/posts");
+const LoginUser = require('../models/userLogin');
 
 // Ensure upload directory exists
 const createUploadDir = (dir) => {
@@ -45,6 +46,7 @@ router.post("/profile", upload.single('avatar'), async (req, res) => {
     try {
         // Find user by email
         const user = await User.findOne({ email });
+        const userLogin = await LoginUser.findOne({email})
 
         if (!user) {
             return res.status(404).send('User not found');
@@ -61,6 +63,9 @@ router.post("/profile", upload.single('avatar'), async (req, res) => {
         // Update user profile picture path
         await user.updateOne({
             email : req.body.email ,
+            profilePic : profilePicPath ,
+        })
+        await LoginUser.updateOne({
             profilePic : profilePicPath ,
         })
         console.log('done2')
