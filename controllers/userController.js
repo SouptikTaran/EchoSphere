@@ -1,24 +1,13 @@
-const { userSchema, userValidSchema } = require("../zodSchema/userSchema");
+const { userSchema, userValidSchema  , validEmailSchema , validPasswordSchema} = require("../zodSchema/userSchema");
 const User = require('../models/user')
+const Otp = require('../models/otp')
 const { matchPasswordandGenerateToken } = require('../models/user')
 const { createHmac, randomBytes } = require('crypto');
 const { verifyEmail } = require('../services/mail')
 const { LocalStorage } = require("node-localstorage")
 const { validateToken } = require("../services/authentication")
+const {generateOTP} = require("../services/otpGeneration")
 localStorage = new LocalStorage('./scratch');
-
-
-/** OTP GENERATION FUNCTION */
-function generateOTP() {
-  let otp = '';
-  const digits = '0123456789';
-
-  for (let i = 0; i < 4; i++) {
-    otp += digits.charAt(Math.floor(Math.random() * digits.length));
-  }
-
-  return otp;
-}
 
 
 /** USER AUTHENTICATION CONTROLLERS */
@@ -98,11 +87,14 @@ module.exports.userEmailGet = (req, res) => {
   res.render('forgotEmail')
 }
 
+
 module.exports.userEmail = async (req, res) => {
   const { email } = req.body;
+  const validation = validEmailSchema.safeParse(email);
+  if(!validation.success) return res.status(400).render('forgotEmail');
   res.cookie('email', email);
 
-  const user = await User.findOne({ email });
+  const user = await Otp.findOne({ email });
   if (!user) {
     return res.render('verifyOtp');
   }
@@ -110,6 +102,7 @@ module.exports.userEmail = async (req, res) => {
   await user.updateOne(
     { $set: { otp: otp } }
   );
+  console.log("generated OTP : " , otp);
   verifyEmail(email, otp);
   return res.render('verifyOtp');
 };
@@ -135,24 +128,32 @@ module.exports.forgotpassword = async (req, res) => {
   console.log(req.cookies.email);
   //search user ,
   const userMail = req.cookies.email;
-  const user = await User.findOne({ email: userMail });
+  const user = await Otp.findOne({ email: userMail });
   if (user == '') {
     return res.render('verifyOtp')
   }
+  console.log("Forgot password : " , user);
   console.log('user.otp :', user.otp);
   console.log('code :', token);
   if (token == user.otp) {
     return res.render('newPassword')
   } else {
-    res.render('verifyOTP')
+    res.render('verifyOtp')
   }
 }
 
 module.exports.newPassword = async (req, res) => {
   const { password, confirmpassword } = req.body;
+    
   if (password != confirmpassword) {
     return res.render('newPassword');
   }
+  const data = {
+    password , confirmpassword
+  }
+
+  const validation = validPasswordSchema.safeParse  (data);
+  if(!validation.success) return res.status(400).render('newPassword');
   const email = req.cookies.email;
   const user = await User.findOne({ email });
   const salt = user.salt;

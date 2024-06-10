@@ -1,11 +1,12 @@
 {
   "name": "EchoSphere",
-  "version": "2.2.3",
+  "version": "2.3.4",
   "description": "This is an social media app",
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "dev": "nodemon index && npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch"
+    "dev": "nodemon index",
+    "build" : "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch"
   },
   "author": "Souptik Taran",
   "license": "ISC",

@@ -15,7 +15,6 @@ passport.use(
     }, async (accessToken, refreshToken, profile, done) => {
       try {
         // Find the user based on their Google ID
-        
         let currentUser = await User.findOne({ email : profile.emails[0].value});
         if (currentUser) {
           console.log(currentUser);

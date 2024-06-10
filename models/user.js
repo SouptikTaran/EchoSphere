@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { createHmac, randomBytes } = require('crypto');
 const { createTokenForUser } = require('../services/authentication')
+const Otp = require('./otp');
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -21,9 +22,6 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-    },
-    otp: {
-        type: String,
     },
     profilePic: {
         type: String,
@@ -48,6 +46,17 @@ userSchema.pre("save", function (next) {
     this.salt = salt;
     this.password = hashedPassword;
     next();
+})
+
+
+// Post-save hook to create OTP entry
+userSchema.post("save" ,async function(doc , next){
+    console.log("post hook");
+    try{
+        await Otp.create({email : doc.email});
+    }catch(err){
+        next(err);  
+    }
 })
 
 
