@@ -34,20 +34,22 @@
                   <h3 class="display-6 mb-5 intro-text">Welcome</h3>
                   <form method="POST" action="/user/login">
                     <div class="form-group mb-3">
-                      <!-- <input id="inputEmail" name="email" type="email" placeholder="Email address" required=""
-                      autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4" /> -->
-                      <input class="usernameField" placeholder="Username"  name="email" type="email" required />
+                      <input
+                        class="usernameField"
+                        placeholder="Username"
+                        name="email"
+                        type="email"
+                        required
+                      />
                     </div>
                     <div class="form-group mb-3">
-                      <!-- <input
-                        id="inputPassword"
-                        type="password"
-                        name="password"
+                      <input
+                        class="usernameField"
                         placeholder="Password"
-                        required=""
-                        class="form-control rounded-pill border-0 shadow-sm px-4 text-primary"
-                      /> -->
-                      <input class="usernameField" placeholder="Password"  name="password" type="password" required />
+                        name="password"
+                        type="password"
+                        required
+                      />
                     </div>
                     <div class="custom-control custom-checkbox mb-3">
                       <input
@@ -56,7 +58,9 @@
                         checked
                         class="custom-control-input"
                       />
-                      <label for="customCheck1" class="custom-control-label text-secondary"
+                      <label
+                        for="customCheck1"
+                        class="custom-control-label text-secondary"
                         >Remember password</label
                       >
                       <a href="/user/forgotemail" class="forgot">
@@ -67,7 +71,10 @@
                     <button id="loginEmail" class="text-justify">
                       <span class="text">Login</span>
                     </button>
-                    <!-- <button type="submit" class="buttonn">Log in</button> -->
+                    <p class="ot-text text-secondary">
+                      Don't have a account?
+                      <a href="/user/Signup" id="text-design"> Sign Up </a>
+                    </p>
                   </form>
                 </div>
               </div>
