@@ -81,6 +81,7 @@
               <img id="displayImage" class="image" src="<%= user.profilePic%>" alt="Profile Picture" />
               <input class="image-input" type="file" name="profileImage" id="uploadImage" accept="image/*"
                 style="display: none" />
+                <%if(showButton  != true){%>
               <label for="uploadImage" class="overlay">
                 <div class="overlay-content">
                   <div class="icon">
@@ -92,6 +93,7 @@
                   </div>
                 </div>
               </label>
+              <%}%>
             </div>
             <!-- Snackbar element -->
             <div id="notification">Profile photo updated successfully!</div>
@@ -116,10 +118,12 @@
           </a>
         </div>
         <div class="follow-button">
+          <% if(showButton){%>
           <button class="Btn">Follow</button>
           <button class="Btn-red">Unfollow</button>
-
+          <%}else{%>
           <button id="myBtn" onclick="openPop(this.id)">Post</button>
+          <%}%>
         </div>
       </div>
       <!--chats section-->

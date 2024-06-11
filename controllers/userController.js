@@ -43,8 +43,8 @@ module.exports.SignupUser = async (req, res) => {
       email,
       password
     });
-  }catch{
-    return res.json({error : "Email / Username Already Taken"})
+  } catch {
+    return res.json({ error: "Email / Username Already Taken" })
   }
 
   try {
@@ -53,7 +53,7 @@ module.exports.SignupUser = async (req, res) => {
     return res.cookie("token", token).json({ redirect: '/' })
   } catch (error) {
     console.log(error)
-    res.json({error : error});
+    res.json({ error: error });
   }
 };
 
@@ -216,7 +216,7 @@ module.exports.userProfile = async (req, res) => {
   const { email } = req.user;
   const user = await LoginUser.findOne({ email });
   console.log(user);
-  res.status(200).render('userProfile', { user, userMain: null });
+  res.status(200).render('userProfile', { user, userMain: null, showButton: false });
 }
 
 // User Profile
@@ -224,32 +224,30 @@ module.exports.userSearch = async (req, res) => {
   const username = req.params.username;
   const currentUser = req.cookies.token;
   const ans = validateToken(currentUser);
-  const button = false;
   console.log(ans);
+  let showButton = false;
   if (username === ans.username) {
     console.log("main user")
+    showButton = false;
   } else {
     console.log("another user")
-    try {
-      const user = await LoginUser.findOne({ username })
-        .populate('followers', 'username email profilePic')
-        .populate('followings', 'username email profilePic');
-      const userMain = await LoginUser.findOne({ username: ans.username });
-      if (user && userMain) {
-        console.log(user , userMain )
-        res.status(200).render('userProfile', { user, userMain });
-      }
-      else {
-        res.status(404).json({ msg: "User not found" });
-      }
-    } catch (error) {
-      res.status(500).json({ error: error.message });
+    showButton = true;
+  }
+  try {
+    const user = await LoginUser.findOne({ username })
+      .populate('followers', 'username email profilePic')
+      .populate('followings', 'username email profilePic');
+    const userMain = await LoginUser.findOne({ username: ans.username });
+    if (user && userMain) {
+      res.status(200).render('userProfile', { user, userMain, showButton });
     }
+    else {
+      res.status(404).json({ msg: "User not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 }
-
-
-
 
 module.exports.followUser = async (req, res) => {
   if (req.body.userId !== req.params.id) {
