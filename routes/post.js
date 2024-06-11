@@ -42,7 +42,7 @@ router.get("/profile", tokenValidity ,(req, res) => {
 });
 
 // POST route to handle file upload
-router.post("/profile", tokenValidity ,upload.single('avatar'), async (req, res) => {
+router.post("/profile", tokenValidity ,upload.single('profileImage'), async (req, res) => {
     const email= req.user.email;
     console.log("profile : " , req.user.email);
     try {
@@ -59,7 +59,7 @@ router.post("/profile", tokenValidity ,upload.single('avatar'), async (req, res)
         if (!req.file) {
             return res.status(400).send('File is required');
         }
-        console.log("req.file : " , req.file) ;
+        // console.log("req.file : " , req.file) ;
         const profilePicPath =  '/' + user.username + '/'+ req.file.filename ;
         // /Souptik Taran/profilePicture-Souptik Taran.jpg
         console.log('done1')
@@ -76,7 +76,7 @@ router.post("/profile", tokenValidity ,upload.single('avatar'), async (req, res)
         console.log('done2')
         // Save file info to the Post model
 
-        res.status(200).send('File uploaded and user profile updated successfully');
+        res.status(200).json('File uploaded and user profile updated successfully');
     } catch (err) {
         console.error('Error saving post:', err);
         res.status(500).send('Error saving post: ' + err.message);

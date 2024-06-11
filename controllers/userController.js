@@ -36,23 +36,24 @@ module.exports.SignupUser = async (req, res) => {
     const existingUser = await User.findOne({ email: email });
 
     if (existingUser) {
-      return res.json({ error: 'Email Already Taken' });
+      return res.json({ error: 'Email  Already Taken' });
     }
+    await User.create({
+      username,
+      email,
+      password
+    });
   }catch{
-    return res.json({error : "Email Already Taken"})
+    return res.json({error : "Email / Username Already Taken"})
   }
-  await User.create({
-    username,
-    email,
-    password
-  });
-  console.log('222')
+
   try {
     const token = await User.matchPasswordandGenerateToken(email, password);
     // return res.status(200).send("successful")
     return res.cookie("token", token).json({ redirect: '/' })
   } catch (error) {
     console.log(error)
+    res.json({error : error});
   }
 };
 
@@ -235,7 +236,7 @@ module.exports.userSearch = async (req, res) => {
         .populate('followings', 'username email profilePic');
       const userMain = await LoginUser.findOne({ username: ans.username });
       if (user && userMain) {
-        console.log(userMain)
+        console.log(user , userMain )
         res.status(200).render('userProfile', { user, userMain });
       }
       else {

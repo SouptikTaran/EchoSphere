@@ -1,338 +1,294 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title></title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/css/user/profile.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
-  </head>
-  <nav>
-    <!--logo-->
-    <a href="#">
-      <div class="logo">
-        <img  class="ico" src="/icons/logo.svg" />
-        <h2>Mingle</h2>
-      </div>
-    </a>
-    <!--search-->
-    <div class="container">
-      <input type="checkbox" id="toggle">
-      <div class="search-container">
-          <input type="text" placeholder="Type here..." class="search-input">
-          <label for="toggle" class="search-icon">
-              <i class="fas fa-search"></i>
-          </label>
-      </div>
-  </div>
-    <!--nav options-->
-    <div class="nav-options">
-      <div class="search-mini">
-        <button><img src="/icons/search-ico.svg" /></button>
-      </div>
-      <ul>
-        <li>
-          <a href="/user/profile">Home</a>
-        </li>
 
-        <li>
-          <button id="myButton" onclick="openPop(this.id)"> Post</button>
-        </li>
-
-        <li>
-          <a href="/user/chatting">Chat</a>
-        </li>
-
-        <li>
-          <a href="#">Setting</a>
-        </li>
-
-        <li>
-          <a href="/user/logout">Logout</a>
-        </li>
-      </ul>
-      <!-- <button class="user" id="myprof"><i id="profileIcon" class="fa-solid fa-user"></i></button> -->
-       <% if (userMain != null) { %>
-        <button class="user" id="myprof"><img src="<%= userMain.profilePic%>" alt="" id="profileIcon"></button>
-        <% }else{ %>
-        <button class="user" id="myprof"><img src="<%= user.profilePic%>" alt="" id="profileIcon"></button>
-       <%}%>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title></title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/css/user/profile.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" /> -->
+</head>
+<nav>
+  <!--logo-->
+  <a href="#">
+    <div class="logo">
+      <img class="ico" src="/icons/logo.svg" />
+      <h2>Mingle</h2>
     </div>
-  </nav>
-
-  <body>
-    <main>
-      <div class="hero-section">
-        <div class="profile">
-          <div class="profile-img">
-            <div class="bg-cover-bottom"></div>
-
-            <div class="profile-container profile-user">
-              <div class="image-wrapper">
-                <img id="displayImage" class="image" src="<%= user.profilePic%>" alt="Profile Picture">
-                <input class="image-input" type="file" name="profile_image" id="uploadImage" accept="image/*" style="display: none;" />
-                <label for="uploadImage" class="overlay">
-                  <div class="overlay-content">
-                    <div class="icon">
-                      <i class="fa fa-camera fa-2x"></i>
-                    </div>
-                    <div class="text">
-                      Update <br /> Profile Photo
-                    </div>
-                  </div>
-                </label>
-              </div>
-              <!-- Snackbar element -->
-              <div id="notification">Profile photo updated successfully!</div>
-            </div>
-            
-            
-
-            <!-- 
-            <img src="<%= user.profilePic%>" class="profile-user" /> -->
-            <p><%= user.username%></p> 
-          </div>
-          <div class="follow-count">
-            <a href="#">
-              <h3 class="follows"><%= user.followers%></h3>
-              <p>Followers</p>
-            </a>
-            <a href="#">
-              <h3 class="follows"><%= user.followings%></h3>
-              <p>Following</p>
-            </a>
-          </div>
-          <div class="follow-button">
-            <button class="Btn">Follow</button>
-            <button class="Btn-red">Unfollow</button>
-
-            <button id="myBtn" onclick="openPop(this.id)">Post</button>
-          </div>
-        </div>
-        <!--chats section-->
-        <div class="chats">
-          <!--chat 1-->
-          <div class="chat" role="button">
-            <div class="chat-prof">
-              <img src="/icons/chat-profile1-ico.svg" />
-            </div>
-            <div class="chat-name">
-              <h4>Tim He</h4>
-              <p>Hey Tim,thank you for the message</p>
-            </div>
-          </div>
-
-          <!--chat 2-->
-          <div class="chat" role="button">
-            <div class="chat-prof">
-              <img src="/icons/chat-profile2-ico.svg" />
-            </div>
-            <div class="chat-name">
-              <h4>Carol Lei</h4>
-              <p>Hey Helen,it's nice to meet you</p>
-            </div>
-          </div>
-          <!--chat 3-->
-          <div class="chat" role="button">
-            <div class="chat-prof" role="button">
-              <img src="/icons/chat-profile3-ico.svg" />
-            </div>
-            <div class="chat-name">
-              <h4>Christina Chen</h4>
-              <p>I saw your article, it is really interesting</p>
-            </div>
-          </div>
-          <!--chat 4-->
-          <div class="chat" role="button">
-            <div class="chat-prof">
-              <img src="/icons/chat-profile4-ico.svg" />
-            </div>
-            <div class="chat-name">
-              <h4>Carl Barenbrug</h4>
-              <p>Is the job SF based or remote?</p>
-            </div>
-          </div>
-          <!--chat 5-->
-
-          <div class="chat" role="button">
-            <div class="chat-prof">
-              <img src="/icons/chat-profile5-ico.svg" />
-            </div>
-            <div class="chat-name">
-              <h4>Gavriel Sharabi</h4>
-              <p>Hey,how can I help?</p>
-            </div>
-          </div>
-
-          <!--chat 6-->
-
-          <div class="chat" role="button">
-            <div class="chat-prof">
-              <img src="/icons/chat-profile6-ico.svg" />
-            </div>
-            <div class="chat-name">
-              <h4>Jesse Vermeulen</h4>
-              <p>This is really good</p>
-            </div>
-          </div>
-
-          <!--chat 7-->
-
-          <div class="chat" role="button">
-            <div class="chat-prof">
-              <img src="/icons/chat-profile7-ico.svg" />
-            </div>
-            <div class="chat-name">
-              <h4>Praveen Soni</h4>
-              <p>I'm interested on the job you posted</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="post__s">
-        <div class="user-post1">
-          <!--post 1-->
-          <div class="post">
-            <img src="/images/user-images/post1-user.svg" />
-          </div>
-          <!--post 2-->
-          <div class="post">
-            <img src="/images/user-images/post2-user.svg" />
-          </div>
-          <!--post 3-->
-          <div class="post">
-            <img src="/images/user-images/post3-user.svg" />
-          </div>
-          <!--post 4-->
-          <div class="post">
-            <img src="/images/user-images/post4-user.svg" />
-          </div>
-        </div>
-        <div class="user-post1">
-          <!--post 5-->
-          <div class="post">
-            <img src="/images/user-images/post 5-user.svg" />
-          </div>
-          <!--post 6-->
-          <div class="post">
-            <img src="/images/user-images/post 6-user.svg" />
-          </div>
-          <!--post 7-->
-          <div class="post">
-            <img src="/images/user-images/post 7-user.svg" />
-          </div>
-          <!--post 8-->
-          <div class="post">
-            <img src="/images/user-images/post 8-user.svg" />
-          </div>
-        </div>
-      </div>
-    </main>
-    <div class="popup-overlay" id="popupOverlay">
-      <div class="popup" id="popup">
-          <span class="close" id="closePopup" onclick="closePop(this.id)">&times;</span>
-          <div class="popup-content">
-              <div class="square">
-                  <div class="te">
-                      <h1 id="pic" style="display:block;">Upload Picture</h1>
-                      <h1 id="ppic" style="display:none;">Upload Profile Picture</h1>
-                  </div>
-                  <form id="uploadForm" method="POST" action="/post/profile" enctype="multipart/form-data">
-                      <div class="drop-zone">
-                          <span class="drop-zone__prompt">Drop file here</span>
-                          <input type="file" name="avatar" class="drop-zone__input" id="avatar" />
-                      </div>
-                      <div class="upl">
-                          <label for="avatar">Choose a picture:</label>
-                          <input type="file" id="avatar" name="avatar" />
-                          <br /><br />
-                          <button type="submit">Upload</button>
-                      </div>
-                  </form>
-              </div>
-          </div>
-      </div>
+  </a>
+  <!--search-->
+  <div class="container">
+    <input type="checkbox" id="toggle" />
+    <div class="search-container">
+      <input type="text" placeholder="Type here..." class="search-input" />
+      <label for="toggle" class="search-icon">
+        <i class="fas fa-search"></i>
+      </label>
+    </div>
   </div>
-    <script src="/js/profile.js"></script>
-    <script src="" async defer></script>
-  </body>
-</html>
+  
+  <!--nav options-->
+  <div class="nav-options">
+    <div class="search-mini">
+      <button><img src="/icons/search-ico.svg" /></button>
+    </div>
+    <ul>
+      <li>
+        <a href="/user/profile">Home</a>
+      </li>
 
+      <li>
+        <button id="myButton" onclick="openPop(this.id)">Post</button>
+      </li>
 
+      <li>
+        <a href="/user/chatting">Chat</a>
+      </li>
 
-<!-- 
-document.addEventListener("change", function (event) {
-  if (event.target.classList.contains("uploadProfileInput")) {
-    var triggerInput = event.target;
-    var currentImg = triggerInput.closest(".pic-holder").querySelector(".pic")
-      .src;
-    var holder = triggerInput.closest(".pic-holder");
-    var wrapper = triggerInput.closest(".profile-pic-wrapper");
+      <li>
+        <a href="#">Setting</a>
+      </li>
 
-    var alerts = wrapper.querySelectorAll('[role="alert"]');
-    alerts.forEach(function (alert) {
-      alert.remove();
-    });
+      <li>
+        <a href="/user/logout">Logout</a>
+      </li>
+    </ul>
+    <% if (userMain !=null) { %>
+      <button class="user" id="myprof">
+        <img src="<%= userMain.profilePic%>" alt="" id="profileIcon" />
+      </button>
+      <% }else{ %>
+        <button class="user" id="myprof">
+          <img src="<%= user.profilePic%>" alt="" id="profileIcon" />
+        </button>
+        <%}%>
+  </div>
+</nav>
 
-    triggerInput.blur();
-    var files = triggerInput.files || [];
-    if (!files.length || !window.FileReader) {
-      return;
-    }
+<body>
+  <main>
+    <div class="hero-section">
+      <div class="profile">
+        <div class="profile-img">
+          <div class="bg-cover-bottom"></div>
 
-    if (/^image/.test(files[0].type)) {
-      var reader = new FileReader();
-      reader.readAsDataURL(files[0]);
+          <div class="profile-container profile-user">
+            <div class="image-wrapper" id="trial">
+              <img id="displayImage" class="image" src="<%= user.profilePic%>" alt="Profile Picture" />
+              <input class="image-input" type="file" name="profileImage" id="uploadImage" accept="image/*"
+                style="display: none" />
+              <label for="uploadImage" class="overlay">
+                <div class="overlay-content">
+                  <div class="icon">
+                    <i class="fa fa-camera fa-2x"></i>
+                  </div>
+                  <div class="text">
+                    Update <br />
+                    Profile Photo
+                  </div>
+                </div>
+              </label>
+            </div>
+            <!-- Snackbar element -->
+            <div id="notification">Profile photo updated successfully!</div>
+          </div>
 
-      reader.onloadend = function () {
-        holder.classList.add("uploadInProgress");
-        holder.querySelector(".pic").src = this.result;
+          <p>
+            <%= user.username%>
+          </p>
+        </div>
+        <div class="follow-count">
+          <a href="#">
+            <h3 class="follows">
+              <%= user.followers%>
+            </h3>
+            <p>Followers</p>
+          </a>
+          <a href="#">
+            <h3 class="follows">
+              <%= user.followings%>
+            </h3>
+            <p>Following</p>
+          </a>
+        </div>
+        <div class="follow-button">
+          <button class="Btn">Follow</button>
+          <button class="Btn-red">Unfollow</button>
 
-        var loader = document.createElement("div");
-        loader.classList.add("upload-loader");
-        loader.innerHTML =
-          '<div class="spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div>';
-        holder.appendChild(loader);
+          <button id="myBtn" onclick="openPop(this.id)">Post</button>
+        </div>
+      </div>
+      <!--chats section-->
+      <div class="chats">
+        <!--chat 1-->
+        <div class="chat" role="button">
+          <div class="chat-prof">
+            <img src="/icons/chat-profile1-ico.svg" />
+          </div>
+          <div class="chat-name">
+            <h4>Tim He</h4>
+            <p>Hey Tim,thank you for the message</p>
+          </div>
+        </div>
 
-        setTimeout(function () {
-          holder.classList.remove("uploadInProgress");
-          loader.remove();
+        <!--chat 2-->
+        <div class="chat" role="button">
+          <div class="chat-prof">
+            <img src="/icons/chat-profile2-ico.svg" />
+          </div>
+          <div class="chat-name">
+            <h4>Carol Lei</h4>
+            <p>Hey Helen,it's nice to meet you</p>
+          </div>
+        </div>
+        <!--chat 3-->
+        <div class="chat" role="button">
+          <div class="chat-prof" role="button">
+            <img src="/icons/chat-profile3-ico.svg" />
+          </div>
+          <div class="chat-name">
+            <h4>Christina Chen</h4>
+            <p>I saw your article, it is really interesting</p>
+          </div>
+        </div>
+        <!--chat 4-->
+        <div class="chat" role="button">
+          <div class="chat-prof">
+            <img src="/icons/chat-profile4-ico.svg" />
+          </div>
+          <div class="chat-name">
+            <h4>Carl Barenbrug</h4>
+            <p>Is the job SF based or remote?</p>
+          </div>
+        </div>
+        <!--chat 5-->
 
-          var random = Math.random();
-          if (random < 0.9) {
-            wrapper.innerHTML +=
-              '<div class="snackbar show" role="alert"><i class="fa fa-check-circle text-success"></i> Profile image updated successfully</div>';
-            triggerInput.value = "";
-            setTimeout(function () {
-              wrapper.querySelector('[role="alert"]').remove();
-            }, 3000);
-          } else {
-            holder.querySelector(".pic").src = currentImg;
-            wrapper.innerHTML +=
-              '<div class="snackbar show" role="alert"><i class="fa fa-times-circle text-danger"></i> There is an error while uploading! Please try again later.</div>';
-            triggerInput.value = "";
-            setTimeout(function () {
-              wrapper.querySelector('[role="alert"]').remove();
-            }, 3000);
-          }
-        }, 1500);
-      };
-    } else {
-      wrapper.innerHTML +=
-        '<div class="alert alert-danger d-inline-block p-2 small" role="alert">Please choose a valid image.</div>';
-      setTimeout(function () {
-        var invalidAlert = wrapper.querySelector('[role="alert"]');
-        if (invalidAlert) {
-          invalidAlert.remove();
+        <div class="chat" role="button">
+          <div class="chat-prof">
+            <img src="/icons/chat-profile5-ico.svg" />
+          </div>
+          <div class="chat-name">
+            <h4>Gavriel Sharabi</h4>
+            <p>Hey,how can I help?</p>
+          </div>
+        </div>
+
+        <!--chat 6-->
+
+        <div class="chat" role="button">
+          <div class="chat-prof">
+            <img src="/icons/chat-profile6-ico.svg" />
+          </div>
+          <div class="chat-name">
+            <h4>Jesse Vermeulen</h4>
+            <p>This is really good</p>
+          </div>
+        </div>
+
+        <!--chat 7-->
+
+        <div class="chat" role="button">
+          <div class="chat-prof">
+            <img src="/icons/chat-profile7-ico.svg" />
+          </div>
+          <div class="chat-name">
+            <h4>Praveen Soni</h4>
+            <p>I'm interested on the job you posted</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="post__s">
+      <div class="user-post1">
+        <!--post 1-->
+        <div class="post">
+          <img src="/images/user-images/post1-user.svg" />
+        </div>
+        <!--post 2-->
+        <div class="post">
+          <img src="/images/user-images/post2-user.svg" />
+        </div>
+        <!--post 3-->
+        <div class="post">
+          <img src="/images/user-images/post3-user.svg" />
+        </div>
+        <!--post 4-->
+        <div class="post">
+          <img src="/images/user-images/post4-user.svg" />
+        </div>
+      </div>
+      <div class="user-post1">
+        <!--post 5-->
+        <div class="post">
+          <img src="/images/user-images/post 5-user.svg" />
+        </div>
+        <!--post 6-->
+        <div class="post">
+          <img src="/images/user-images/post 6-user.svg" />
+        </div>
+        <!--post 7-->
+        <div class="post">
+          <img src="/images/user-images/post 7-user.svg" />
+        </div>
+        <!--post 8-->
+        <div class="post">
+          <img src="/images/user-images/post 8-user.svg" />
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- <div class="popup-overlay" id="popupOverlay">
+    <div class="popup" id="popup">
+      <span class="close" id="closePopup" onclick="closePop(this.id)">&times;</span>
+      <div class="popup-content">
+        <div class="square">
+          <div class="te">
+            <h1 id="pic" style="display: block">Upload Picture</h1>
+            <h1 id="ppic" style="display: none">Upload Profile Picture</h1>
+          </div>
+          <form id="uploadForm" method="POST" action="/post/profile" enctype="multipart/form-data">
+            <div class="drop-zone">
+              <span class="drop-zone__prompt">Drop file here</span>
+              <input type="file" name="avatar" class="drop-zone__input" id="avatar" />
+            </div>
+            <div class="upl">
+              <label for="avatar">Choose a picture:</label>
+              <input type="file" id="avatar" name="avatar" />
+              <br /><br />
+              <button type="submit">Upload</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <script>
+    var img = document.getElementById("uploadImage");
+    img.addEventListener("input", function () {
+      console.log(img.files[0])
+      var formData = new FormData();
+      formData.append('profileImage', img.files[0]);
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/post/profile', true);
+
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          console.log(xhr.responseText);
+          alert("Profile photo updated successfully!");
+        } else {
+          alert("An error occurred while uploading the file.");
         }
-      }, 3000);
-    }
-  }
-});
--->
+      };
+
+      xhr.send(formData);
+    })
+  </script>
+  <script src="/js/profile.js"></script>
+</body>
+
+</html>
