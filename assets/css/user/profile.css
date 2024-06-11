@@ -21,7 +21,8 @@ nav {
 }
 .logo {
   display: flex;
-  gap: 8px;
+  gap: 10px;
+  font-size: large;
   font-family: "Nunito sans", sans-serif;
   color: white;
 }
@@ -160,14 +161,7 @@ main {
   top: 65%;
   background: rgba(18, 26, 33, 1);
 }
-.profile-user {
-  display: flex;
-  border-radius: 100px;
-  width: 11vw;
-  position: absolute;
-  top: 40%;
-  right: 76%;
-}
+
 
 .follow-count {
   display: flex;
@@ -616,57 +610,230 @@ main {
   transform: translateY(0);
 }
 
-.box{
+.container {
   max-width: 400px;
   width: 100%;
+  padding: 0;
+  margin-left: -70px;
 }
-.box .search-box{
-  position:relative;
+
+.container .search-container {
+  position: relative;
   height: 40px;
   max-width: 40px;
-  margin: auto;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
   border-radius: 25px;
   transition: all 0.3s ease;
 }
-#check:checked ~ .search-box{
+
+#toggle:checked ~ .search-container {
   max-width: 380px;
 }
-.search-box input{
- position: absolute;
- height: 100%;
- width: 100%;
- border-radius: 25px;
- background: #fff;
- outline: none;
- border: none;
- text-align: center;
- font-size: 15px;
-}
-.search-box .icon{
+
+.search-container input {
   position: absolute;
-  right: -2px;
+  height: 100%;
+  width: 100%;
+  border-radius: 25px;
+  background: #fff;
+  outline: none;
+  border: none;
+  text-align: center;
+  font-size: 15px;
+}
+
+.search-container .search-icon {
+  position: absolute;
+  right: 0;
   top: 0;
   width: 40px;
-  background: #FFF;
+  background: #fff;
   height: 100%;
   text-align: center;
   line-height: 40px;
   color: rgba(18, 26, 33, 1);
   font-size: 20px;
   border-radius: 25px;
+  cursor: pointer;
 }
-#check:checked ~ .search-box .icon{
-  background:rgba(18, 26, 33, 1);
-  color: #FFF;
+
+#toggle:checked ~ .search-container .search-icon {
+  background: rgba(18, 26, 33, 1);
+  color: #fff;
   width: 40px;
   border-radius: 0 25px 25px 0;
 }
-#check{
+
+#toggle {
   display: none;
 }
+
 
 #profileIcon{
   height: 5vh;
   border-radius: 20px;
 }
+
+
+.profile-user {
+  display: flex;
+  border-radius: 100px;
+  width: 150px;
+  height: 150px;
+  position:absolute;
+  margin-right: 42rem;
+  margin-top: 7rem;
+}
+
+.ico{
+  height: 25px;
+  width: 25px;
+  margin-top: 5px;
+  margin-left: -20px;
+}
+
+
+
+
+.profile-container {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-header {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.image-wrapper {
+  text-align: center;
+  position: relative;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.image-wrapper .image {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center;
+  object-position: center;
+}
+
+.image-wrapper .overlay,
+.image-wrapper .loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(90, 92, 105, 0.7);
+  color: #f8f9fc;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.image-wrapper .overlay {
+  cursor: pointer;
+}
+
+.image-wrapper:hover .overlay,
+.image-input:focus ~ .overlay {
+  opacity: 1;
+}
+
+.image-wrapper.uploadInProgress .overlay {
+  display: none;
+}
+
+.image-wrapper.uploadInProgress .loading {
+  opacity: 1;
+}
+
+/* Snackbar css */
+#notification {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 14px;
+  transform: translateX(-50%);
+}
+
+#notification.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+
+
