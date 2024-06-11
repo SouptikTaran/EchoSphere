@@ -16,6 +16,7 @@ router.get('/logout', userController.logout)
 router.post('/forgotPassword' ,userController.forgotpassword)
 router.get('/forgotemail' , tokenExist ,userController.userEmailGet )
 router.post('/forgotemail' ,  userController.userEmail)
+router.get('/newpassword' , (req ,res)=>{ res.render('newPassword')})
 router.post('/newpassword' ,  userController.newPassword)
 
 //google auth routes

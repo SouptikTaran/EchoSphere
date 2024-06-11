@@ -1,4 +1,4 @@
-const { userSchema, userValidSchema  , validEmailSchema , validPasswordSchema} = require("../zodSchema/userSchema");
+const { userSchema, userValidSchema, validEmailSchema, validPasswordSchema } = require("../zodSchema/userSchema");
 const User = require('../models/user')
 const LoginUser = require('../models/userLogin');
 const Otp = require('../models/otp')
@@ -6,7 +6,7 @@ const { matchPasswordandGenerateToken } = require('../models/user')
 const { createHmac, randomBytes } = require('crypto');
 const { verifyEmail } = require('../services/mail')
 const { validateToken } = require("../services/authentication")
-const {generateOTP} = require("../services/otpGeneration")
+const { generateOTP } = require("../services/otpGeneration")
 
 
 /** USER AUTHENTICATION CONTROLLERS */
@@ -22,25 +22,35 @@ module.exports.SignupUser = async (req, res) => {
     email,
     password,
   };
+  if (username == '' && email == '' && password == '') {
+    return res.json({ error: "Enter required Details" });
+
+  }
   //checking the input type of the given data
   let validation = userSchema.safeParse(data);
   if (!validation.success) {
-    return res.status(400).send("validation error");
+    return res.json({ error: "Invalid Data" });
   }
   //check if user exist
-  const existingUser = await User.findOne({ email: email });
-  if (existingUser) {
-    return res.status(409).send('User existing');
+  try {
+    const existingUser = await User.findOne({ email: email });
+
+    if (existingUser) {
+      return res.json({ error: 'Email Already Taken' });
+    }
+  }catch{
+    return res.json({error : "Email Already Taken"})
   }
   await User.create({
     username,
     email,
     password
   });
+  console.log('222')
   try {
     const token = await User.matchPasswordandGenerateToken(email, password);
     // return res.status(200).send("successful")
-    return res.cookie("token", token).redirect('/')
+    return res.cookie("token", token).json({ redirect: '/' })
   } catch (error) {
     console.log(error)
   }
@@ -55,22 +65,27 @@ module.exports.login = (req, res) => {
 
 module.exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
+
   const data = {
     email,
     password
   }
+
+  if (email == '' && password == '') {
+    return res.json({ error: "Invalid Data" });
+  }
   const validation = userValidSchema.safeParse(data);
   if (!validation.success) {
     console.log(validation.error)
-    return res.status(400).render("loginEmail");
+    return res.json({ error: "Invalid Data" });
   }
   try {
     const token = await User.matchPasswordandGenerateToken(email, password);
     console.log(token);
-    return res.cookie("token", token).redirect("/");
+    return res.cookie("token", token).json({ redirect: '/' });
   } catch (error) {
     console.log(error)
-    return res.render('loginEmail');
+    return res.json({ error: error });
   }
 }
 
@@ -90,7 +105,7 @@ module.exports.userEmailGet = (req, res) => {
 module.exports.userEmail = async (req, res) => {
   const { email } = req.body;
   const validation = validEmailSchema.safeParse(email);
-  if(!validation.success) return res.status(400).render('forgotEmail');
+  if (!validation.success) return res.status(400).render('forgotEmail');
   res.cookie('email', email);
 
   const user = await Otp.findOne({ email });
@@ -101,7 +116,7 @@ module.exports.userEmail = async (req, res) => {
   await user.updateOne(
     { $set: { otp: otp } }
   );
-  console.log("generated OTP : " , otp);
+  console.log("generated OTP : ", otp);
   verifyEmail(email, otp);
   return res.render('verifyOtp');
 };
@@ -122,8 +137,8 @@ module.exports.googleRedirect = (req, res) => {
 }
 
 module.exports.forgotpassword = async (req, res) => {
-  const { code1, code2, code3, code4 } = req.body;
-  const token = code1 + code2 + code3 + code4;
+  const { otp } = req.body;
+  const token = otp;
   console.log(req.cookies.email);
   //search user ,
   const userMail = req.cookies.email;
@@ -131,28 +146,34 @@ module.exports.forgotpassword = async (req, res) => {
   if (user == '') {
     return res.render('verifyOtp')
   }
-  console.log("Forgot password : " , user);
+  console.log("Forgot password : ", user);
   console.log('user.otp :', user.otp);
   console.log('code :', token);
+  console.log(token, user.otp)
   if (token == user.otp) {
-    return res.render('newPassword')
+    return res.status(200).json({ redirect: '/user/newPassword' });
   } else {
-    res.render('verifyOtp')
+    res.json({ error: "Wrong/Incorrect OTP" })
   }
 }
 
 module.exports.newPassword = async (req, res) => {
-  const { password, confirmpassword } = req.body;
-    
-  if (password != confirmpassword) {
-    return res.render('newPassword');
+  const { password, confirmPassword } = req.body;
+  console.log('req rec')
+
+  console.log(password, confirmPassword)
+  if (password != confirmPassword || password == '' && confirmPassword == '') {
+    return res.json({ error: "Password Not Matching" });
   }
   const data = {
-    password , confirmpassword
+    password, confirmPassword
   }
 
-  const validation = validPasswordSchema.safeParse  (data);
-  if(!validation.success) return res.status(400).render('newPassword');
+  const validation = validPasswordSchema.safeParse(data);
+  if (!validation.success) {
+    console.log(validation.error)
+    return res.json('Invalid Data');
+  }
   const email = req.cookies.email;
   const user = await User.findOne({ email });
   const salt = user.salt;
@@ -162,7 +183,7 @@ module.exports.newPassword = async (req, res) => {
   })
 
   console.log('successfully updates')
-  res.redirect('/')
+  return res.status(200).json({ redirect: '/' });
 
 }
 
@@ -202,20 +223,20 @@ module.exports.userSearch = async (req, res) => {
   const username = req.params.username;
   const currentUser = req.cookies.token;
   const ans = validateToken(currentUser);
-  const button = false ;
+  const button = false;
   console.log(ans);
   if (username === ans.username) {
     console.log("main user")
-    } else {
-      console.log("another user")
-      try {
-        const user = await LoginUser.findOne({ username })
+  } else {
+    console.log("another user")
+    try {
+      const user = await LoginUser.findOne({ username })
         .populate('followers', 'username email profilePic')
         .populate('followings', 'username email profilePic');
-        const userMain = await LoginUser.findOne({username :ans.username});
+      const userMain = await LoginUser.findOne({ username: ans.username });
       if (user && userMain) {
         console.log(userMain)
-        res.status(200).render('userProfile', { user , userMain});
+        res.status(200).render('userProfile', { user, userMain });
       }
       else {
         res.status(404).json({ msg: "User not found" });

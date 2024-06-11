@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema(
     googleId: {
       type: String,
       unique: true,
+      sparse: true,
     },
     salt: {
       type: String,
@@ -70,23 +71,30 @@ userSchema.post("save", async function (doc, next) {
 });
 
 
-userSchema.static(
-  "matchPasswordandGenerateToken",
-  async function (email, password) {
-    const user = await this.findOne({ email: email });
-    if (!user) throw new Error("User not found!");
-    const salt = user.salt;
-    const hashedPassword = user.password;
-    const userProvideHash = createHmac("sha256", salt)
-      .update(password)
-      .digest("hex");
-    if (hashedPassword != userProvideHash) {
-      throw new Error("Incorrect Password");
-    }
-    const token = createTokenForUser(user);
-    return token;
-  }
-);
+userSchema.statics.matchPasswordandGenerateToken = async function (email, password) {
+    return new Promise((resolve, reject) => {
+        this.findOne({ email: email })
+            .then(user => {
+                if (!user) {
+                    reject("User not found!");
+                }
+                const salt = user.salt;
+                const hashedPassword = user.password;
+                const userProvideHash = createHmac("sha256", salt)
+                    .update(password)
+                    .digest("hex");
+                if (hashedPassword !== userProvideHash) {
+                    reject("Incorrect Password");
+                }
+                const token = createTokenForUser(user);
+                resolve(token);
+            })
+            .catch(error => {
+                reject(error.message);
+            });
+    });
+};
+
 
 const User = mongoose.model("user", userSchema);
 module.exports = User;

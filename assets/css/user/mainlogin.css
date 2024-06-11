@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Poppins:wght@600&display=swap");
 
+
 .login,
 .image {
   min-height: 100vh;
@@ -114,7 +115,7 @@
 }
 
 .sho {
-  background-color: #000000;
+  /* background-color: #000000; */
   color: #ffffff;
   border: white;
   border-radius: 30px;
@@ -153,7 +154,6 @@
 
 
 .usernameField {
-
   border: none;
   outline: none;
   border-radius: 100px;

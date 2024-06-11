@@ -3,7 +3,7 @@
 *{
 	margin: 0;
 	padding: 0;
-	background:  rgba(18, 26, 33, 1);
+	background-color: rgba(18, 26, 33, 1);
 }
 
 .login,
@@ -48,9 +48,7 @@ a:hover {
 	cursor: pointer;
   }
 
-  
-
-
-
-
-
+#loginMessage{
+	color: red;
+	text-decoration: none;	
+}

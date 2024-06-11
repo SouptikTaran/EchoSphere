@@ -26,18 +26,21 @@
                 <div class="row">
                   <div class="col-lg-10 col-xl-7 mx-auto">
                     <h3 class="display-6 mb-5  intro-text">OTP verification</h3>
-                    <form method="POST" action="/user/forgotPassword">
+                    <!-- <form method="POST" action="/user/forgotPassword"> -->
                         <div class="container height-100 d-flex justify-content-center align-items-center">
                             <div class="position-relative cul">
+                              <div id="otpNoti" style="display: none;" class="alert alert-warning" role="alert">
+                                A 
+                              </div>
                                 <div class="card p-3 text-center">
                                     <h6 class="text-secondary p-1">Please enter the one time password <br> to verify your account</h6>
                                     <div> <span class="text-secondary">A code has been sent to Mail</span> </div>
                                     <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> <input class="m-3 text-center form-control rounded" type="text" id="first" maxlength="1" name="code1"/> <input class="m-3 text-center form-control rounded" type="text" id="second" maxlength="1" name="code2"/> <input class="m-3 text-center form-control rounded" type="text" id="third" maxlength="1" name="code3"/> <input class="m-3 text-center form-control rounded" type="text" id="fourth" maxlength="1"name="code4" /> </div>
-                                    <div class="mt-4"> <button class="btn btn-dark px-4 validate">Validate</button> </div>
+                                    <div class="mt-4"> <button class="btn btn-dark px-4 validate" onclick="checkOTP()">Validate</button> </div>
                                 </div>
                             </div>
                         </div>
-                      </form>
+                      <!-- </form> -->
                   </div>
                 </div>
               </div>
@@ -46,11 +49,44 @@
           </div>
           <div class="col-md-6 d-none d-md-flex bg-image">
           </div>
-  
+          
           <!-- End -->
         </div>
       </div>
 
+<script>
+  async function checkOTP(){
+    const first = document.getElementById('first').value;
+    const second = document.getElementById('second').value;
+    const third = document.getElementById('third').value;
+    const fourth = document.getElementById('fourth').value;
+    const otp = first + second + third + fourth;
 
+    const params = new URLSearchParams();
+    params.append("otp", otp);
+
+    const response = await fetch('/user/forgotPassword' ,{
+      method : "POST",
+      headers :{
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body:params,
+    })
+    const data = await response.json() ;
+    const message = document.getElementById("otpNoti");
+      if (data.redirect) {
+        console.log("KKKK")
+        window.location.href = data.redirect;
+      } else {
+        message.innerHTML = `<strong>${data.error}</strong>`;
+        message.style.display = "block";
+      }
+
+      console.log("data : " , data);
+      setTimeout(()=>{
+        message.style.display = 'none'
+      },5000)
+  }
+</script>
 </body>
 </html>
