@@ -18,7 +18,7 @@
 .intro-text {
 	/* border: 1px solid red; */
 	width: 30vw;
-	padding-right: 50px;
+	padding-left: 20%;
   font-family: "Poppins", sans-serif;
   text-align: center;
   color: white;
@@ -65,7 +65,7 @@
   line-height: 1em;
   max-width: 100%;
   min-width: 140px;
-  width: 47vw;
+  width: 90%;
   height: 5vh;
   padding: 3px;
   text-decoration: none;
@@ -100,4 +100,19 @@
 
 .signupbtn:active {
   transform: scale(0.9);
+}
+
+@media screen and (max-width:1200px){
+  .signupbtn{
+    width:90%;
+    margin-left:2%;
+    height:40px;
+  }
+}
+
+@media screen and (max-width:820px){
+    .signupbtn{
+      width:90%;
+      margin-left:5%;
+    }
 }
