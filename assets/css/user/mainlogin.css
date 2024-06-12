@@ -23,7 +23,7 @@
 }
 
 .googleButton {
-  max-width: 50vw;
+  max-width: 100%;
   display: flex;
   padding: 0.5rem 6rem;
   font-size: 0.875rem;
@@ -157,7 +157,7 @@
   border: none;
   outline: none;
   border-radius: 100px;
-  width: 27vw;
+  width: 90%;
   padding: 0.6rem 1rem ;
   background-color: #e1e2e3;
   box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.3);
@@ -172,4 +172,37 @@
 
 .pr{
   background-color: rgba(18, 26, 33, 1);
+}
+
+@media screen and (max-width:850px) {
+    .row{
+      display:flex;
+      justify-content: center;
+    }   
+    .googleButton{
+      width:90%;    
+    }
+  
+    #google-ico{
+      width:100%;
+      display: flex;
+      justify-content: center;
+    }
+    #loginEmail{
+      width:90%;
+      margin-left: 5%;
+    }
+    
+    #anchor{
+      display: flex;
+      justify-content: center;
+    }
+    .usernameField{
+      width:90%;
+    }
+    .form-group{
+      display:flex;
+      justify-content: center;
+    }
+
 }
