@@ -5,7 +5,7 @@
 	padding: 0;
 	background-color: rgba(18, 26, 33, 1);
 }
-
+ 
 .login,
 .image {
   min-height: 100vh;
@@ -49,6 +49,9 @@ a:hover {
   }
 
 #loginMessage{
-	color: red;
-	text-decoration: none;	
+	text-decoration: none;
+}
+#loginMessage strong {
+	background-color: transparent; /* Ensure no background color on strong tag */
+	
 }

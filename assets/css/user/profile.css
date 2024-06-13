@@ -109,6 +109,7 @@ main {
   border-radius: 2rem;
 }
 .profile-img  {
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -205,16 +206,18 @@ main {
   justify-content: space-evenly;
   margin-left: 2%;
 
-  /* border: 1px solid white;*/
+   /*border: 1px solid white;*/
 }
 
 .chat {
   display: flex;
   align-items: center;
-  justify-content:space-between;
+  justify-content:flex-start;
   gap: 3%;
-  padding-left: 2%;
+  padding: 2%;
+  /*border: 1px solid white;*/
 }
+
 .chat:hover {
   background-color: rgba(36, 54, 71, 1);
 }
@@ -231,7 +234,7 @@ main {
 }
 
 .post__s {
-  height: 10%;
+  height: auto;
   width: 95%;
   display: flex;
   flex-direction: column;
@@ -242,18 +245,27 @@ main {
 .user-post1 {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  height:300px;
+  width:100%;
+  margin: 1%;
 }
-.user-post1 .post {
-  height: 100%;
+.post {
+  height:100%;
   width: 100%;
-  padding: 1%;
+  border-radius: 1rem;
+  overflow: hidden;
+  /*border: 1px solid white;*/
+  margin: 1%;
+  
+}
+.post-img{
+  height:100%;
+  width:100%;
+  object-fit:cover;
+  object-position: center;
 }
 
-.user-post1 img {
-  height: 100%;
-  width: 100%;
-}
 @media screen and (max-width: 830px) {
   .nav-options {
     display: flex;
@@ -349,6 +361,14 @@ main {
   .follow-button button {
     font-size: 10px;
     width: 30%;
+  }
+  .user-post1{
+    height:150px;
+    
+  }
+  .post{
+    height:100%;
+    width:100%;
   }
 }
 @media screen and (max-width: 500px) {
