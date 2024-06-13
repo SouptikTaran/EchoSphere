@@ -109,6 +109,7 @@ main {
   border-radius: 2rem;
 }
 .profile-img  {
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -205,16 +206,18 @@ main {
   justify-content: space-evenly;
   margin-left: 2%;
 
-  /* border: 1px solid white;*/
+   /*border: 1px solid white;*/
 }
 
 .chat {
   display: flex;
   align-items: center;
-  justify-content:space-between;
+  justify-content:flex-start;
   gap: 3%;
-  padding-left: 2%;
+  padding: 2%;
+  /*border: 1px solid white;*/
 }
+
 .chat:hover {
   background-color: rgba(36, 54, 71, 1);
 }
