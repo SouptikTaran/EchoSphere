@@ -74,8 +74,12 @@
     <div class="hero-section">
       <div class="profile">
         <div class="profile-img">
-          <div class="bg-cover-bottom"></div>
+          <img id="coverImage" class="cimage" src="/images/user-images/profile-bg.png" alt="Cover Picture" />
+          <div class="bg-cover-bottom"></div>       <!-- src="<%= user.coverPic%>" -->
 
+
+
+          
           <div class="profile-container profile-user">
             <div class="image-wrapper" id="trial">
               <img id="displayImage" class="image" src="<%= user.profilePic%>" alt="Profile Picture" />
@@ -128,19 +132,26 @@
       </div>
       <!--chats section-->
       <div class="chats">
+       
+        <h3 class="sug">Suggestion</h3>
+        <hr>
         <!--chat 1-->
         <div class="chat" role="button">
-          <div class="chat-prof">
-            <img src="/icons/chat-profile1-ico.svg" />
+          <div class="bo">
+            <div class="chat-prof">
+              <img src="/icons/chat-profile1-ico.svg" />
+            </div>
+            <div class="chat-name">
+              <h4>Tim He</h4>
+              <p>Hey Tim,thank you for the message</p>
+            </div>
           </div>
-          <div class="chat-name">
-            <h4>Tim He</h4>
-            <p>Hey Tim,thank you for the message</p>
-          </div>
+          <button class="mo">Follow</button>
         </div>
 
         <!--chat 2-->
         <div class="chat" role="button">
+          <div class="bo">
           <div class="chat-prof">
             <img src="/icons/chat-profile2-ico.svg" />
           </div>
@@ -149,8 +160,11 @@
             <p>Hey Helen,it's nice to meet you</p>
           </div>
         </div>
+          <button class="mo">Follow</button>
+        </div>
         <!--chat 3-->
         <div class="chat" role="button">
+          <div class="bo">
           <div class="chat-prof" role="button">
             <img src="/icons/chat-profile3-ico.svg" />
           </div>
@@ -159,8 +173,11 @@
             <p>I saw your article, it is really interesting</p>
           </div>
         </div>
+          <button class="mo">Follow</button>
+        </div>
         <!--chat 4-->
         <div class="chat" role="button">
+          <div class="bo">
           <div class="chat-prof">
             <img src="/icons/chat-profile4-ico.svg" />
           </div>
@@ -169,9 +186,12 @@
             <p>Is the job SF based or remote?</p>
           </div>
         </div>
+          <button class="mo">Follow</button>
+        </div>
         <!--chat 5-->
 
         <div class="chat" role="button">
+          <div class="bo">
           <div class="chat-prof">
             <img src="/icons/chat-profile5-ico.svg" />
           </div>
@@ -180,10 +200,13 @@
             <p>Hey,how can I help?</p>
           </div>
         </div>
+          <button class="mo">Follow</button>
+        </div>
 
         <!--chat 6-->
 
         <div class="chat" role="button">
+          <div class="bo">
           <div class="chat-prof">
             <img src="/icons/chat-profile6-ico.svg" />
           </div>
@@ -192,10 +215,13 @@
             <p>This is really good</p>
           </div>
         </div>
+          <button class="mo">Follow</button>
+        </div>
 
         <!--chat 7-->
 
         <div class="chat" role="button">
+          <div class="bo">
           <div class="chat-prof">
             <img src="/icons/chat-profile7-ico.svg" />
           </div>
@@ -203,6 +229,8 @@
             <h4>Praveen Soni</h4>
             <p>I'm interested on the job you posted</p>
           </div>
+        </div>
+          <button class="mo">Follow</button>
         </div>
       </div>
     </div>
