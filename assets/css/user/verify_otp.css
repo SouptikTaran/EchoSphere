@@ -16,9 +16,10 @@
 
 .card {
       /* Adjust width as desired */
-    height: 100vh;
-    width: auto;  /* Adjust height as desired */
+    height: 100%;
+    width: 100%;  /* Adjust height as desired */
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: transparent;
   }
 
 #first,#second,#third,#fourth{
@@ -29,6 +30,9 @@
 	font-family: "Poppins", sans-serif;
 	text-align: center;
   color: white;
+}
+#card {
+  height:251px;
 }
 
 #user-mail{
@@ -43,5 +47,54 @@
 }
 
 .pr{
-  background-color: rgba(18, 26, 33, 1);;
+  background-color: rgba(18, 26, 33, 1);
+}
+
+.inputs .text-center{
+  width:100%;
+}
+
+.card .text-secondary.mt-4,
+.card .text-secondary .p-1,
+.card .mt-4{
+    background-color: transparent; 
+    color: white;
+}
+.card .h5{
+  background-color: transparent;
+}
+.card .otp-bg {
+  background-color: transparent;
+}
+.card .otp-bg .text-secondary{
+  background-color: transparent;
+}
+.otp-container{
+  display:flex;
+  align-items: center;
+  justify-content:space-evenly;
+}
+#otp{
+  background-color: transparent;
+}
+
+.email-container{
+  height:60px;
+  font-size: 18px;
+}
+.button{
+  height:50px;
+  width:150px;
+  font-size: larger;
+}
+
+.position-relative{
+  height:100%;
+  width:100%;
+}
+#emailForm{
+  height:100%;
+}
+.container{
+    height:100%;
 }

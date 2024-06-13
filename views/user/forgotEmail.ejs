@@ -21,14 +21,12 @@
                                 <form id="emailForm" action="/user/forgotemail" method="POST">
                                     <div class="container height-100 d-flex justify-content-center align-items-center">
                                         <div class="position-relative">
-                                            <div class="card p-3 text-center">
-                                                <h6>
-                                                    <br>
-                                                    <br>
-                                                </h6>
-                                                <input class="usernameField" placeholder="Enter Email"  name="email" type="text" required />
+                                            <div id="card" class="card p-3 text-center otp-container">
+                                                <h5 class="h5" >Please enter your Email ID</h5>
+                                                
+                                                <input class="usernameField email-container" placeholder="Enter Email"  name="email" type="text" required />
                                                 <div class="mt-4">
-                                                    <button class="btn btn-dark px-4 validate" type="submit">Validate</button>
+                                                    <button class="btn btn-dark px-4 validate button" type="submit">Validate</button>
                                                 </div>
                                             </div>
                                         </div>
