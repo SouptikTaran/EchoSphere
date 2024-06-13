@@ -1,0 +1,149 @@
+                               /*background*/ 
+
+*{
+    background-color: black;
+}
+
+                                /*top-bar*/
+.nav{
+    
+    margin-top: 10px;
+    display: flex;
+    margin-left: 30px;
+}
+.logo{
+    display:flex;
+    margin-right: 20px;
+    margin-top: 10px;
+    
+}
+.name{
+    color: aliceblue;
+    font-size: 17px;
+    display: flex;
+    
+}
+.search-bar{
+     margin-left: 840px;
+     margin-top: 15px;
+     color: white;
+    
+}
+.search-bar  button{
+    color: white;
+    background-color: blue;
+    border-radius: 10px;
+    width:50px;
+   
+}
+
+                               /*side bar*/
+
+.side-bar button{
+    color: white;
+    width: 250px;
+    background-color:black;
+    border-radius: 10px;
+    height: 30px;
+
+}
+
+.abc{
+    display: flex;
+    
+}
+
+
+button:hover{
+    
+        background-color: gray;
+        color: white;
+      
+}
+
+
+                                  /*middle bar*/
+
+.middle-side{
+    margin-left: 15px;
+        display:flex;
+    align-content: center;
+
+    
+}
+
+.rectange-1{
+    height: 0px;
+  width: 100px;
+  background-color: #2f10bc;
+  border-radius: 10px;
+  
+
+}
+.rectange-2{
+    height: 200px;
+    width: 100px;
+    background-color: #2f10bc;
+    border-radius: 10px;
+    margin-left: 10px;
+  
+}
+.rectange-1 img{
+    border-radius: 10px;
+}
+
+.rectange-2 img{
+    border-radius: 10px;
+    height: 200px;
+    width: 100px;
+}
+
+
+
+
+.down-bar{
+    display: flex;
+    margin-left: 255px;
+    
+}
+
+.profile-bar img{
+    height: 40px;
+    width: 40px;
+    border-radius: 100px;
+    display: flex;
+   margin-top: 10px;
+    
+}
+
+.rice{
+    color: aliceblue;
+    font-size: 10px;
+    text-align: center;
+    align-content: center;
+    margin-left: 5px;
+    margin-top: 8px;
+}
+
+.para{
+    color: aliceblue;
+    font-size: 15px;
+    display: flex;
+    margin-left: 255px;
+    
+    
+}
+
+.post img{
+    margin-left: 255px;
+    height:500px;
+    width: 900px;
+}
+
+.icon img{
+    height: 25px;
+    width: 25px;
+    background-color: white;
+    
+}
+
