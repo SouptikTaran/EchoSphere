@@ -214,32 +214,36 @@ module.exports.userProfile = async (req, res) => {
   }
   // console.log(req.user)
   const { email } = req.user;
-  const user = await LoginUser.findOne({ email });
+  const user = await User.findOne({ email });
   console.log(user);
   res.status(200).render('userProfile', { user, userMain: null, showButton: false });
 }
 
 // User Profile
 module.exports.userSearch = async (req, res) => {
-  const username = req.params.username;
-  const currentUser = req.cookies.token;
-  const ans = validateToken(currentUser);
-  console.log(ans);
+  const username = req.params.username; // other user profile
+  const currentUser =  validateToken(req.cookies.token); //main user
+
   let showButton = false;
-  if (username === ans.username) {
+  if (username === currentUser.username) {
     console.log("main user")
     showButton = false;
   } else {
-    console.log("another user")
     showButton = true;
   }
   try {
-    const user = await LoginUser.findOne({ username })
+    const user = await User.findOne({ username })
       .populate('followers', 'username email profilePic')
       .populate('followings', 'username email profilePic');
-    const userMain = await LoginUser.findOne({ username: ans.username });
+    const userMain = await User.findOne({ username: currentUser.username });
+    let isFollow = false;
     if (user && userMain) {
-      res.status(200).render('userProfile', { user, userMain, showButton });
+      if(userMain.followings.includes(user._id)){
+
+        isFollow = true;
+      }
+      console.log(user , userMain , showButton , isFollow) ;
+      res.status(200).render('userProfile', { user, userMain, showButton , isFollow });
     }
     else {
       res.status(404).json({ msg: "User not found" });
@@ -249,15 +253,27 @@ module.exports.userSearch = async (req, res) => {
   }
 }
 
-module.exports.followUser = async (req, res) => {
-  if (req.body.userId !== req.params.id) {
-    try {
-      const user = await User.findById(req.params.id);
-      const currentUser = await User.findById(req.body.userId);
 
-      if (!user.followers.includes(req.body.userId)) {
-        await user.updateOne({ $push: { followers: req.body.userId } });
-        await currentUser.updateOne({ $push: { followings: req.params.id } });
+module.exports.followUser = async (req, res) => {
+  console.log("Reached")
+  console.log(req.user.username, req.params.username)
+  if (req.user.username != req.params.username) {
+    try {
+      const user = await User.findOne({ username: req.params.username });
+      const currentUser = await User.findOne({ username: req.user.username });
+      console.log("user : ", user);
+      console.log("Current Username : ", currentUser);
+
+      if (!user || !currentUser) {
+        return res.status(404).json({ msg: "User not found" });
+      }
+
+      const userId = user._id;
+      const currentUserId = currentUser._id;
+
+      if (!user.followers.includes(currentUserId)) {
+        await user.updateOne({ $push: { followers: currentUserId } });
+        await currentUser.updateOne({ $push: { followings: userId } });
 
         res.status(200).json({ msg: "User has been followed" });
       } else {
@@ -272,14 +288,23 @@ module.exports.followUser = async (req, res) => {
 }
 
 module.exports.unfollowUser = async (req, res) => {
-  if (req.body.userId !== req.params.id) {
+  if (req.user.username !== req.params.username) {
     try {
-      const user = await User.findById(req.params.id);
-      const currentUser = await User.findById(req.body.userId);
+      const user = await User.findOne({ username: req.params.username });
+      const currentUser = await User.findOne({ username: req.user.username });
+      console.log("user : ", user);
+      console.log("Current Username : ", currentUser);
 
-      if (user.followers.includes(req.body.userId)) {
-        await user.updateOne({ $pull: { followers: req.body.userId } });
-        await currentUser.updateOne({ $pull: { followings: req.params.id } });
+      if (!user || !currentUser) {
+        return res.status(404).json({ msg: "User not found" });
+      }
+
+      const userId = user._id;
+      const currentUserId = currentUser._id;
+
+      if (user.followers.includes(currentUserId)) {
+        await user.updateOne({ $pull: { followers: currentUserId } });
+        await currentUser.updateOne({ $pull: { followings: userId } });
 
         res.status(200).json({ msg: "User has been Unfollowed" });
       } else {
