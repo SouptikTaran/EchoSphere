@@ -30,7 +30,7 @@
       </label>
     </div>
   </div>
-  
+
   <!--nav options-->
   <div class="nav-options">
     <div class="search-mini">
@@ -76,24 +76,24 @@
         <div class="profile-img">
           <div class="bg-cover-bottom"></div>
 
-          <div class="profile-container profile-user">
+          <div class="profile-user">
             <div class="image-wrapper" id="trial">
               <img id="displayImage" class="image" src="<%= user.profilePic%>" alt="Profile Picture" />
               <input class="image-input" type="file" name="profileImage" id="uploadImage" accept="image/*"
                 style="display: none" />
-                <%if(showButton  != true){%>
-              <label for="uploadImage" class="overlay">
-                <div class="overlay-content">
-                  <div class="icon">
-                    <i class="fa fa-camera fa-2x"></i>
+              <%if(showButton !=true){%>
+                <label for="uploadImage" class="overlay">
+                  <div class="overlay-content">
+                    <div class="icon">
+                      <i class="fa fa-camera fa-2x"></i>
+                    </div>
+                    <div class="text">
+                      Update <br />
+                      Profile Photo
+                    </div>
                   </div>
-                  <div class="text">
-                    Update <br />
-                    Profile Photo
-                  </div>
-                </div>
-              </label>
-              <%}%>
+                </label>
+                <%}%>
             </div>
             <!-- Snackbar element -->
             <div id="notification">Profile photo updated successfully!</div>
@@ -105,25 +105,28 @@
         </div>
         <div class="follow-count">
           <a href="#">
-            <h3 class="follows">
-              <%= user.followers%>
+            <h3 class="follows" id="followersCount">
+              <%= user.followers.length%>
             </h3>
             <p>Followers</p>
           </a>
           <a href="#">
             <h3 class="follows">
-              <%= user.followings%>
+              <%= user.followings.length%>
             </h3>
             <p>Following</p>
           </a>
         </div>
         <div class="follow-button">
-          <% if(showButton){%>
-          <button class="Btn">Follow</button>
-          <button class="Btn-red">Unfollow</button>
-          <%}else{%>
-          <button id="myBtn" onclick="openPop(this.id)">Post</button>
-          <%}%>
+          <% if(showButton) { %>
+            <% if(isFollow) { %>
+              <button id="followBtn" class="Btn-red" onclick="unfollowReq('<%= user.username %>')">Unfollow</button>
+              <% } else { %>
+                <button id="followBtn" class="Btn" onclick="followReq('<%= user.username %>')">Follow</button>
+            <% } %>
+          <% } else { %>
+            <button id="myBtn" onclick="openPop(this.id)">Post</button>
+          <% } %>
         </div>
       </div>
       <!--chats section-->
@@ -270,6 +273,7 @@
       </div>
     </div>
   </div> -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     var img = document.getElementById("uploadImage");
     img.addEventListener("input", function () {
@@ -291,6 +295,100 @@
 
       xhr.send(formData);
     })
+
+    // function followReq(username) {
+    //   const url = `http://localhost:8000/user/${username}/follow/`;
+    //   console.log('Making PUT request to:', url);
+
+    //   $.ajax({
+    //     url: url,
+    //     type: 'PUT',
+    //     contentType: 'application/json',
+    //     data: JSON.stringify({}),
+    //     success: function (response) {
+    //       console.log('Success:', response);
+    //     },
+    //     error: function (xhr, status, error) {
+    //       console.error('Error:', status, error);
+    //       console.log('Response:', xhr.responseText);
+    //     }
+    //   });
+    // }
+    // async function unfollowReq(username) {
+    //   const url = `http://localhost:8000/user/${username}/unfollow/`;
+    //   console.log('Making PUT request to:', url);
+
+    //   $.ajax({
+    //     url: url,
+    //     type: 'PUT',
+    //     contentType: 'application/json',
+    //     data: JSON.stringify({}),
+    //     success: function (response) {
+    //       console.log('Success:', response);
+    //     },
+    //     error: function (xhr, status, error) {
+    //       console.error('Error:', status, error);
+    //       console.log('Response:', xhr.responseText);
+    //     }
+    //   });
+    // }
+
+    function updateFollowButton(isFollowing) {
+    const followBtn = document.getElementById('followBtn');
+    const followersCount = document.getElementById('followersCount');
+    let currentCount = parseInt(followersCount.textContent);
+    if (isFollowing) {
+      followBtn.textContent = 'Unfollow';
+      followBtn.classList.remove('Btn');
+      followBtn.classList.add('Btn-red');
+      followBtn.setAttribute('onclick', `unfollowReq('<%= user.username %>')`);
+      followersCount.textContent = currentCount + 1;
+    } else {
+      followBtn.textContent = 'Follow';
+      followBtn.classList.remove('Btn-red');
+      followBtn.classList.add('Btn');
+      followBtn.setAttribute('onclick', `followReq('<%= user.username %>')`);
+      followersCount.textContent = currentCount - 1;
+    }
+  }
+
+  function followReq(username) {
+    const url = `/user/${username}/follow/`;
+
+    $.ajax({
+      url: url,
+      type: 'PUT',
+      contentType: 'application/json',
+      data: JSON.stringify({}),
+      success: function(response) {
+        console.log('Success:', response);
+        updateFollowButton(true); // Update the button to 'Unfollow' on success
+      },
+      error: function(xhr, status, error) {
+        console.error('Error:', status, error);
+        console.log('Response:', xhr.responseText);
+      }
+    });
+  }
+
+  function unfollowReq(username) {
+    const url = `/user/${username}/unfollow/`;
+
+    $.ajax({
+      url: url,
+      type: 'PUT',
+      contentType: 'application/json',
+      data: JSON.stringify({}),
+      success: function(response) {
+        console.log('Success:', response);
+        updateFollowButton(false); // Update the button to 'Follow' on success
+      },
+      error: function(xhr, status, error) {
+        console.error('Error:', status, error);
+        console.log('Response:', xhr.responseText);
+      }
+    });
+  }
   </script>
   <script src="/js/profile.js"></script>
 </body>

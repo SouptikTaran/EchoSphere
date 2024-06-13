@@ -21,38 +21,14 @@ nav {
 }
 .logo {
   display: flex;
+  margin-left: 50px;
   gap: 10px;
   font-size: large;
   font-family: "Nunito sans", sans-serif;
   color: white;
 }
-/*search*/
-.search {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background-color: rgba(217, 217, 217, 1);
-  height: 40px;
-  width: 40%;
-  border-radius: 0.85rem;
-}
-.search img {
-  padding-left: 15px;
-}
-.search input {
-  height: 24px;
-  width: 80%;
-  background-color: rgba(217, 217, 217, 1);
 
-  outline: none;
-  border: none;
-  color: rgb(0, 0, 0);
-}
 
-.search input::placeholder {
-  color: rgba(18, 26, 33, 1);
-  font-size: 17px;
-}
 /*nav options*/
 .nav-options {
   display: flex;
@@ -78,7 +54,7 @@ nav {
   color: white;
   font-size: 100%;
   width: 40px;
-  height: 100%;
+  height: 90%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,22 +106,36 @@ main {
   height: auto;
   border: 1px solid rgb(144, 172, 211);
   margin-left: 30px;
-  border-radius: 1.6rem;
+  border-radius: 2rem;
 }
-.profile-img {
+.profile-img  {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("/images/user-images/profile-bg.png");
-  /*border:2px solid #f98a21;*/
-  width: 100%;
-  height: 400px;
   background-position: top;
   position: relative;
   background-size: contain;
-  border-radius: 1.6rem;
+  border-radius: 5px;
   background-repeat: no-repeat;
+  width: 100%;
+  height: 400px;
 }
+
+.cimage{
+  /*background-image: url("/images/user-images/profile-bg.png"); */
+  /*border:2px solid #f98a21;*/
+  position:absolute;
+  align-content: baseline;
+  align-items: center;
+  border-radius: 2rem;
+  display:inline;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 100px;
+  
+}
+
+
 .profile-img p {
   color: white;
   position: absolute;
@@ -221,7 +211,7 @@ main {
 .chat {
   display: flex;
   align-items: center;
-
+  justify-content:space-between;
   gap: 3%;
   padding-left: 2%;
 }
@@ -627,11 +617,14 @@ main {
   transform: translateY(0);
 }
 
+
+
 .container {
-  max-width: 400px;
+  max-width: 300px;
   width: 100%;
-  padding: 0;
-  margin-left: -70px;
+  position: relative;
+  margin-right: 200px;
+  
 }
 
 .container .search-container {
@@ -644,13 +637,13 @@ main {
 }
 
 #toggle:checked ~ .search-container {
-  max-width: 380px;
+  max-width: 350px;
 }
 
 .search-container input {
   position: absolute;
   height: 100%;
-  width: 100%;
+  width: 99%;
   border-radius: 25px;
   background: #fff;
   outline: none;
@@ -661,7 +654,7 @@ main {
 
 .search-container .search-icon {
   position: absolute;
-  right: 0;
+  right: 0px;
   top: 0;
   width: 40px;
   background: #fff;
@@ -686,6 +679,7 @@ main {
 }
 
 
+
 #profileIcon{
   height: 5vh;
   border-radius: 20px;
@@ -699,7 +693,7 @@ main {
   height: 150px;
   position:absolute;
   margin-right: 42rem;
-  margin-top: 7rem;
+  margin-top: 9rem;
 }
 
 .ico{
@@ -713,7 +707,7 @@ main {
 
 
 .profile-container {
-  height: 100vh;
+  height: 70vh;
   width: 100%;
   position: relative;
   display: flex;
@@ -852,5 +846,30 @@ main {
   }
 }
 
+.sug{
+  text-align: center;
+}
 
+.mo{
+  border-radius: 5px;
+  border: #ffffff;
+  color: rgba(0, 0, 0, 0.75);
+  width: 45px;
+  height: 16px;
+  font-size: small;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-right: 2px;
+  
+  
+}
 
+.bo{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+mo:hover {
+  color: #001F3F;
+  background-color: #fff;
+}

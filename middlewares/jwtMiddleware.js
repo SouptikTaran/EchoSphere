@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const secretKey = process.env.JWT_SECRET
 module.exports.tokenValidity = (req, res, next) => {
-    console.log(req.cookies);
     const token = req.cookies.token
     if (!token) {
         return res.status(401).json({ message: 'Authentication required' });
@@ -12,8 +11,6 @@ module.exports.tokenValidity = (req, res, next) => {
         // Verify the token
         const payload = jwt.verify(token, secretKey);
         req.user = payload;
-        // req.locals = payload;
-        console.log("Payload : " , req.user);
         next();
     } catch (error) {
         console.log(error);

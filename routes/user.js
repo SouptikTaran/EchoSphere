@@ -35,9 +35,9 @@ router.get('/chatting'  ,(req , res)=>{
 
 
 // User follow and unfollow
-router.get('/:username', userController.userSearch);
-router.put('/:id/follow',userController.followUser);
-router.put('/:id/unfollow', userController.unfollowUser);
+router.get('/:username', tokenValidity ,userController.userSearch);
+router.put('/:username/follow',tokenValidity ,userController.followUser);
+router.put('/:username/unfollow', tokenValidity ,userController.unfollowUser);
 
 
 module.exports = router
