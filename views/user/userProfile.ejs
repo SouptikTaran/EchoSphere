@@ -124,16 +124,17 @@
               <button id="followBtn" class="Btn-red" onclick="unfollowReq('<%= user.username %>')">Unfollow</button>
               <% } else { %>
                 <button id="followBtn" class="Btn" onclick="followReq('<%= user.username %>')">Follow</button>
-            <% } %>
-          <% } else { %>
-            <button id="myBtn" onclick="openPop(this.id)">Post</button>
-          <% } %>
+                <% } %>
+                  <% } else { %>
+                    <button id="myBtn" onclick="openPop(this.id)">Post</button>
+                    <% } %>
         </div>
       </div>
       <!--chats section-->
       <div class="chats">
         <h3 class="sug">Suggestion</h3>
-        <br><hr>
+        <br>
+        <hr>
         <!--chat 1-->
         <div class="chat" role="button">
           <div class="chat-prof">
@@ -216,184 +217,125 @@
       <div class="user-post1">
         <!--post 1-->
         <div class="post">
-          <img  class="post-img" src="/images/user-images/post1img.jpeg" />
+          <img class="post-img" src="/images/user-images/post1-user.svg" />
         </div>
         <!--post 2-->
         <div class="post">
-          <img  class="post-img" src="/images/user-images/post-2.jpeg" />
+          <img class="post-img" src="/images/user-images/post2-user.svg" />
         </div>
         <!--post 3-->
         <div class="post">
-          <img  class="post-img" src="/images/user-images/post-8.jpeg" />
+          <img class="post-img" src="/images/user-images/post3-user.svg" />
         </div>
         <!--post 4-->
         <div class="post">
-          <img  class="post-img" src="/images/user-images/post2img.jpeg" />
+          <img class="post-img" src="/images/user-images/post4-user.svg" />
         </div>
       </div>
       <div class="user-post1">
         <!--post 5-->
         <div class="post">
-          <img  class="post-img" src="/images/user-images/post-3.jpeg" />
+          <img class="post-img" src="/images/user-images/post 5-user.svg" />
         </div>
         <!--post 6-->
         <div class="post">
-          <img  class="post-img" src="/images/user-images/post-7.jpeg" />
+          <img class="post-img" src="/images/user-images/post 6-user.svg" />
         </div>
         <!--post 7-->
         <div class="post">
-          <img  class="post-img" src="/images/user-images/post3img.jpeg" />
+          <img class="post-img" src="/images/user-images/post 7-user.svg" />
         </div>
         <!--post 8-->
         <div class="post">
-          <img  class="post-img" src="/images/user-images/post-5.jpeg" />
+          <img class="post-img" src="/images/user-images/post 8-user.svg" />
         </div>
       </div>
     </div>
-  </main>
-  <!-- <div class="popup-overlay" id="popupOverlay">
-    <div class="popup" id="popup">
-      <span class="close" id="closePopup" onclick="closePop(this.id)">&times;</span>
-      <div class="popup-content">
-        <div class="square">
-          <div class="te">
-            <h1 id="pic" style="display: block">Upload Picture</h1>
-            <h1 id="ppic" style="display: none">Upload Profile Picture</h1>
+
+    <div class="popup-overlay" id="popupOverlay">
+      <div class="popup" id="popup">
+        <span class="close" id="closePopup" onclick="closePop(this.id)">&times;</span>
+        <div class="popup-content">
+          <div class="square">
+            <div class="te">
+              <h1 id="pic" style="display: block">Upload Picture</h1>
+              <h1 id="ppic" style="display: none">Upload Profile Picture</h1>
+            </div>
+            <form id="uploadForm" method="POST" action="/post/userpost" enctype="multipart/form-data">
+              <div class="drop-zone">
+                <span class="drop-zone__prompt">Drop file here</span>
+                <input type="file" name="avatar" class="drop-zone__input" id="avatar" />
+              </div>
+              <div class="upl">
+                <label for="avatar">Choose a picture:</label>
+                <input type="file" id="avatar" name="avatar" />
+                <br /><br />
+                <button type="submit">Upload</button>
+              </div>
+            </form>
           </div>
-          <form id="uploadForm" method="POST" action="/post/profile" enctype="multipart/form-data">
-            <div class="drop-zone">
-              <span class="drop-zone__prompt">Drop file here</span>
-              <input type="file" name="avatar" class="drop-zone__input" id="avatar" />
-            </div>
-            <div class="upl">
-              <label for="avatar">Choose a picture:</label>
-              <input type="file" id="avatar" name="avatar" />
-              <br /><br />
-              <button type="submit">Upload</button>
-            </div>
-          </form>
         </div>
       </div>
     </div>
-  </div> -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    var img = document.getElementById("uploadImage");
-    img.addEventListener("input", function () {
-      console.log(img.files[0])
-      var formData = new FormData();
-      formData.append('profileImage', img.files[0]);
-
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', '/post/profile', true);
-
-      xhr.onload = function () {
-        if (xhr.status === 200) {
-          console.log(xhr.responseText);
-          alert("Profile photo updated successfully!");
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      function updateFollowButton(isFollowing) {
+        const followBtn = document.getElementById('followBtn');
+        const followersCount = document.getElementById('followersCount');
+        let currentCount = parseInt(followersCount.textContent);
+        if (isFollowing) {
+          followBtn.textContent = 'Unfollow';
+          followBtn.classList.remove('Btn');
+          followBtn.classList.add('Btn-red');
+          followBtn.setAttribute('onclick', `unfollowReq('<%= user.username %>')`);
+          followersCount.textContent = currentCount + 1;
         } else {
-          alert("An error occurred while uploading the file.");
+          followBtn.textContent = 'Follow';
+          followBtn.classList.remove('Btn-red');
+          followBtn.classList.add('Btn');
+          followBtn.setAttribute('onclick', `followReq('<%= user.username %>')`);
+          followersCount.textContent = currentCount - 1;
         }
-      };
-
-      xhr.send(formData);
-    })
-
-    // function followReq(username) {
-    //   const url = `http://localhost:8000/user/${username}/follow/`;
-    //   console.log('Making PUT request to:', url);
-
-    //   $.ajax({
-    //     url: url,
-    //     type: 'PUT',
-    //     contentType: 'application/json',
-    //     data: JSON.stringify({}),
-    //     success: function (response) {
-    //       console.log('Success:', response);
-    //     },
-    //     error: function (xhr, status, error) {
-    //       console.error('Error:', status, error);
-    //       console.log('Response:', xhr.responseText);
-    //     }
-    //   });
-    // }
-    // async function unfollowReq(username) {
-    //   const url = `http://localhost:8000/user/${username}/unfollow/`;
-    //   console.log('Making PUT request to:', url);
-
-    //   $.ajax({
-    //     url: url,
-    //     type: 'PUT',
-    //     contentType: 'application/json',
-    //     data: JSON.stringify({}),
-    //     success: function (response) {
-    //       console.log('Success:', response);
-    //     },
-    //     error: function (xhr, status, error) {
-    //       console.error('Error:', status, error);
-    //       console.log('Response:', xhr.responseText);
-    //     }
-    //   });
-    // }
-
-    function updateFollowButton(isFollowing) {
-    const followBtn = document.getElementById('followBtn');
-    const followersCount = document.getElementById('followersCount');
-    let currentCount = parseInt(followersCount.textContent);
-    if (isFollowing) {
-      followBtn.textContent = 'Unfollow';
-      followBtn.classList.remove('Btn');
-      followBtn.classList.add('Btn-red');
-      followBtn.setAttribute('onclick', `unfollowReq('<%= user.username %>')`);
-      followersCount.textContent = currentCount + 1;
-    } else {
-      followBtn.textContent = 'Follow';
-      followBtn.classList.remove('Btn-red');
-      followBtn.classList.add('Btn');
-      followBtn.setAttribute('onclick', `followReq('<%= user.username %>')`);
-      followersCount.textContent = currentCount - 1;
-    }
-  }
-
-  function followReq(username) {
-    const url = `/user/${username}/follow/`;
-
-    $.ajax({
-      url: url,
-      type: 'PUT',
-      contentType: 'application/json',
-      data: JSON.stringify({}),
-      success: function(response) {
-        console.log('Success:', response);
-        updateFollowButton(true); // Update the button to 'Unfollow' on success
-      },
-      error: function(xhr, status, error) {
-        console.error('Error:', status, error);
-        console.log('Response:', xhr.responseText);
       }
-    });
-  }
-
-  function unfollowReq(username) {
-    const url = `/user/${username}/unfollow/`;
-
-    $.ajax({
-      url: url,
-      type: 'PUT',
-      contentType: 'application/json',
-      data: JSON.stringify({}),
-      success: function(response) {
-        console.log('Success:', response);
-        updateFollowButton(false); // Update the button to 'Follow' on success
-      },
-      error: function(xhr, status, error) {
-        console.error('Error:', status, error);
-        console.log('Response:', xhr.responseText);
+      function followReq(username) {
+        const url = `/user/${username}/follow/`;
+        $.ajax({
+          url: url,
+          type: 'PUT',
+          contentType: 'application/json',
+          data: JSON.stringify({}),
+          success: function (response) {
+            console.log('Success:', response);
+            updateFollowButton(true); // Update the button to 'Unfollow' on success
+          },
+          error: function (xhr, status, error) {
+            console.error('Error:', status, error);
+            console.log('Response:', xhr.responseText);
+          }
+        });
       }
-    });
-  }
-  </script>
-  <script src="/js/profile.js"></script>
+      function unfollowReq(username) {
+        const url = `/user/${username}/unfollow/`;
+        $.ajax({
+          url: url,
+          type: 'PUT',
+          contentType: 'application/json',
+          data: JSON.stringify({}),
+          success: function (response) {
+            console.log('Success:', response);
+            updateFollowButton(false); // Update the button to 'Follow' on success
+          },
+          error: function (xhr, status, error) {
+            console.error('Error:', status, error);
+            console.log('Response:', xhr.responseText);
+          }
+        });
+      }
+
+
+
+    </script>
+    <script src="/js/profile.js"></script>
 </body>
 
 </html>

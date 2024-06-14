@@ -34,7 +34,7 @@ module.exports.SignupUser = async (req, res) => {
   //check if user exist
   try {
     const existingUser = await User.findOne({ email: email });
-
+    console.log(existingUser);
     if (existingUser) {
       return res.json({ error: 'Email  Already Taken' });
     }
@@ -43,7 +43,8 @@ module.exports.SignupUser = async (req, res) => {
       email,
       password
     });
-  } catch {
+  } catch(error) {
+    console.log(error)
     return res.json({ error: "Email / Username Already Taken" })
   }
 

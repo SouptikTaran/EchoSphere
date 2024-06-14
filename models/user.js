@@ -3,13 +3,14 @@ const { createHmac, randomBytes } = require("crypto");
 const { createTokenForUser } = require("../services/authentication");
 const Otp = require("./otp");
 const LoginUser = require("./userLogin")
+const Post = require("./posts")
 
 const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
-      unique : true,
-      
+      unique: true,
+
     },
     email: {
       type: String,
@@ -66,7 +67,8 @@ userSchema.post("save", async function (doc, next) {
   console.log("post hook");
   try {
     await Otp.create({ email: doc.email });
-    await LoginUser.create({email : doc.email , username : doc.username , profilePic : doc.profilePic , followers : doc.followers.length , followings : doc.followings.length  })
+    await LoginUser.create({ email: doc.email, username: doc.username, profilePic: doc.profilePic, followers: doc.followers.length, followings: doc.followings.length })
+    await Post.create({ user: doc._id, email: doc.email });
   } catch (err) {
     next(err);
   }
@@ -74,27 +76,27 @@ userSchema.post("save", async function (doc, next) {
 
 
 userSchema.statics.matchPasswordandGenerateToken = async function (email, password) {
-    return new Promise((resolve, reject) => {
-        this.findOne({ email: email })
-            .then(user => {
-                if (!user) {
-                    reject("User not found!");
-                }
-                const salt = user.salt;
-                const hashedPassword = user.password;
-                const userProvideHash = createHmac("sha256", salt)
-                    .update(password)
-                    .digest("hex");
-                if (hashedPassword !== userProvideHash) {
-                    reject("Incorrect Password");
-                }
-                const token = createTokenForUser(user);
-                resolve(token);
-            })
-            .catch(error => {
-                reject(error.message);
-            });
-    });
+  return new Promise((resolve, reject) => {
+    this.findOne({ email: email })
+      .then(user => {
+        if (!user) {
+          reject("User not found!");
+        }
+        const salt = user.salt;
+        const hashedPassword = user.password;
+        const userProvideHash = createHmac("sha256", salt)
+          .update(password)
+          .digest("hex");
+        if (hashedPassword !== userProvideHash) {
+          reject("Incorrect Password");
+        }
+        const token = createTokenForUser(user);
+        resolve(token);
+      })
+      .catch(error => {
+        reject(error.message);
+      });
+  });
 };
 
 
