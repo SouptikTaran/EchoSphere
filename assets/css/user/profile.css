@@ -6,7 +6,7 @@
   padding: 0;
   text-decoration: none;
   font-family: "Plus Jakarta Sans", sans-serif;
-  background-color: rgba(18, 26, 33, 1); 
+  /* background-color: rgba(18, 26, 33, 1);  */
 }
 
 /*navbar*/
@@ -14,7 +14,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: rgba(18, 26, 33, 1);
+  /* background-color: rgba(18, 26, 33, 1); */
   color: white;
   height: 65px;
   width: 100%;

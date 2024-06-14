@@ -1,5 +1,6 @@
 const { userSchema, userValidSchema, validEmailSchema, validPasswordSchema } = require("../zodSchema/userSchema");
 const User = require('../models/user')
+const Post = require('../models/posts')
 const LoginUser = require('../models/userLogin');
 const Otp = require('../models/otp')
 const { matchPasswordandGenerateToken } = require('../models/user')
@@ -216,8 +217,9 @@ module.exports.userProfile = async (req, res) => {
   // console.log(req.user)
   const { email } = req.user;
   const user = await User.findOne({ email });
-  console.log(user);
-  res.status(200).render('userProfile', { user, userMain: null, showButton: false });
+  // console.log(user);
+  const post = await Post.findOne({user: user._id});
+  res.status(200).render('userProfile', { user, userMain: null, showButton: false , post :post.posts });
 }
 
 // User Profile
@@ -227,7 +229,7 @@ module.exports.userSearch = async (req, res) => {
 
   let showButton = false;
   if (username === currentUser.username) {
-    console.log("main user")
+    // console.log("main user")
     showButton = false;
   } else {
     showButton = true;
@@ -237,14 +239,16 @@ module.exports.userSearch = async (req, res) => {
       .populate('followers', 'username email profilePic')
       .populate('followings', 'username email profilePic');
     const userMain = await User.findOne({ username: currentUser.username });
+    const userPost = await Post.findOne({user : user._id})
+    console.log("userPost : " , userPost)
     let isFollow = false;
     if (user && userMain) {
       if(userMain.followings.includes(user._id)){
 
         isFollow = true;
       }
-      console.log(user , userMain , showButton , isFollow) ;
-      res.status(200).render('userProfile', { user, userMain, showButton , isFollow });
+      // console.log(user , userMain , showButton , isFollow) ;
+      res.status(200).render('userProfile', { user, userMain, showButton , isFollow , post:userPost.posts });
     }
     else {
       res.status(404).json({ msg: "User not found" });
