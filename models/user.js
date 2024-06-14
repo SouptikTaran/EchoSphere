@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema(
     username: {
       type: String,
       unique: true,
-
+      set: value => value.toLowerCase(),
     },
     email: {
       type: String,

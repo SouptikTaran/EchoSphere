@@ -24,10 +24,11 @@
   <div class="container">
     <input type="checkbox" id="toggle" />
     <div class="search-container">
-      <input type="text" placeholder="Type here..." class="search-input" />
-      <label for="toggle" class="search-icon">
+      <input type="text" placeholder="Type here..." id="search-input" />
+      <label for="toggle" class="search-icon" id="search-ico">
         <i class="fas fa-search"></i>
       </label>
+      <div id="search-dropdown" class="dropdown-content"></div>
     </div>
   </div>
 
@@ -272,7 +273,7 @@
         }
       }
       function followReq(username) {
-        const url = `/user/${username}/follow/`;
+        const url = `/user/profile/${username}/follow/`;
         $.ajax({
           url: url,
           type: 'PUT',
@@ -289,7 +290,7 @@
         });
       }
       function unfollowReq(username) {
-        const url = `/user/${username}/unfollow/`;
+        const url = `/user//profile/${username}/unfollow/`;
         $.ajax({
           url: url,
           type: 'PUT',
@@ -306,6 +307,23 @@
         });
       }
 
+      document.getElementById('search-input').addEventListener('keypress' , function(e){
+        if(e.key == 'Enter'){
+          performSearch(e.target.value)
+        }
+      })
+
+      document.getElementById('search-ico').addEventListener("click" , function(){
+        const value = document.getElementById('search-input').value;
+        if(value != ""){
+          performSearch(value);
+        }
+      })
+
+      function performSearch(username){
+        const baseURL = 'http://localhost:8000/user/profile/' + username ;
+        window.location.href = baseURL ;
+      }
 
 
     </script>

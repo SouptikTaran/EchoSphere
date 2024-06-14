@@ -260,7 +260,6 @@ module.exports.userSearch = async (req, res) => {
 
 
 module.exports.followUser = async (req, res) => {
-  console.log("Reached")
   console.log(req.user.username, req.params.username)
   if (req.user.username != req.params.username) {
     try {
