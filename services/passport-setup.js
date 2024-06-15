@@ -25,14 +25,12 @@ passport.use(
               })
             }
           // If the user already exists, log and return the user to home screen with the token
-          console.log('User Already Existed');
           const token = createTokenForUser(currentUser);
-
           return done(null, currentUser , {token});
         } else {
           // If the user does not exist, create a new user
           let newUser = await User.create({
-            username: profile.displayName,
+            username: profile.displayName.toLowerCase(),
             googleId: profile.id,
             email: profile.emails[0].value,
             password: profile.id 
