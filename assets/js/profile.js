@@ -1,23 +1,22 @@
 function openPop(e) {
   z = e + "popup";
+  console.log(z);
   document.getElementById('popupOverlay').style.display = "block";
-  document.getElementById(z).style.display = "block";
 }
 function closePop(e) {
-  console.l
-  z = e.substring(0, 4);
+  z = e.substring(0, 5);
   z = z + "popup";
+  console.log(z);
   document.getElementById('popupOverlay').style.display = "none";
-  document.getElementById(z).style.display = "none";
 }
 
 
 var img = document.getElementById("uploadImage");
 var displayImage = document.getElementById("displayImage");
-var notification = document.getElementById("notification");
+var notification = document.getElementById("noti");
+var noti = document.getElementById("noti-msg");
 
 img.addEventListener("input", function () {
-  // console.log(img.files[0])
   var formData = new FormData();
   formData.append('profileImage', img.files[0]);
 
@@ -26,22 +25,28 @@ img.addEventListener("input", function () {
 
   xhr.onload = function () {
     if (xhr.status === 200) {
-      console.log("xhr.responseText : ", xhr.responseText);
       const response = JSON.parse(xhr.responseText);
-      console.log(response)
       if (response.success) {
         const timestamp = new Date().getTime();
         const newImageUrl = response.newImageUrl + "?t=" + timestamp;
         displayImage.src = newImageUrl;
         profileIcon.src = newImageUrl;
 
-        notification.style.display = "block"
+        notification.style.display = "block";
+        notification.innerHTML = `<strong>${response.msg}</strong>`;
         setTimeout(() => {
           notification.style.display = "none";
         }, 3000);
+
       }
     } else {
-      alert("An error occurred while uploading the file.");
+      notification.style.display = "block";
+      notification.style.border = "1px solid red";
+      notification.style.backgroundColor = "hsla(0, 66%, 50%, 0.2)";
+      notification.innerHTML = `<strong>An error occurred while uploading the file</strong>`;
+      setTimeout(() => {
+        notification.style.display = "none";
+      }, 3000);
     }
   };
 
@@ -73,3 +78,53 @@ function adjustPostContainerHeight() {
 
 // Call the function on page load or after content is loaded dynamically
 window.addEventListener('load', adjustPostContainerHeight);
+
+
+const postContainer = document.getElementById("postContainer");
+
+
+
+function uploadPost() {
+
+  var formData = new FormData();
+  var fileInput = document.getElementById('avatar');
+  console.log(fileInput)
+  formData.append('avatar', fileInput.files[0]);
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/post/userpost', true);
+
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      const response = JSON.parse(xhr.responseText);
+      if (response.success) {
+        closePop('closePopup');
+        //creating and appending into the main structure
+        var imageDiv = document.createElement('div');
+        imageDiv.classList.add('post');
+        var imageElement = document.createElement('img');
+        imageElement.classList.add('post-img');
+        imageElement.src = response.newImageUrl;
+        console.log(imageElement); 
+        imageDiv.appendChild(imageElement)
+        postContainer.appendChild(imageDiv)
+
+        //notification 
+        notification.style.display = "block";
+        notification.innerHTML = `<strong>${response.msg}</strong>`;
+        setTimeout(() => {
+          notification.style.display = "none";
+        }, 3000);
+      }else{
+        notification.style.display = "block";
+        notification.style.border = "1px solid red";
+        notification.style.backgroundColor = "hsla(0, 66%, 50%, 0.2)";
+        notification.innerHTML = `<strong>${respose.msg}</strong>`;
+        setTimeout(() => {
+          notification.style.display = "none";
+        }, 3000);
+      }
+    }
+  }
+  xhr.send(formData)
+}

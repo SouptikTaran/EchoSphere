@@ -33,6 +33,7 @@ const storage = multer.diskStorage({
 
 const storagePost = multer.diskStorage({
     destination: (req, file, cb) => {
+        console.log(file);
         const user = req.user.username;
         const uploadDir = path.join(__dirname , '..' , 'uploads' , user , 'posts');
         createUploadDir(uploadDir)
@@ -103,12 +104,14 @@ router.post('/userpost', tokenValidity, uploadPost.single("avatar"),async (req, 
         }
         
         const postPath = '/' + req.user.username + '/' + 'posts' + '/' + req.file.filename;
+        console.log(postPath);
+        console.log("user : " , user);
         user.posts.push(postPath);
         await user.save();
-        res.json({msg : "success"})
+        res.status(200).json({ success: true, msg: 'Post Uploded successfully', newImageUrl: postPath });
     }
     catch(error) {
-        res.json({"error" : error});
+        res.json({ success: false, msg: 'Post Upload Unsuccessfull'});
     }
 })
 

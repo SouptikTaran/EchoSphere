@@ -27,7 +27,7 @@
               <div class="row">
                 <div class="col-lg-10 col-xl-7 mx-auto">
                   <h3 class="display-6 mb-5 intro-text">Welcome</h3>
-                  <div id="loginMessage" style="display: none" class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <div id="loginMessage" style="display: none" class="alert alert-warning alert-dismissible " role="alert">
                   </div>
                   <!-- <form method="POST" action="/user/login"> -->
                   <div class="form-group mb-3">
@@ -113,7 +113,7 @@
           window.location.href = data.redirect ;
         } else {
           message.innerHTML = `<strong>${data.error}</strong>`;
-          message.style.display = "block";
+          message.style.display = "bl ock";
         }
 
         console.log(data);
