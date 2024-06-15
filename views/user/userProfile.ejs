@@ -80,7 +80,10 @@
     <div class="hero-section">
       <div class="profile">
         <div class="profile-img">
+          <!-- Cover image-->
           <img id="coverImage" class="cimage" src="/images/user-images/profile-bg.png" alt="Cover Picture" />
+          <button class="del-btnc">Delete</button>
+          
           <div class="bg-cover-bottom"></div>
 
           <div class="profile-user">
@@ -224,6 +227,7 @@
             <%for(let i = 0 ; i < post.length ; i++){%>
                 <div class="post">
                   <img class="post-img" src="<%=post[i]%>" alt="">
+                  <button class="del-btn">Delete</button>
                 </div>
             <%}%>
         <%}else{%>
