@@ -72,7 +72,7 @@
 
 <body>
   <main>
-    <div class="alert-div" >
+    <div class="alert-div" style="display: none;" >
       <div class="alert" >
           <span>Success!!</span>
       </div>
@@ -220,16 +220,7 @@
       </div>
     </div>
     <div class="post__s">
-          <div class="post"><img class="post-img" src="/images/user-images/post2img.jpeg"></div>
-          <div class="post"><img class="post-img" src="/images/user-images/post2img.jpeg"></div>
-          <div class="post"><img class="post-img" src="/images/user-images/post2img.jpeg"></div>
-          <div class="post"><img class="post-img" src="/images/user-images/post2img.jpeg"></div>
-          <div class="post"><img class="post-img" src="/images/user-images/post2img.jpeg"></div>
-          <div class="post"><img class="post-img" src="/images/user-images/post2img.jpeg"></div>
-          <div class="post"><img class="post-img" src="/images/user-images/post2img.jpeg"></div>
-          <div class="post"><img class="post-img" src="/images/user-images/post2img.jpeg"></div>
-          <div class="post"><img class="post-img" src="/images/user-images/post2img.jpeg"></div>
-        <!--<%if(post){%>
+        <%if(post){%>
             <%for(let i = 0 ; i < post.length ; i++){%>
                 <div class="post">
                   <img class="post-img" src="<%=post[i]%>" alt="">
@@ -237,7 +228,7 @@
             <%}%>
         <%}else{%>
 
-          <%}%> -->
+          <%}%>
     </div>
 
     <div class="popup-overlay" id="popupOverlay">
