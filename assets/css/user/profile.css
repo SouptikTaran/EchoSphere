@@ -313,71 +313,112 @@ main {
   object-position: center;
 }
 
-
-.del-btn {
-  position: absolute; /* Make it positioned relative to the post */
-  width: 310px; /* Span the entire width of the post */
-  height: 310px; /* Span the entire height of the post */
-  opacity: 0; /* Hide the button initially */
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background on hover */
-  color: white; /* Text color for the button */
-  display: flex; /* Allow centering the button content */
-  justify-content: center; /* Center the button content horizontally */
-  align-items: center; /* Center the button content vertically */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  transition: opacity 0.2s ease-in-out; /* Smooth opacity transition */
-  border-radius: 1rem;
-  
+/*post delete button*/
+/* Styles for the post container */
+.post {
+  position: relative; /* Allows absolute positioning of child elements */
+  width: fit-content; /* Adjust width as needed */
+  margin: 10px; /* Add spacing between posts (optional) */
 }
 
-.post:hover .del-btn {
-  opacity: 1; /* Show the button on hover */
-}
-
-
-.del-btnc {
-  position: absolute; /* Positioned relative to the wrapper */
-  width: 100%; /* Span the entire width of the image */
-  height: 100%; /* Span the entire height of the image */
-  opacity: 0; /* Hide the button initially */
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background on hover */
-  color: white; /* Text color for the button */
-  display: flex; /* Allow centering the button content */
-  justify-content: center; /* Center the button content horizontally */
-  align-items: center; /* Center the button content vertically */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  transition: opacity 0.2s ease-in-out; /* Smooth opacity transition */
+/* Styles for the image overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.2s ease;
   border-radius: 1rem;
 }
 
-.cimage:hover .del-btnc {
-  opacity: 1; /* Show the button on hover */
+/* Styles for the overlay on hover */
+.post:hover .overlay {
+  background: rgba(0, 0, 0, .3);
+}
+
+/* Styles for the delete button */
+.butt {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translateY(-50%); /* Center the button vertically */
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  text-align: center;
+  z-index: 1; /* Ensure button appears above other elements */
+}
+
+/* Styles for the button content (text, border, etc.) */
+.butt a {
+  display: inline-block; /* Allow text wrapping within button */
+  padding: 12px 48px;
+  color: white;
+  background-color: rgba(18, 26, 33, 1); /* Adjust button color as desired */
+  border: solid 2px white;
+  border-radius: 4px; /* Add rounded corners to the button */
+  text-decoration: none; /* Remove underline from anchor text */
+}
+
+/* Show the button on hover */
+.post:hover .butt {
+  opacity: 1;
 }
 
 
-/*
-.post__s{
-    display:grid;
-    grid-template-columns: repeat(4,1fr);
-    height:auto;
-    width:95%;
-    margin-top:3%;
-    gap:2%;
-    padding:1%;
-}
-.post{
-    height:310px;
-    width:100%;
-    overflow:hidden;
-    border-radius:1rem;
+
+/*post delete button cover*/
+
+/* Styles for the post container */
+
+
+/* Styles for the image overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.2s ease;
+  border-radius: 1rem;
 }
 
-.post-img{
-    object-fit:cover;
-    object-position:center;
-    height:100%;
-    width:100%;
-}*/
+/* Styles for the overlay on hover */
+.profile-img:hover .overlay {
+  background: rgba(0, 0, 0, .3);
+}
+
+/* Styles for the delete button */
+.buttt {
+  position: absolute;
+  top: 35%;
+  left: 43%;
+  transform: translateY(-50%); /* Center the button vertically */
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  text-align: center;
+  z-index: 1; /* Ensure button appears above other elements */
+}
+
+/* Styles for the button content (text, border, etc.) */
+.buttt a {
+  display: inline-block; /* Allow text wrapping within button */
+  padding: 12px 48px;
+  color: white;
+  background-color: rgba(18, 26, 33, 1); /* Adjust button color as desired */
+  border: solid 2px white;
+  border-radius: 4px; /* Add rounded corners to the button */
+  text-decoration: none; /* Remove underline from anchor text */
+}
+
+/* Show the button on hover */
+.profile-img:hover .buttt {
+  opacity: 1;
+}
+
+
 
 @media screen and (max-width: 830px) {
   .nav-options {
