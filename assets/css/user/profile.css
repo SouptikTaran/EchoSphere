@@ -279,7 +279,7 @@ main {
   color: rgba(148, 173, 199, 1);
 }
 
-.post__s {
+/*.post__s {
   width: 95%;
   display: flex;
   flex-wrap: wrap;
@@ -301,7 +301,7 @@ main {
 }
 
 .post {
-  width: 310px; /* Maintain width for layout */
+  width: 310px; /* Maintain width for layout 
   border-radius: 1rem;
   overflow: hidden;
   margin: 1%;
@@ -312,8 +312,31 @@ main {
   width: 310px;
   object-fit: cover;
   object-position: center;
+}*/
+
+.post__s{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    height:auto;
+    width:95%;
+    /*border:1px solid white;*/
+    margin-top:3%;
+    gap:2%;
+    padding:1%;
+}
+.post{
+    height:310px;
+    width:100%;
+    overflow:hidden;
+    border-radius:1rem;
 }
 
+.post-img{
+    object-fit:cover;
+    object-position:center;
+    height:100%;
+    width:100%;
+}
 @media screen and (max-width: 830px) {
   .nav-options {
     display: flex;
