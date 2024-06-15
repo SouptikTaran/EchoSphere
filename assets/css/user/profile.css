@@ -14,7 +14,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  /* background-color: rgba(18, 26, 33, 1); */
+  background-color: rgba(18, 26, 33, 1); 
   color: white;
   height: 65px;
   width: 100%;
@@ -255,40 +255,37 @@ main {
 }
 
 .post__s {
-  height: auto;
   width: 95%;
   display: flex;
   flex-wrap: wrap;
+  background-color: rgba(18, 26, 33, 1);
   flex-direction: column;
   align-items: center;
   margin-top: 2%;
   margin-bottom: 5%;
-  /*border: 3px solid white;*/
 }
+
 .user-post1 {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  height:300px;
-  width:100%;
+  align-content: flex-start;
+  width: 100%;
   margin: 1%;
   text-align: left;
-
 }
+
 .post {
-  height: 310px;
-  width: 310px;
+  width: 310px; /* Maintain width for layout */
   border-radius: 1rem;
   overflow: hidden;
-  /*border: 1px solid white;*/
   margin: 1%;
-  
 }
-.post-img{
+
+.post-img {
   height: 310px;
   width: 310px;
-  object-fit:cover;
+  object-fit: cover;
   object-position: center;
 }
 
