@@ -279,12 +279,11 @@ main {
   color: rgba(148, 173, 199, 1);
 }
 
-/*.post__s {
+.post__s {
   width: 95%;
   display: flex;
   flex-wrap: wrap;
   background-color: rgba(18, 26, 33, 1);
-  flex-direction: column;
   align-items: center;
   margin-top: 2%;
   margin-bottom: 5%;
@@ -301,7 +300,7 @@ main {
 }
 
 .post {
-  width: 310px; /* Maintain width for layout 
+  width: 310px; /* Maintain width for layout */
   border-radius: 1rem;
   overflow: hidden;
   margin: 1%;
@@ -312,14 +311,56 @@ main {
   width: 310px;
   object-fit: cover;
   object-position: center;
-}*/
+}
 
+
+.del-btn {
+  position: absolute; /* Make it positioned relative to the post */
+  width: 310px; /* Span the entire width of the post */
+  height: 310px; /* Span the entire height of the post */
+  opacity: 0; /* Hide the button initially */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background on hover */
+  color: white; /* Text color for the button */
+  display: flex; /* Allow centering the button content */
+  justify-content: center; /* Center the button content horizontally */
+  align-items: center; /* Center the button content vertically */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: opacity 0.2s ease-in-out; /* Smooth opacity transition */
+  border-radius: 1rem;
+  
+}
+
+.post:hover .del-btn {
+  opacity: 1; /* Show the button on hover */
+}
+
+
+.del-btnc {
+  position: absolute; /* Positioned relative to the wrapper */
+  width: 100%; /* Span the entire width of the image */
+  height: 100%; /* Span the entire height of the image */
+  opacity: 0; /* Hide the button initially */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background on hover */
+  color: white; /* Text color for the button */
+  display: flex; /* Allow centering the button content */
+  justify-content: center; /* Center the button content horizontally */
+  align-items: center; /* Center the button content vertically */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: opacity 0.2s ease-in-out; /* Smooth opacity transition */
+  border-radius: 1rem;
+}
+
+.cimage:hover .del-btnc {
+  opacity: 1; /* Show the button on hover */
+}
+
+
+/*
 .post__s{
     display:grid;
     grid-template-columns: repeat(4,1fr);
     height:auto;
     width:95%;
-    /*border:1px solid white;*/
     margin-top:3%;
     gap:2%;
     padding:1%;
@@ -336,7 +377,8 @@ main {
     object-position:center;
     height:100%;
     width:100%;
-}
+}*/
+
 @media screen and (max-width: 830px) {
   .nav-options {
     display: flex;
