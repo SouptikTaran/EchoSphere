@@ -226,7 +226,8 @@ module.exports.userProfile = async (req, res) => {
 module.exports.userSearch = async (req, res) => {
   const username = req.params.username; // other user profile
   const currentUser =  validateToken(req.cookies.token); //main user
-
+  console.log("username " , username)
+  console.log("Current User " , currentUser.username)
   let showButton = false;
   if (username === currentUser.username) {
     // console.log("main user")
@@ -235,18 +236,19 @@ module.exports.userSearch = async (req, res) => {
     showButton = true;
   }
   try {
-    const user = await User.findOne({ username })
+    const user = await User.findOne({username : username})
       .populate('followers', 'username email profilePic')
       .populate('followings', 'username email profilePic');
-    const userMain = await User.findOne({ username: currentUser.username });
-    const userPost = await Post.findOne({user : user._id})
-    console.log("userPost : " , userPost)
+      const userMain = await User.findOne({ username: currentUser.username });
+      console.log("userMain : " , userMain);
+      const userPost = await Post.findOne({user : user._id})
     let isFollow = false;
     if (user && userMain) {
       if(userMain.followings.includes(user._id)){
-
+        
         isFollow = true;
       }
+      console.log("done5")
       // console.log(user , userMain , showButton , isFollow) ;
       res.status(200).render('userProfile', { user, userMain, showButton , isFollow , post:userPost.posts });
     }
