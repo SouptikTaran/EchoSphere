@@ -128,3 +128,48 @@ function uploadPost() {
   }
   xhr.send(formData)
 }
+
+
+//-----------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------//
+
+
+//search box input
+const searchBox = document.getElementById('search-input');
+const resultsList = document.getElementById('results-list');
+
+// Predefined search results
+const searchResults = ["Abhi", "Dev", "Ekta", "Alis", "Soup", "Shamik"];
+
+searchBox.addEventListener('input', () => {
+  const searchTerm = searchBox.value.trim().toLowerCase();
+
+  if (!searchTerm) {
+    resultsList.style.display = 'none';
+    return;
+  }
+
+  const filteredResults = searchResults.filter((result) =>
+    result.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  resultsList.innerHTML = ''; // Clear previous results
+
+  if (filteredResults.length) {
+    resultsList.style.display = 'block';
+    filteredResults.forEach((result) => {
+      const listItem = document.createElement('li');
+      listItem.textContent = result;
+      resultsList.appendChild(listItem);
+
+      // Add event listener for click on each list item
+      listItem.addEventListener('click', () => {
+        searchBox.value = result; // Update search box with clicked result
+        resultsList.style.display = 'none'; // Hide the dropdown after click
+      });
+    });
+  } else {
+    resultsList.style.display = 'none'; // Hide the list if no results
+  }
+});
