@@ -863,6 +863,29 @@ main {
 }
 
 
+#results-list {
+  position:relative; /* Position the list below the search box */
+  width: 90%;
+  top: 100%; /* Start below the search box */
+  left: 0;
+  background-color:  rgba(18, 26, 33, 1); 
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  display: none; /* Initially hide the list */
+  z-index: 1;
+}
+
+#results-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  border-radius: 1rem;
+  cursor: pointer; /* Make results clickable */
+}
+
+
 
 #profileIcon{
   height: 5vh;
