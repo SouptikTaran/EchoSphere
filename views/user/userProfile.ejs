@@ -25,7 +25,7 @@
   <div class="container">
     <input type="checkbox" id="toggle" />
     <div class="search-container">
-      <input type="text" placeholder="Type here..." id="search-input" />
+      <input type="text" placeholder="Type here..." id="search-input" autocomplete="off"/>
       <ul id="results-list"></ul>
       <label for="toggle" class="search-icon" id="search-ico">
         <i class="fas fa-search"></i>
@@ -225,13 +225,15 @@
         </div>
       </div>
     </div>
-    <div class="post__s">
+    <div class="post__s" id="postContainer">
       <%if(post){%>
           <%for(let i = 0 ; i < post.length ; i++){%>
               <div class="post">
                 <img class="post-img" src="<%=post[i]%>" alt="">
+                <%if(!showButton){%>
                 <div class="overlay"></div>
-                <div class="del-btn"><a class="btn-sty fa fa-trash-o" style="font-size:36px" href="#"></a></div>
+                <div class="del-btn"><a class="btn-sty fa fa-trash-o" style="font-size:36px" onclick="deleteImage('<%=post[i]%>')"></a></div>
+                <%}%>
               </div>
           <%}%>
       <%}else{%>

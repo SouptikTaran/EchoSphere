@@ -35,13 +35,13 @@ const storagePost = multer.diskStorage({
     destination: (req, file, cb) => {
         console.log(file);
         const user = req.user.username;
-        const uploadDir = path.join(__dirname , '..' , 'uploads' , user , 'posts');
+        const uploadDir = path.join(__dirname, '..', 'uploads', user, 'posts');
         createUploadDir(uploadDir)
-        cb(null , uploadDir)
-    } ,
-    filename :(req , file , cb)=>{
+        cb(null, uploadDir)
+    },
+    filename: (req, file, cb) => {
         const user = req.user.username;
-        const uniqueSuffix = user + "-post-" +Date.now() + path.extname(file.originalname);
+        const uniqueSuffix = user + "-post-" + Date.now() + path.extname(file.originalname);
         cb(null, uniqueSuffix);
     }
 });
@@ -50,7 +50,7 @@ const upload = multer({
     storage: storage,
 });
 
-const uploadPost = multer({storage : storagePost});
+const uploadPost = multer({ storage: storagePost });
 
 // GET route to render the upload form
 router.get("/profile", tokenValidity, (req, res) => {
@@ -94,7 +94,7 @@ router.post("/profile", tokenValidity, upload.single('profileImage'), async (req
     }
 });
 
-router.post('/userpost', tokenValidity, uploadPost.single("avatar"),async (req, res) => {
+router.post('/userpost', tokenValidity, uploadPost.single("avatar"), async (req, res) => {
     const email = req.user.email;
     console.log(req.user);
     try {
@@ -102,17 +102,49 @@ router.post('/userpost', tokenValidity, uploadPost.single("avatar"),async (req, 
         if (!user) {
             return res.json('User Not Found');
         }
-        
+
         const postPath = '/' + req.user.username + '/' + 'posts' + '/' + req.file.filename;
         console.log(postPath);
-        console.log("user : " , user);
+        console.log("user : ", user);
         user.posts.push(postPath);
         await user.save();
         res.status(200).json({ success: true, msg: 'Post Uploded successfully', newImageUrl: postPath });
     }
-    catch(error) {
-        res.json({ success: false, msg: 'Post Upload Unsuccessfull'});
+    catch (error) {
+        res.json({ success: false, msg: 'Post Upload Unsuccessfull' });
     }
 })
+
+router.post('/delete', tokenValidity, async (req, res) => {
+    const email = req.user.email;
+    // console.log(req.body);
+    const src = req.body.src
+    try {
+        const userPost = await Post.findOne({ email });
+        if (!userPost) {
+            return res.status(404).json({ msg: 'User or Post Not Found' });
+        }
+        const result = await Post.updateOne(
+            { email },
+            { $pull: { posts: src } }
+        )
+        // console.log("user : ", result);
+        if (result.modifiedCount === 0) {
+            return res.status(404).json({ msg: 'User or Post Not Found' });
+        }
+        const filePath = path.join(__dirname,'..' ,'uploads', src); 
+        fs.unlink(filePath, (err) => {
+            if (err) {
+                console.error('Error deleting file:', err);
+                return res.status(500).json({ msg: 'File deletion failed', error: err.message });
+            }
+            res.json({ msg: 'Post and file deleted successfully' });
+        });
+    } catch (error) {
+        console.error('Error deleting post:', error);
+        res.json({ msg: 'Internal Server Error', error: error.message });
+    }
+});
+
 
 module.exports = router;

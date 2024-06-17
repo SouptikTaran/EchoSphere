@@ -88,8 +88,21 @@ function uploadPost() {
 
   var formData = new FormData();
   var fileInput = document.getElementById('avatar');
-  console.log(fileInput)
+  console.log(fileInput.files[0])
+
+  if(fileInput.files[0] == undefined){
+    notification.style.display = "block";
+    notification.style.border = "1px solid red";
+    notification.style.backgroundColor = "hsla(0, 66%, 50%, 0.2)";
+    notification.style.color= "red"
+    notification.innerHTML = `<strong>Upload Field Empty</strong>`;
+    setTimeout(() => {
+      notification.style.display = "none";
+    }, 3000);
+    return ;
+  }
   formData.append('avatar', fileInput.files[0]);
+
 
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/post/userpost', true);
@@ -105,9 +118,27 @@ function uploadPost() {
         var imageElement = document.createElement('img');
         imageElement.classList.add('post-img');
         imageElement.src = response.newImageUrl;
-        console.log(imageElement); 
+        console.log(imageElement);
         imageDiv.appendChild(imageElement)
+        console.log(imageDiv);
         postContainer.appendChild(imageDiv)
+
+        var overlay = document.createElement('div');
+        overlay.classList.add('overlay');
+        imageDiv.append(overlay)
+
+        var delbtn = document.createElement('div')
+        delbtn.classList.add('del-btn')
+        var deleteLink = document.createElement('a');
+        deleteLink.classList.add('btn-sty', 'fa', 'fa-trash-o');
+        deleteLink.style.fontSize = "36px";
+        deleteLink.onclick = function () {
+          var src = response.newImageUrl; // Assuming post[i] is the server-side value
+          deleteImage(src);
+        };
+        delbtn.appendChild(deleteLink);
+        imageDiv.appendChild(delbtn)
+
 
         //notification 
         notification.style.display = "block";
@@ -115,9 +146,10 @@ function uploadPost() {
         setTimeout(() => {
           notification.style.display = "none";
         }, 3000);
-      }else{
+      } else {
         notification.style.display = "block";
         notification.style.border = "1px solid red";
+        notification.style.color= "red"
         notification.style.backgroundColor = "hsla(0, 66%, 50%, 0.2)";
         notification.innerHTML = `<strong>${respose.msg}</strong>`;
         setTimeout(() => {
@@ -173,3 +205,48 @@ searchBox.addEventListener('input', () => {
     resultsList.style.display = 'none'; // Hide the list if no results
   }
 });
+
+
+
+//-----------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------//
+
+
+async function deleteImage(src) {
+  try {
+    const response = await fetch('/post/delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ src })
+    });
+
+    const result = await response.json();
+    console.log(result);
+    var postElements = document.querySelectorAll('.post');
+    for (let i = 0; i < postElements.length; i++) {
+      var imgElement = postElements[i].querySelector('.post-img');
+      if (imgElement && imgElement.getAttribute('src') === src) {
+        postElements[i].remove();
+        break;
+      }
+    }
+    notification.style.display = "block";
+    notification.innerHTML = `<strong>${result.msg}</strong>`;
+    setTimeout(() => {
+      notification.style.display = "none";
+    }, 3000);
+  } catch (error) {
+    console.error('Error deleting image:', error);
+    notification.style.display = "block";
+    notification.style.border = "1px solid red";
+    notification.style.color= "red"
+    notification.style.backgroundColor = "hsla(0, 66%, 50%, 0.2)";
+    notification.innerHTML = `<strong>${error}</strong>`;
+    setTimeout(() => {
+      notification.style.display = "none";
+    }, 3000);
+  }
+}
