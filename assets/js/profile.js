@@ -90,16 +90,16 @@ function uploadPost() {
   var fileInput = document.getElementById('avatar');
   console.log(fileInput.files[0])
 
-  if(fileInput.files[0] == undefined){
+  if (fileInput.files[0] == undefined) {
     notification.style.display = "block";
     notification.style.border = "1px solid red";
     notification.style.backgroundColor = "hsla(0, 66%, 50%, 0.2)";
-    notification.style.color= "red"
+    notification.style.color = "red"
     notification.innerHTML = `<strong>Upload Field Empty</strong>`;
     setTimeout(() => {
       notification.style.display = "none";
     }, 3000);
-    return ;
+    return;
   }
   formData.append('avatar', fileInput.files[0]);
 
@@ -149,7 +149,7 @@ function uploadPost() {
       } else {
         notification.style.display = "block";
         notification.style.border = "1px solid red";
-        notification.style.color= "red"
+        notification.style.color = "red"
         notification.style.backgroundColor = "hsla(0, 66%, 50%, 0.2)";
         notification.innerHTML = `<strong>${respose.msg}</strong>`;
         setTimeout(() => {
@@ -165,14 +165,25 @@ function uploadPost() {
 //-----------------------------------------------------------------------------//
 //-----------------------------------------------------------------------------//
 //-----------------------------------------------------------------------------//
-
-
-//search box input
+// Search box input
 const searchBox = document.getElementById('search-input');
 const resultsList = document.getElementById('results-list');
+let timeoutId;
+const debounceDelay = 300; 
+const searchCache = {}; 
 
-// Predefined search results
-const searchResults = ["Abhi", "Dev", "Ekta", "Alis", "Soup", "Shamik"];
+const fetchSearchResults = async (searchTerm) => {
+  //Implemented a hash table for less query for search
+  if (searchCache[searchTerm]) {
+    return searchCache[searchTerm];
+  }
+
+  const response = await fetch(`/user/search?q=${encodeURIComponent(searchTerm)}`);
+  const data = await response.json();
+  const searchResults = Array.isArray(data) ? data : [];
+  searchCache[searchTerm] = searchResults; // Storing the result for future uses
+  return searchResults;
+};
 
 searchBox.addEventListener('input', () => {
   const searchTerm = searchBox.value.trim().toLowerCase();
@@ -182,31 +193,37 @@ searchBox.addEventListener('input', () => {
     return;
   }
 
-  const filteredResults = searchResults.filter((result) =>
-    result.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  clearTimeout(timeoutId);
 
-  resultsList.innerHTML = ''; // Clear previous results
+  timeoutId = setTimeout(async () => {
+    try {
+      const searchResults = await fetchSearchResults(searchTerm);
+      const filteredResults = searchResults.filter((result) =>
+        result.toLowerCase().includes(searchTerm.toLowerCase())
+      );
 
-  if (filteredResults.length) {
-    resultsList.style.display = 'block';
-    filteredResults.forEach((result) => {
-      const listItem = document.createElement('li');
-      listItem.textContent = result;
-      resultsList.appendChild(listItem);
+      resultsList.innerHTML = '';
 
-      // Add event listener for click on each list item
-      listItem.addEventListener('click', () => {
-        searchBox.value = result; // Update search box with clicked result
-        resultsList.style.display = 'none'; // Hide the dropdown after click
-      });
-    });
-  } else {
-    resultsList.style.display = 'none'; // Hide the list if no results
-  }
+      if (filteredResults.length) {
+        resultsList.style.display = 'block';
+        filteredResults.forEach((result) => {
+          const listItem = document.createElement('li');
+          listItem.textContent = result;
+          resultsList.appendChild(listItem);
+          listItem.addEventListener('click', () => {
+            searchBox.value = result;
+            resultsList.style.display = 'none';
+          });
+        });
+      } else {
+        resultsList.style.display = 'none'; // Hide the list if no results
+      }
+    } catch (error) {
+      console.error('Error fetching search results:', error);
+      resultsList.style.display = 'none'; // Hide the list in case of an error
+    }
+  }, debounceDelay);
 });
-
-
 
 //-----------------------------------------------------------------------------//
 //-----------------------------------------------------------------------------//
@@ -242,7 +259,7 @@ async function deleteImage(src) {
     console.error('Error deleting image:', error);
     notification.style.display = "block";
     notification.style.border = "1px solid red";
-    notification.style.color= "red"
+    notification.style.color = "red"
     notification.style.backgroundColor = "hsla(0, 66%, 50%, 0.2)";
     notification.innerHTML = `<strong>${error}</strong>`;
     setTimeout(() => {

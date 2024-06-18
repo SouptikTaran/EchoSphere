@@ -40,13 +40,11 @@ router.get('/profile/:username', tokenValidity, userController.userSearch);
 router.put('/profile/:username/follow', tokenValidity, userController.followUser);
 router.put('/profile/:username/unfollow', tokenValidity, userController.unfollowUser);
 router.get('/search', tokenValidity ,async (req, res) => {
-    // const searcher = new FuzzySearch(User , [username],{
-    //     caseSensitive : true,
-    // })
+    const users = await User.find({});
+    const usernames = users.map((e) => e.username);
+    console.log("hello");
+    return res.json(usernames);
 
-    // const result = searcher.search('s');
-    // res.json(result);
-    res.json('hellp')
 })
 
 module.exports = router
