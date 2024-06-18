@@ -134,25 +134,25 @@
             <ul id="search-results"></ul>
           </div>
 
-          <!-- 
-          <button onclick="openPopup()">Open Popup</button>
-          <div id="popup-content">
-            <h3>Followers</h3>
-            <i class="fa fa-close close-icon" style="font-size:20px"></i>
-            <hr class="line">
-          
-            <input type="text" id="search-box" placeholder="Search Followers">
-            <ul id="search-results"></ul>
-          </div>
--->
-
 
           <a href="#">
             <h3 class="follows">
               <%= user.followings.length%>
             </h3>
-            <p>Following</p>
+            <p onclick="openFollowingPopup()">Followings</p>
           </a>
+
+
+          <div id="following-popup" class="following-popup-container">
+            <h3 class="following-popup-title">Followings</h3>
+            <i class="fa fa-close close2-icon" style="font-size:20px"></i>
+            <hr class="popup-divider">
+            <input type="text" id="following-search-box" placeholder="Search Followings">
+            <ul id="following-search-results"></ul>
+          </div>
+          
+          
+
 
         </div>
         <div class="follow-button">
