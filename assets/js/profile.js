@@ -272,12 +272,22 @@ async function deleteImage(src) {
 
 function openPopup() {
   document.getElementById("popup-content").style.display = "block";
+  // Get the search box value from local storage (if available)
+  const searchBox = document.getElementById("search-box");
+  const storedSearchTerm = localStorage.getItem("followerSearch");
+  if (storedSearchTerm) {
+    searchBox.value = storedSearchTerm;
+  }
 }
 
 function closePopup() {
   const closeIcon = document.querySelector(".close-icon");
   closeIcon.addEventListener("click", () => {
     document.getElementById("popup-content").style.display = "none";
+    // Clear search box value and local storage on close
+    const searchBox = document.getElementById("search-box");
+    searchBox.value = "";
+    localStorage.removeItem("followerSearch");
   });
 }
 
@@ -308,7 +318,10 @@ function searchFollowers() {
     filteredFollowers.forEach(follower => {
       const suggestionBox = document.createElement("div"); // Use a div for each suggestion
       suggestionBox.classList.add("suggestion"); // Add a class for styling
-      suggestionBox.textContent = follower; // Set suggestion content
+
+      const suggestionText = document.createElement("span"); // Create a span for the follower name
+      suggestionText.textContent = follower;
+      suggestionBox.appendChild(suggestionText);
 
       suggestionBox.addEventListener("click", () => {
         searchBox.value = follower; // Set search box value on click
@@ -318,10 +331,95 @@ function searchFollowers() {
       searchResults.appendChild(suggestionBox);
     });
   } else {
-    searchResults.innerHTML = "<li>No results found.</li>";
+    searchResults.innerHTML = "No results found"; // Display clear message without a dot
   }
 }
 
 // Add event listener for search box input
 const searchBox1 = document.getElementById("search-box");
 searchBox1.addEventListener("keyup", searchFollowers);
+
+// Add event listener for window close (optional)
+window.addEventListener("beforeunload", () => {
+  localStorage.removeItem("followerSearch");
+});
+
+
+
+
+// ------- following pop up --------- //
+
+function openFollowingPopup() {
+  document.getElementById("following-popup").style.display = "block";
+  // Get the search box value from local storage (if available)
+  const searchBox = document.getElementById("following-search-box");
+  const storedSearchTerm = localStorage.getItem("followingSearch");
+  if (storedSearchTerm) {
+    searchBox.value = storedSearchTerm;
+  }
+}
+
+function closeFollowingPopup() {
+  const closeIcon = document.querySelector(".close2-icon");
+  closeIcon.addEventListener("click", () => {
+    document.getElementById("following-popup").style.display = "none";
+    // Clear search box value and local storage on close
+    const searchBox = document.getElementById("following-search-box");
+    searchBox.value = "";
+    localStorage.removeItem("followingSearch");
+  });
+}
+
+// Call closeFollowingPopup() on page load (optional)
+closeFollowingPopup();
+
+// Sample following data (replace with your actual data)
+const followings = [
+  "Alice",
+  "Bob",
+  "Charlie",
+  "David",
+  "Emily",
+];
+
+function searchFollowings() {
+  const searchBox = document.getElementById("following-search-box");
+  const searchTerm = searchBox.value.toLowerCase(); // Make search case-insensitive
+  const searchResults = document.getElementById("following-search-results");
+
+  searchResults.innerHTML = ""; // Clear previous results before adding new ones
+
+  // Filter followings based on search term
+  const filteredFollowings = followings.filter(following => following.toLowerCase().includes(searchTerm));
+
+  // Display search results
+  if (filteredFollowings.length > 0) {
+    filteredFollowings.forEach(following => {
+      const suggestionBox = document.createElement("div"); // Use a div for each suggestion
+      suggestionBox.classList.add("following-suggestion"); // Add a class for styling
+
+      const suggestionText = document.createElement("span"); // Create a span for the follower name
+      suggestionText.textContent = following;
+      suggestionBox.appendChild(suggestionText);
+
+      suggestionBox.addEventListener("click", () => {
+        searchBox.value = following; // Set search box value on click
+        searchResults.innerHTML = ""; // Hide suggestions after selection
+      });
+
+      searchResults.appendChild(suggestionBox);
+    });
+  } else {
+    searchResults.innerHTML = "No results found"; // Display clear message without a dot
+  }
+}
+
+// Add event listener for search box input
+const searchBox2 = document.getElementById("following-search-box");
+searchBox2.addEventListener("keyup", searchFollowings);
+
+// Add event listener for window close (optional)
+window.addEventListener("beforeunload", () => {
+  localStorage.removeItem("followingSearch");
+});
+

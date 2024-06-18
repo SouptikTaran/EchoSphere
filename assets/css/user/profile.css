@@ -1140,5 +1140,99 @@ mo:hover {
 .tex input[type="text"] {
   padding-block: 4px;
   padding-inline: 4px; /* Or adjust as needed */
+  font: 1em sans-serif;
 }
 
+.suggestion {
+  /* Adjust these styles as needed */
+  display: block;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  padding: 5px 10px;
+  border: 2px solid #ddd;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.suggestion:hover {
+  color: rgba(18, 26, 33, 1); /* Darker text on hover */
+  background-color: white; /* White background with 20% opacity */
+}
+
+
+/* -- following button pop up--- */
+
+
+.following-popup-container {
+  height: 400px;
+  width: 400px;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color:  rgba(18, 26, 33, 1); 
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 2rem;
+}
+
+.close2-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+  cursor: pointer;
+  color: grey;
+  align-items: center;
+}
+
+.following-popup-title {
+  margin: 0%;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.popup-divider {
+  margin-left: -20px;
+  margin-right: -20px;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#following-search-box {
+  width: 100%;
+  height: 35px;
+  margin-top: 8px;
+  border-radius: 1rem;
+  margin-left: -2px;
+  margin-right: -2px;
+  padding: 5px;
+  background-color: transparent; /* Adjust as needed */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Adjust as needed */
+  color: white; /* Adjust as needed */
+}
+
+#following-search-results {
+  margin: 5px;
+  background-color: transparent; /* Adjust as needed */
+  border: none; /* Adjust as needed */
+  border-radius: 1rem;
+  display: block;
+}
+
+.following-suggestion {
+  /* Adjust these styles as needed */
+  display: block;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  padding: 5px 10px;
+  border: 2px solid #ddd;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.following-suggestion:hover {
+  color: rgba(18, 26, 33, 1); /* Darker text on hover */
+  background-color: white; /* White background with 20% opacity */
+}
