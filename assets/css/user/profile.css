@@ -134,11 +134,13 @@ main {
   /* display: flex; */
   text-align: center;
   justify-content:center;
-  padding-top: 20px;
+  padding: 20px;
   background-color: hsla(163, 90%, 8%, 0.8);
   border-radius:0.6rem;
   font-size: medium;
   color:rgb(149, 212, 181);
+  position:fixed;
+  top:6%;
 }
 #noti{
   padding-right: 20px;
