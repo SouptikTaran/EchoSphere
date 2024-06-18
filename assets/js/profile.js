@@ -267,3 +267,61 @@ async function deleteImage(src) {
     }, 3000);
   }
 }
+
+// ------- follower pop up --------- //
+
+function openPopup() {
+  document.getElementById("popup-content").style.display = "block";
+}
+
+function closePopup() {
+  const closeIcon = document.querySelector(".close-icon");
+  closeIcon.addEventListener("click", () => {
+    document.getElementById("popup-content").style.display = "none";
+  });
+}
+
+// Call closePopup() on page load (optional)
+closePopup();
+
+// Sample follower data (replace with your actual data)
+const followers = [
+  "Alice",
+  "Bob",
+  "Charlie",
+  "David",
+  "Emily",
+];
+
+function searchFollowers() {
+  const searchBox = document.getElementById("search-box");
+  const searchTerm = searchBox.value.toLowerCase(); // Make search case-insensitive
+  const searchResults = document.getElementById("search-results");
+
+  searchResults.innerHTML = ""; // Clear previous results before adding new ones
+
+  // Filter followers based on search term
+  const filteredFollowers = followers.filter(follower => follower.toLowerCase().includes(searchTerm));
+
+  // Display search results
+  if (filteredFollowers.length > 0) {
+    filteredFollowers.forEach(follower => {
+      const suggestionBox = document.createElement("div"); // Use a div for each suggestion
+      suggestionBox.classList.add("suggestion"); // Add a class for styling
+      suggestionBox.textContent = follower; // Set suggestion content
+
+      suggestionBox.addEventListener("click", () => {
+        searchBox.value = follower; // Set search box value on click
+        searchResults.innerHTML = ""; // Hide suggestions after selection
+      });
+
+      searchResults.appendChild(suggestionBox);
+    });
+  } else {
+    searchResults.innerHTML = "<li>No results found.</li>";
+  }
+}
+
+// Add event listener for search box input
+const searchBox1 = document.getElementById("search-box");
+searchBox1.addEventListener("keyup", searchFollowers);

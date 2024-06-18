@@ -116,19 +116,44 @@
             <%= user.username%>
           </p>
         </div>
-        <div class="follow-count">
+
+
+        <div class="follow-count" >
           <a href="#">
             <h3 class="follows" id="followersCount">
               <%= user.followers.length%>
             </h3>
-            <p>Followers</p>
+            <p onclick="openPopup()">Followers</p>
           </a>
+          
+          <div id="popup-content" class="tex">
+            <h3 class="text-secondary follower-text">Followers</h3>
+            <i class="fa fa-close close-icon" style="font-size:20px"></i>
+            <hr class="line">
+            <input type="text" id="search-box" placeholder="Search Followers">
+            <ul id="search-results"></ul>
+          </div>
+
+          <!-- 
+          <button onclick="openPopup()">Open Popup</button>
+          <div id="popup-content">
+            <h3>Followers</h3>
+            <i class="fa fa-close close-icon" style="font-size:20px"></i>
+            <hr class="line">
+          
+            <input type="text" id="search-box" placeholder="Search Followers">
+            <ul id="search-results"></ul>
+          </div>
+-->
+
+
           <a href="#">
             <h3 class="follows">
               <%= user.followings.length%>
             </h3>
             <p>Following</p>
           </a>
+
         </div>
         <div class="follow-button">
           <% if(showButton) { %>
