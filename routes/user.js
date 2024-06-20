@@ -42,7 +42,6 @@ router.put('/profile/:username/unfollow', tokenValidity, userController.unfollow
 router.get('/search', tokenValidity ,async (req, res) => {
     const users = await User.find({});
     const usernames = users.map((e) => e.username);
-    console.log("hello");
     return res.json(usernames);
 
 })

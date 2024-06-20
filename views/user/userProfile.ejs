@@ -25,7 +25,7 @@
   <div class="container">
     <input type="checkbox" id="toggle" />
     <div class="search-container">
-      <input type="text" placeholder="Type here..." id="search-input" autocomplete="off"/>
+      <input type="text" placeholder="Type here..." id="search-input" autocomplete="off" />
       <ul id="results-list"></ul>
       <label for="toggle" class="search-icon" id="search-ico">
         <i class="fas fa-search"></i>
@@ -74,7 +74,7 @@
 
 <body>
   <main>
-    <div class="alert-div"  >
+    <div class="alert-div">
       <div class="alert" id="noti">
       </div>
     </div>
@@ -84,48 +84,50 @@
           <!-- Cover image-->
 
           <img id="coverImage" class="cimage" src="/images/user-images/profile-bg.png" alt="Cover Picture" />
-          <div class="overlay-1"></div>
-          <div class="del-cover-btn"><a class="cover-btn-sty fa fa-trash-o" style="font-size:36px" href="#"></a></div>
+          <%if(!showButton){%>
+            <div class="overlay-1"></div>
+            <div class="del-cover-btn"><a class="cover-btn-sty fa fa-trash-o" style="font-size:36px" href="#"></a></div>
+            <div class="bg-cover-bottom"></div>
+            <%}%>
 
-          <div class="bg-cover-bottom"></div>
 
-          <div class="profile-user">
-            <div class="image-wrapper" id="trial">
-              <img id="displayImage" class="image" src="<%= user.profilePic%>" alt="Profile Picture" />
-              <input class="image-input" type="file" name="profileImage" id="uploadImage" accept="image/*"
-                style="display: none" />
-              <%if(showButton !=true){%>
-                <label for="uploadImage" class="overlay">
-                  <div class="overlay-content">
-                    <div class="icon">
-                      <i class="fa fa-camera fa-2x"></i>
-                    </div>
-                    <div class="text">
-                      Update <br />
-                      Profile Photo
-                    </div>
-                  </div>
-                </label>
-                <%}%>
-            </div>
-            <!-- Snackbar element -->
-            <div id="notification">Profile photo updated successfully!</div>
-          </div>
+              <div class="profile-user">
+                <div class="image-wrapper" id="trial">
+                  <img id="displayImage" class="image" src="<%= user.profilePic%>" alt="Profile Picture" />
+                  <input class="image-input" type="file" name="profileImage" id="uploadImage" accept="image/*"
+                    style="display: none" />
+                  <%if(showButton !=true){%>
+                    <label for="uploadImage" class="overlay">
+                      <div class="overlay-content">
+                        <div class="icon">
+                          <i class="fa fa-camera fa-2x"></i>
+                        </div>
+                        <div class="text">
+                          Update <br />
+                          Profile Photo
+                        </div>
+                      </div>
+                    </label>
+                    <%}%>
+                </div>
+                <!-- Snackbar element -->
+                <div id="notification">Profile photo updated successfully!</div>
+              </div>
 
-          <p>
-            <%= user.username%>
-          </p>
+              <p>
+                <%= user.username%>
+              </p>
         </div>
 
 
-        <div class="follow-count" >
+        <div class="follow-count">
           <a href="#">
             <h3 class="follows" id="followersCount">
               <%= user.followers.length%>
             </h3>
             <p onclick="openPopup()">Followers</p>
           </a>
-          
+
           <div id="popup-content" class="tex">
             <h3 class="text-secondary follower-text">Followers</h3>
             <i class="fa fa-close close-icon" style="font-size:20px"></i>
@@ -150,8 +152,8 @@
             <input type="text" id="following-search-box" placeholder="Search Followings">
             <ul id="following-search-results"></ul>
           </div>
-          
-          
+
+
 
 
         </div>
@@ -170,101 +172,40 @@
       <!--chats section-->
       <div class="chats">
         <h3 class="sug">Suggestion</h3>
-        <br>
         <hr>
-        <!--chat 1-->
-        <div class="chat" role="button">
-          <div class="chat-prof">
-            <img src="/icons/chat-profile1-ico.svg" />
+        <% Object.keys(friendList).forEach(function(key) { %>
+          <div class="chat" role="button">
+            <div class="chat-prof">
+              <!--Profileicon css is not valid here use different css-->
+              <img src="<%= friendList[key].profilePic %>" id="profileIcon"/>
+            </div>
+            <div class="chat-name">
+              <h4>
+                <%= friendList[key].username %>
+              </h4>
+            </div>
           </div>
-          <div class="chat-name">
-            <h4>Tim He</h4>
-            <p>Hey Tim,thank you for the message</p>
-          </div>
-        </div>
+          <% }); %>
 
-        <!--chat 2-->
-        <div class="chat" role="button">
-          <div class="chat-prof">
-            <img src="/icons/chat-profile2-ico.svg" />
-          </div>
-          <div class="chat-name">
-            <h4>Carol Lei</h4>
-            <p>Hey Helen,it's nice to meet you</p>
-          </div>
-        </div>
-        <!--chat 3-->
-        <div class="chat" role="button">
-          <div class="chat-prof" role="button">
-            <img src="/icons/chat-profile3-ico.svg" />
-          </div>
-          <div class="chat-name">
-            <h4>Christina Chen</h4>
-            <p>I saw your article, it is really interesting</p>
-          </div>
-        </div>
-        <!--chat 4-->
-        <div class="chat" role="button">
-          <div class="chat-prof">
-            <img src="/icons/chat-profile4-ico.svg" />
-          </div>
-          <div class="chat-name">
-            <h4>Carl Barenbrug</h4>
-            <p>Is the job SF based or remote?</p>
-          </div>
-        </div>
-        <!--chat 5-->
 
-        <div class="chat" role="button">
-          <div class="chat-prof">
-            <img src="/icons/chat-profile5-ico.svg" />
-          </div>
-          <div class="chat-name">
-            <h4>Gavriel Sharabi</h4>
-            <p>Hey,how can I help?</p>
-          </div>
-        </div>
-
-        <!--chat 6-->
-
-        <div class="chat" role="button">
-          <div class="chat-prof">
-            <img src="/icons/chat-profile6-ico.svg" />
-          </div>
-          <div class="chat-name">
-            <h4>Jesse Vermeulen</h4>
-            <p>This is really good</p>
-          </div>
-        </div>
-
-        <!--chat 7-->
-
-        <div class="chat" role="button">
-          <div class="chat-prof">
-            <img src="/icons/chat-profile7-ico.svg" />
-          </div>
-          <div class="chat-name">
-            <h4>Praveen Soni</h4>
-            <p>I'm interested on the job you posted</p>
-          </div>
-        </div>
       </div>
     </div>
     <div class="post__s" id="postContainer">
       <%if(post){%>
-          <%for(let i = 0 ; i < post.length ; i++){%>
-              <div class="post">
-                <img class="post-img" src="<%=post[i]%>" alt="">
-                <%if(!showButton){%>
-                <div class="overlay"></div>
-                <div class="del-btn"><a class="btn-sty fa fa-trash-o" style="font-size:36px" onclick="deleteImage('<%=post[i]%>')"></a></div>
-                <%}%>
-              </div>
+        <%for(let i=0 ; i < post.length ; i++){%>
+          <div class="post">
+            <img class="post-img" src="<%=post[i]%>" alt="">
+            <%if(!showButton){%>
+              <div class="overlay"></div>
+              <div class="del-btn"><a class="btn-sty fa fa-trash-o" style="font-size:36px"
+                  onclick="deleteImage('<%=post[i]%>')"></a></div>
+              <%}%>
+          </div>
           <%}%>
-      <%}else{%>
+            <%}else{%>
 
-        <%}%>
-  </div>
+              <%}%>
+    </div>
 
     <div class="popup-overlay" id="popupOverlay">
       <div class="popup" id="popup">
@@ -284,12 +225,12 @@
                 <label for="avatar">Choose a picture:</label>
                 <input type="file" id="avatar" name="avatar" />
                 <br /><br />
-                <button type="button"  onclick="uploadPost()">Upload</button>
+                <button type="button" onclick="uploadPost()">Upload</button>
               </div>
             </form>
           </div>
         </div>
-      </div>  
+      </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>

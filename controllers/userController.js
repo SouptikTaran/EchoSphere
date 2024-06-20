@@ -8,7 +8,7 @@ const { createHmac, randomBytes } = require('crypto');
 const { verifyEmail } = require('../services/mail')
 const { validateToken } = require("../services/authentication")
 const { generateOTP } = require("../services/otpGeneration")
-
+const {suggestFriends} = require("../services/friendsSuggestion")
 
 /** USER AUTHENTICATION CONTROLLERS */
 module.exports.Signup = (req, res) => {
@@ -219,7 +219,10 @@ module.exports.userProfile = async (req, res) => {
   const user = await User.findOne({ email });
   // console.log(user);
   const post = await Post.findOne({user: user._id});
-  res.status(200).render('userProfile', { user, userMain: null, showButton: false , post :post.posts });
+  
+  const friendList = await suggestFriends(user._id);
+  console.log(friendList);
+  res.status(200).render('userProfile', { user, userMain: null, showButton: false , post :post.posts , friendList : friendList});
 }
 
 // User Profile
@@ -228,7 +231,7 @@ module.exports.userSearch = async (req, res) => {
   const currentUser =  validateToken(req.cookies.token); //main user
   console.log("username " , username)
   console.log("Current User " , currentUser.username)
-  let showButton = false;
+  let showButton = false; 
   if (username === currentUser.username) {
     // console.log("main user")
     showButton = false;
