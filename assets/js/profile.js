@@ -423,3 +423,4 @@ window.addEventListener("beforeunload", () => {
   localStorage.removeItem("followingSearch");
 });
 
+

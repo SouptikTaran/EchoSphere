@@ -275,9 +275,6 @@ main {
   align-items: center;
   
 }
-.chat-prof img {
-  
-}
 
 .picon{
   width: 60px;
@@ -292,9 +289,9 @@ main {
   margin-left: 10px;
   
 }
-.chat-name p {
-  font-size: 12px;
-  color: rgba(148, 173, 199, 1);
+.suggestionName{
+  color: #ffffff;
+  margin-left: 30px;
 }
 
 
@@ -1253,10 +1250,4 @@ mo:hover {
 .following-suggestion:hover {
   color: rgba(18, 26, 33, 1); /* Darker text on hover */
   background-color: white; /* White background with 20% opacity */
-}
-
-
-.suggestionName{
-  color: #ffffff;
-  margin: 30px
 }
