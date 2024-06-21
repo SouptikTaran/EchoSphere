@@ -176,12 +176,13 @@
         <% Object.keys(friendList).forEach(function(key) { %>
           <div class="chat" role="button">
             <div class="chat-prof">
-              <!--Profileicon css is not valid here use different css-->
-              <img src="<%= friendList[key].profilePic %>" class="picon"/>
+              <img src="<%= friendList[key].profilePic %>" class="picon" />
             </div>
             <div class="chat-name">
-              <h4>
-                <%= friendList[key].username %>
+              <!-- <h4> -->
+                <a href="/user/profile/<%= friendList[key].username %>" class="suggestionName">
+                  <%= friendList[key].username %>
+                </a>
               </h4>
             </div>
           </div>

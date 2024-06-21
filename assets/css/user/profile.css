@@ -1254,3 +1254,9 @@ mo:hover {
   color: rgba(18, 26, 33, 1); /* Darker text on hover */
   background-color: white; /* White background with 20% opacity */
 }
+
+
+.suggestionName{
+  color: #ffffff;
+  margin: 30px
+}

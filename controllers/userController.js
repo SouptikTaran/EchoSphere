@@ -221,7 +221,6 @@ module.exports.userProfile = async (req, res) => {
   const post = await Post.findOne({user: user._id});
   
   const friendList = await suggestFriends(user._id);
-  console.log(friendList);
   res.status(200).render('userProfile', { user, userMain: null, showButton: false , post :post.posts , friendList : friendList});
 }
 
@@ -245,6 +244,7 @@ module.exports.userSearch = async (req, res) => {
       const userMain = await User.findOne({ username: currentUser.username });
       console.log("userMain : " , userMain);
       const userPost = await Post.findOne({user : user._id})
+      const friendList = await suggestFriends(currentUser._id);
     let isFollow = false;
     if (user && userMain) {
       if(userMain.followings.includes(user._id)){
@@ -253,7 +253,7 @@ module.exports.userSearch = async (req, res) => {
       }
       console.log("done5")
       // console.log(user , userMain , showButton , isFollow) ;
-      res.status(200).render('userProfile', { user, userMain, showButton , isFollow , post:userPost.posts });
+      res.status(200).render('userProfile', { user, userMain, showButton , isFollow , post:userPost.posts , friendList : friendList });
     }
     else {
       res.status(404).json({ msg: "User not found" });
