@@ -172,12 +172,12 @@
       <!--chats section-->
       <div class="chats">
         <h3 class="sug">Suggestion</h3>
-        <hr>
+        <hr class="bor">
         <% Object.keys(friendList).forEach(function(key) { %>
           <div class="chat" role="button">
             <div class="chat-prof">
               <!--Profileicon css is not valid here use different css-->
-              <img src="<%= friendList[key].profilePic %>" id="profileIcon"/>
+              <img src="<%= friendList[key].profilePic %>" class="picon"/>
             </div>
             <div class="chat-name">
               <h4>
