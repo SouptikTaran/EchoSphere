@@ -5,7 +5,41 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 const PATH = require("path");
 const cookieParser = require('cookie-parser');
+const server = require('http').createServer(app)
+const {Server} = require("socket.io");
 
+//Socket io
+const io = new Server(server)
+const users = {};
+
+io.on('connection', (socket) => {
+  console.log('A user connected');
+
+  socket.on('join', (userId) => {
+    users[userId] = socket.id;
+  });
+
+  socket.on('sendMessage', async (data) => {
+    const { senderId, receiverId, content } = data;
+    // const message = new Message({ sender: senderId, receiver: receiverId, content });
+    // await message.save();
+
+    const receiverSocketId = users[receiverId];
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit('receiveMessage', data);
+    }
+  });
+
+  socket.on('disconnect', () => {
+    console.log('A user disconnected');
+    for (let userId in users) {
+      if (users[userId] === socket.id) {
+        delete users[userId];
+        break;
+      }
+    }
+  });
+});
 
 
 //passport setup
@@ -48,6 +82,6 @@ app.use((err, req, res, next) => {
   res.status(500).json("Internal error");
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`SERVER STARTED : http://localhost:${PORT}`.bgWhite.black);
 });

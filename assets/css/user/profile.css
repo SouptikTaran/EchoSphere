@@ -251,39 +251,49 @@ main {
 .follow-button a:hover {
   color: rgb(71, 120, 173);
 }
-.chats {
-  display: flex;
-  flex-direction: column;
-  width: 25%;
-  justify-content: space-evenly;
-  margin-left: 2%;
 
-   /*border: 1px solid white;*/
+
+.chats {
+  width: 25%;
+  margin-left: 1.5%;
 }
 
 .chat {
   display: flex;
   align-items: center;
   justify-content:flex-start;
-  gap: 3%;
   padding: 2%;
-  /*border: 1px solid white;*/
 }
 
 .chat:hover {
   background-color: rgba(36, 54, 71, 1);
+  border-radius: 10px;
 }
-.chat-prof {
-  height: 56px;
-  width: 56px;
+.chat-prof{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }
+
+.picon{
+  width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
 .chat-name h4 {
-  font-size: 15px;
+  font-size: 16px;
+  margin-left: 10px;
+  
 }
-.chat-name p {
-  font-size: 12px;
-  color: rgba(148, 173, 199, 1);
+.suggestionName{
+  color: #ffffff;
+  margin-left: 30px;
 }
+
 
 .post__s {
   width: 95%;
@@ -1059,6 +1069,11 @@ main {
 
 .sug{
   text-align: center;
+  margin-bottom:10px;
+}
+
+.bor{
+  margin-bottom: 10px;
 }
 
 .mo{

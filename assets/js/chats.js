@@ -66,3 +66,11 @@ function updateChatImage(imageUrl) {
 }
 
 
+async function sendMessage(){
+  const messageElement = document.getElementById("message");
+  const message = messageElement.value;
+  console.log(message);
+  messageElement.value = "";
+  socket.emit("user-message" , message);
+}
+

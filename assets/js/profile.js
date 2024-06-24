@@ -200,7 +200,7 @@ searchBox.addEventListener('input', () => {
       const searchResults = await fetchSearchResults(searchTerm);
       const filteredResults = searchResults.filter((result) =>
         result.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+    ).slice(0, 5);
 
       resultsList.innerHTML = '';
 
@@ -422,4 +422,5 @@ searchBox2.addEventListener("keyup", searchFollowings);
 window.addEventListener("beforeunload", () => {
   localStorage.removeItem("followingSearch");
 });
+
 
