@@ -1,0 +1,85 @@
+html,body{
+    height:100%;
+}
+
+.SignUp-left{
+    height: auto;
+    border-top-right-radius: 2.5rem;
+    border-bottom-right-radius: 2.5rem;
+    border-top-left-radius: 0rem;
+    border-bottom-left-radius:0rem;
+}
+
+.form-check .checkbox[type="checkbox"]{
+    accent-color: black;
+    border:none;
+    outline:none;
+    background-color: black;
+}
+
+
+.SignUp-right{
+    height:100vh;
+    position: relative;
+}
+
+.span1{
+    
+    color:rgba(69, 68, 68, 1);
+    text-decoration-color:rgba(69, 68, 68, 1);
+}
+
+.yellow{
+    position: absolute;
+    right:-1%;
+    top:2%;
+    height:476px;
+    width:416px;
+}
+.red{
+    position: absolute;
+    right:5%;
+    top:40%;
+}
+.SignUp-logo{
+    top:1%;
+    right:30%;
+    position: absolute;
+    z-index:2;
+    height:700px;
+}
+
+
+@media screen and (max-width:1200px) {
+    .SignUp-logo{
+        top:5%;
+        height:600px;
+        width:500px;
+        right:10%;
+        
+    }
+    .SignUp-left{
+        width:100%;
+        
+    }
+    
+}
+@media screen and (max-width:850px) {
+    .SignUp-left{
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .SignUp-logo{
+        height:550px;
+        width:400px;
+        top:1%;
+        right:-10%;
+    }
+    
+}
+
+@media screen and (max-width:650px) {
+    .SignUp-right{
+        display:none;
+    }
+}
