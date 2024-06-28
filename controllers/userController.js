@@ -35,7 +35,6 @@ module.exports.SignupUser = async (req, res) => {
   //check if user exist
   try {
     const existingUser = await User.findOne({ email: email });
-    console.log(existingUser);
     if (existingUser) {
       return res.json({ error: 'Email  Already Taken' });
     }
@@ -60,9 +59,7 @@ module.exports.SignupUser = async (req, res) => {
 };
 
 
-module.exports.login = (req, res) => {
-  res.render('loginEmail')
-}
+
 
 
 
@@ -192,7 +189,7 @@ module.exports.newPassword = async (req, res) => {
 
 /** USER PROFILE ROUTES */
 module.exports.home = (req, res) => {
-  res.render('mainLogin')
+  res.render('loginEmail')
 }
 
 

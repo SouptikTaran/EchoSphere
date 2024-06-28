@@ -9,7 +9,6 @@ const { tokenValidity, tokenExist } = require('../middlewares/jwtMiddleware')
 
 //Login User Routes
 router.get('/', tokenExist, userController.home)
-router.get('/login', tokenExist, userController.login)
 router.post('/login', userController.loginUser)
 router.get('/Signup', tokenExist, userController.Signup)
 router.post('/Signup', userController.SignupUser)

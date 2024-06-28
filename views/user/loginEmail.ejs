@@ -1,126 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Log In</title>
-    <link rel="stylesheet" href="/css/user/login_email.css" />
-    <link rel="stylesheet" href="/css/user/mainlogin.css" />
-
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-  </head>
-
-  <body>
-    <div class="container-fluid">
-      <div class="row no-gutter">
-        <!-- The image half -->
-
-        <!-- The content half -->
-        <div class="col-md-6 bg-light p-0">
-          <div class="login d-flex align-items-center py-5">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-10 col-xl-7 mx-auto">
-                  <h3 class="display-6 mb-5 intro-text">Welcome</h3>
-                  <div id="loginMessage" style="display: none" class="alert alert-warning alert-dismissible " role="alert">
-                  </div>
-                  <!-- <form method="POST" action="/user/login"> -->
-                  <div class="form-group mb-3">
-                    <input
-                      class="usernameField"
-                      id="email"
-                      placeholder="Email"
-                      name="email"
-                      type="email"
-                      required
-                    />
-                  </div>
-                  <div class="form-group mb-3">
-                    <input
-                      class="usernameField"
-                      id="password"
-                      placeholder="Password"
-                      name="password"
-                      type="password"
-                      required
-                    />
-                  </div>
-                  <div class="custom-control custom-checkbox mb-3">
-                    <input
-                      id="customCheck1"
-                      type="checkbox"
-                      checked
-                      class="custom-control-input"
-                    />
-                    <label
-                      for="customCheck1"
-                      class="custom-control-label text-secondary"
-                      >Remember password</label
-                    >
-                    <a href="/user/forgotemail" class="forgot">
-                      Forgot Password</a
-                    >
-                  </div>
-                  <br />
-                  <button
-                    id="loginEmail"
-                    onclick="loginUser()"
-                    class="text-justify"
-                  >
-                    <span class="text">Login</span>
-                  </button>
-                  <p class="ot-text text-secondary">
-                    Don't have a account?
-                    <a href="/user/Signup" id="text-design"> Sign Up </a>
-                  </p>
-                  <!-- </form> -->
-                </div>
-              </div>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Login - EchoSphere</title>
+        <meta name="description" content="Login to CineSage to explore and watch movie trailers.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/user/login_new.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        
+        <section class="left-container">
+            <div class="left-container-contents">
+                <img class="vector-white" src="/images/Vector_white.svg">
+                <img class="vector-yellow" src="/images/Vector_yellow.svg">
+                <img class="vector-blue" src="/images/Vector_blue.svg">
+                <img class="vector-red" src="/images/Vector_red.svg">
             </div>
-            <!-- End -->
-          </div>
-        </div>
-        <div class="col-md-6 d-none d-md-flex bg-image"></div>
-
-        <!-- End -->
-      </div>
-    </div>
-    <script>
-      async function loginUser() {
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-
-        const params = new URLSearchParams();
-        params.append("email", email);
-        params.append("password", password);
-
-        const response = await fetch("/user/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: params,
-        });
-
-        const data = await response.json();
-        const message = document.getElementById("loginMessage");
-        if (data.redirect) {
-          window.location.href = data.redirect ;
-        } else {
-          message.innerHTML = `<strong>${data.error}</strong>`;
-          message.style.display = "bl ock";
-        }
-
-        console.log(data);
-        setTimeout(() => {
-          message.style.display = "none";
-        }, 5000);
-      }
-    </script>
-  </body>
+            <img class="logo" src="/images/file 3.svg">
+        </section>  
+        <section class="right-container">
+            <div id="loginMessage" class="loginMessage"></div>
+            <div class="align-container">
+                <div class="heading">
+                    <h3 class="h3">Let's inspire and learn from each other.</h3>
+                    <h3 class="h3">Join our community now</h3>
+                </div>
+                
+                <form class="login-form" onsubmit="loginUser(event)">
+                    <div class="mb-3 input-container">
+                        <input type="email" id="email" name="email" class="form-control input-box" aria-describedby="emailHelp" placeholder="Username/Email" required>
+                    </div>
+                    <div class="mb-3 input-container">
+                        <input type="password" class="form-control input-box" id="password" name="password" placeholder="Password" required>
+                    </div>
+                    <a href="/user/forgotemail" class="forgot-pswd"><span>Forgot password?</span></a>
+                    <br>
+                    <button type="submit" class="btn btn-primary Login-btn">Login</button>
+                </form>
+                
+                <span class="span">OR</span>
+                
+                <span class="span">Sign up using</span>
+                
+                <div class="signup-options">
+                    <a href="/user/login/google"><img class="signup-ico" src="/icons/google.svg"></a>
+                </div>
+                <span class="span">OR</span>
+                <a href="/user/Signup" class="span"><span>Sign up with email</span></a>
+            </div>
+        </section>
+        
+        <script src="/js/loginEmail.js"></script>
+    </body>
 </html>

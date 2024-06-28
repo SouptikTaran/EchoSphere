@@ -64,7 +64,6 @@ userSchema.pre("save", function (next) {
 
 // Post-save hook to create OTP and Loginuser detai,s
 userSchema.post("save", async function (doc, next) {
-  console.log("post hook");
   try {
     await Otp.create({ email: doc.email });
     await LoginUser.create({ email: doc.email, username: doc.username, profilePic: doc.profilePic, followers: doc.followers.length, followings: doc.followings.length })
