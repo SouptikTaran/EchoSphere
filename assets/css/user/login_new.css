@@ -25,11 +25,10 @@ body{
     display:flex;
     /*position:relative;*/
      
-    background:radial-gradient(circle at center, rgba(248, 240, 233, 1),rgba(71, 187, 208, 1));
+    background:linear-gradient(to left, rgba(248, 240, 233, 1),rgba(71, 187, 208, 1));
     background-repeat: no-repeat;
     
 }
-   
 
 /*Left container*/
 
@@ -65,7 +64,7 @@ body{
     width:500px;
     z-index:2;
     position: absolute;
-    left:25%;
+    left:30%;
     top:5%;
 }
 
@@ -99,7 +98,7 @@ body{
     font-weight:600;
 }
 .login-form{
-    width:100%;
+    width:90%;
     
     
 }
