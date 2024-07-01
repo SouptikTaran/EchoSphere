@@ -1,0 +1,232 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+
+.nav-bar{
+    color: black;
+    width: 100%;
+    padding: 0;
+    height: 45px;
+    border-bottom: 1.5px solid rgba(107, 163, 173, 1);
+    
+}
+
+.logo {
+    height: 100%;
+    width: 120px;
+    display: flex;
+    gap: 15px;
+    font-family: 'Plus Jakarta Sans';
+    color: rgba(36, 54, 71, 1);
+    margin-left: 20px;
+  }
+
+.icon{
+    color: rgba(36, 54, 71, 1);
+    height: 20px;
+    align-self: center;
+    
+}
+
+/*---searc Box ----*/
+.search-box {
+    display: flex;
+    align-items: center;
+}
+
+.search-box input[type="text"] {
+    width: 350px;
+    height: 22px;
+    padding: 6px;
+    margin-left: 50px;
+    border: none;
+    font-size: 14px;
+    border-radius: 2rem;
+    background-color: lightgray;
+}
+
+
+.search-box button {
+    padding: 6px 10px;
+    background: white;
+    color: rgba(36, 54, 71, 1);
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.search-box button i {
+    font-size: 18px;
+}
+
+.search-box button:hover {
+    background:rgba(36, 54, 71, 1);
+    color: white;
+}
+
+.content {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.content h1 {
+    color: rgba(36, 54, 71, 1);
+}
+
+/* ----xxx---- */
+
+.options{
+    display: flex;
+    width: 250px;
+    align-items: center;
+    align-content: space-between;
+}
+
+.bi {
+    color: rgba(36, 54, 71, 1);
+  }
+
+.profile{
+    width: 150px;
+    .user{
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+    }
+}
+
+
+.main{
+    width: 100%;
+    height: 93.5vh;
+    display: flex;
+    
+}
+
+.left-side{
+    height: 100%;
+    width: 25%;
+    .left-up-profile{
+        width: 90%;
+        height: 47%;
+        background-color: lightgray;
+        border-radius: 2rem;
+        margin-top: 10px;
+        margin-left: 15px;
+        text-align: center;
+        .coverimg{
+            width: 90%;
+            height: 30%;
+            border-radius: 20px;
+            margin-top: 4%;
+        }
+        .usercover {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border: 3.5px solid lightgray;
+            border-radius: 50%;
+            margin: -35px auto;
+          }
+        
+    }
+    .left-down-ads{
+        width: 90%;
+        height: 47%;
+        background-color: lightgray;
+        border-radius: 2rem;
+        margin-top: 25px;
+        margin-left: 15px;
+        
+       
+    }
+}
+
+.mid-side{
+    width: 50%;
+    height: 100%;
+    .mid-up-post{
+        width: 100%;
+        height: 15%;
+        background-color: lightgray;
+        border-radius: 2rem;
+        margin-top: 10px;
+    }
+    .mid-down-serfing{
+        width: 100%;
+        height: 72%;
+        border-radius: 2rem;
+        margin-top: 10px;
+        overflow-y: scroll;
+        .serfing-post{
+            background-color: lightgray;
+            border-radius: 2rem;
+            margin-bottom: 40px;
+        }
+    }  
+}
+
+/*---scroll bar hidden---*/
+.mid-down-serfing {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.mid-down-serfing::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.right-side{
+    width: 25%;
+    height: 100%;
+    .right-up-activity{
+        width: 90%;
+        height: 47%;
+        background-color: lightgray;
+        border-radius: 2rem;
+        margin-top: 10px;
+        margin-right: 10px;
+        margin-left: 20px;
+    }
+    .right-down-suggetions{
+        width: 90%;
+        height: 47%;
+        background-color: lightgray;
+        border-radius: 2rem;
+        margin-top: 25px;
+        margin-right: 10px;
+        margin-left: 20px;
+    }
+    
+}
+
+.simg{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/*---Public/private---*/
+/* Optional styling for the dropdown menu */
+select {
+    padding: 5px;
+    border: none
+}
+  /* Remove background color from options */
+  option {
+    background-color: lightgray;
+  }
+
+@media (max-width: 1050px) {
+    .search-box input[type="text"] {
+      width: 100px;
+    }
+  }
+
+  @media (max-width: 750px) {
+    .search-box input[type="text"] {
+      display: none;
+    }
+
+  }
