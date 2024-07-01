@@ -104,6 +104,7 @@ module.exports.userEmailGet = (req, res) => {
 
 module.exports.userEmail = async (req, res) => {
   const { email } = req.body;
+  console.log(email)
   const validation = validEmailSchema.safeParse(email);
   if (!validation.success) return res.status(400).render('forgotEmail');
   res.cookie('email', email);
@@ -138,12 +139,13 @@ module.exports.googleRedirect = (req, res) => {
 
 module.exports.forgotpassword = async (req, res) => {
   const { otp } = req.body;
+  console.log("REACHED")
   const token = otp;
   console.log(req.cookies.email);
   //search user ,
   const userMail = req.cookies.email;
   const user = await Otp.findOne({ email: userMail });
-  if (user == '') {
+  if (!user) {
     return res.render('verifyOtp')
   }
   console.log("Forgot password : ", user);
@@ -159,9 +161,6 @@ module.exports.forgotpassword = async (req, res) => {
 
 module.exports.newPassword = async (req, res) => {
   const { password, confirmPassword } = req.body;
-  console.log('req rec')
-
-  console.log(password, confirmPassword)
   if (password != confirmPassword || password == '' && confirmPassword == '') {
     return res.json({ error: "Password Not Matching" });
   }
@@ -174,16 +173,24 @@ module.exports.newPassword = async (req, res) => {
     console.log(validation.error)
     return res.json('Invalid Data');
   }
-  const email = req.cookies.email;
-  const user = await User.findOne({ email });
-  const salt = user.salt;
-  const hashedPassword = createHmac('sha256', salt).update(password).digest('hex');
-  await user.updateOne({
-    password: hashedPassword
-  })
+  try {
 
-  console.log('successfully updates')
-  return res.status(200).json({ redirect: '/' });
+    const email = req.cookies.email;
+    const user = await User.findOne({ email });
+    const salt = user.salt;
+    const hashedPassword = createHmac('sha256', salt).update(password).digest('hex');
+    await user.updateOne({
+      password: hashedPassword
+    })
+  
+    console.log('successfully updates')
+    return res.status(200).json({ redirect: '/' });
+    
+  } catch (error) {
+    console.log(error)
+  }
+
+
 
 }
 
@@ -193,8 +200,19 @@ module.exports.home = (req, res) => {
 }
 
 
-module.exports.feed = (req, res) => {
-  res.status(200).render('feed');
+module.exports.feed = async (req, res) => {
+  const {email} = req.user;
+  if(!email) return res.json("invalid")
+  try {
+    const user = await User.findOne({email});
+    const friendList = await suggestFriends(user._id);
+    
+    console.log(friendList);
+    res.status(200).render('feed', {user , friendList});
+    
+  } catch (error) {
+    
+  }
 }
 
 module.exports.explorer = (req, res) => {
