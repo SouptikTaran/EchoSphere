@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/user/newhome.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="nav-bar d-flex justify-content-between">
+        <!-- Logo -->
+    <a href="#" class="link-underline-opacity-0" style="text-decoration: none;">
+        <div class="logo">
+            <img class="icon" src="/images/extra/icon.svg" />
+            <h2 class="d-flex align-items-center justify-content-center" style="font-size: x-large; font-weight: 700; margin-top: 4px;">Mingle</h2>
+        </div>
+    </a>
+        <!-- Search box-->
+        <div class="search-box">
+                <form action="#">
+                    <input type="text" placeholder="Search" name="search">
+                    <button>
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        <div class="options d-flex justify-content-between">
+            <!-- home-->
+            <div class="home-btn">
+                <a href="#" class="link-underline-opacity-0" style="text-decoration: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+                        <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
+                        <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"/>
+                      </svg>
+                    </a>
+            </div>
+            <!-- navigaton -->
+            <div class="nav-btn">
+                <a href="#" class="link-underline-opacity-0" style="text-decoration: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-compass-fill" viewBox="0 0 16 16">
+                        <path d="M15.5 8.516a7.5 7.5 0 1 1-9.462-7.24A1 1 0 0 1 7 0h2a1 1 0 0 1 .962 1.276 7.5 7.5 0 0 1 5.538 7.24m-3.61-3.905L6.94 7.439 4.11 12.39l4.95-2.828 2.828-4.95z"/>
+                      </svg>
+                    </a>
+            </div>
+            <!-- chat-->
+            <div class="chat-btn">
+                <a href="#" class="link-underline-opacity-0" style="text-decoration: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
+                        <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15"/>
+                      </svg>
+                    </a>
+            </div>
+            <!-- notification-->
+            <div class="notifi-btn">
+                <a href="#" class="link-underline-opacity-0" style="text-decoration: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
+                      </svg>
+                    </a>
+            </div>
+          <!-- profile icon-->
+        </div>
+        <div class="profile d-flex align-items-center justify-content-around">
+            <a href="#" class="link-underline-opacity-0" style="text-decoration: none;">
+                <img class="user" src="/images/extra/PXL_20230306_110212450~3.jpg" alt="Profiile Image" id="profileIcon" />
+            </a>
+            <a href="#" class="link-underline-opacity-0" style="text-decoration: none;">
+                <p class="d-flex align-items-center justify-content-center" style=" font-size: small; font-weight: 500; margin-top: 10px;">Logout</p>
+            </a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="left-side">
+            <div class="left-up-profile">
+                <img class="coverimg" src="/images/extra/profile-bg.png" alt="Cover Image" id="coverimg" />
+                <img class=" usercover d-flex justify-content-center align-items-center" src="/images/extra/PXL_20230306_110212450~3.jpg " alt="Profiile Image" id="profilecoverIcon" />
+                <p class="d-flex align-items-center justify-content-center" style=" font-size: medium; font-weight: 700; margin-top: 30px; color:rgba(36, 54, 71, 1);" >Abhishek</p>
+                <p style=" font-size: x-small; margin-top: -10px; margin-bottom: 5px;">@Abhishek_18</p>
+                <div class="d-flex justify-content-around">
+                    <!-- number of posts-->
+                    <div class="post"  >
+                        <p class="mb-0" style=" font-size: medium; font-weight: 600; color:rgba(36, 54, 71, 1);" >18</p>
+                        <p style=" font-size: small; margin-top: -5px;">Post</p>
+                    </div>
+                    <!-- follower-->
+                    <div class="follower" style=" margin-left: 20px;">
+                        <p class="mb-0" style=" font-size: medium; font-weight: 600; color:rgba(36, 54, 71, 1);">1029</p>
+                        <p style=" font-size: small; margin-top: -5px;">Followers</p>
+                    </div>
+                    <!-- followings-->
+                    <div class="following">
+                        <p class="mb-0" style=" font-size: medium; font-weight: 600; color:rgba(36, 54, 71, 1);">112</p>
+                        <p style=" font-size: small; margin-top: -5px;">Following</p>
+                    </div>
+                    
+                </div>
+                <p style=" font-size: medium; margin-top: -10px; margin-bottom: 8px;">Travel Blogger</p>
+                <button style=" background-color: rgba(235, 67, 53, 1); color: white; border-radius: 12px; width: 70%; height: 10%; border: none;">
+                    My Profile
+                </button>
+            </div>
+            <!-- Google Ads-->
+            <div class="left-down-ads">
+                <h3 class="d-flex align-items-center justify-content-center" style="font-size: large;; font-weight: 500; ">Google Ads</h3>
+            </div>
+        </div>
+        <div class="mid-side">
+            <div class="mid-up-post">
+                <div class="mx-2 d-flex" >
+                    <img class=" simg " style="margin-top: 12px; margin-right: 15px;" src="/images/extra/PXL_20230306_110212450~3.jpg " alt="Profiile Image" id="" />
+                    <input type="text" id="Name" name="Name" placeholder="Share something ..." style="width: 83%; margin-top: 20px; border-radius: 2rem; height: 30px; border: none; padding-left: 10px;">
+                    <a>
+                        <img src="/images/extra/emoji-add.svg" style="width: 25px; height: 25px; margin-top: 22px; margin-left: 10px; color:rgba(36, 54, 71, 1);">
+                    </a>
+                </div>
+                    <div class=" d-flex mt-2">
+                        <a class="d-flex link-underline-opacity-0" style="text-decoration: none; margin-left: 100px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16">
+                                <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                                <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1z"/>
+                            </svg>
+                            <p style=" font-size:small;  margin-left: 4px; color:rgba(36, 54, 71, 1);">Image</p> 
+                        </a>
+                        <a class="d-flex link-underline-opacity-0" style="text-decoration: none;  margin-left: 50px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-btn" viewBox="0 0 16 16">
+                                <path d="M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/>
+                                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"/>
+                              </svg>
+                              <p style=" font-size:small;  margin-left: 4px; color:rgba(36, 54, 71, 1);">Video</p>
+                        </a>
+                        <a class="d-flex link-underline-opacity-0" style="text-decoration: none;  margin-left: 50px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-bar-graph" viewBox="0 0 16 16">
+                                <path d="M4.5 12a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5zm3 0a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5zm3 0a.5.5 0 0 1-.5-.5v-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5z"/>
+                                <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1"/>
+                              </svg>
+                              <p style=" font-size:small;  margin-left: 3px; color:rgba(36, 54, 71, 1);">Polls</p>
+                        </a>
+                        <!--public/private-->
+                        <form action="" style="margin-left: 230px; width: 100px; position: relative; border: none; background-color: lightgrey;">
+                            <select name="veiwers" id="veiwers">
+                              <option value="public" selected style="background-color: transparent;">
+                                <i class="fas fa-globe" style="font-size: 16px; margin-right: 5px;"></i>Public
+                              </option>
+                              <option value="private">
+                                <i class="fas fa-lock" style="size: 16px; margin-right: 5px;"></i>Private
+                              </option>
+                            </select>
+                          </form>                       
+                    </div>
+            </div>
+            <div class="mx-4 mt-3 mb-3" style="text-align: right;">
+                Sorting 
+            </div>
+            <div class="mid-down-serfing">
+                <!-- posts 1-->
+                 <div class="serfing-post" style="height: 500px; width: 100%;">
+                    <div class="mx-3" style="margin-top: 15px; position: relative;" >
+                       <div class="d-flex" style="align-content: center;" >
+                        <a href="#" class="link-underline-opacity-0" style="text-decoration: none; margin-right: 10px;">
+                            <img class="simg" src="/images/extra/pico.png " alt="Profiile Image" id="" />
+                        </a>
+                        <p style=" font-size: medium; font-weight: 600; color:rgba(36, 54, 71, 1); display: block;">Brian</p>
+                        <p style=" font-size: x-small; ">12 minutes ago</p>
+                       </div>
+                    </div>
+                    <div>
+                        <img src="/images/extra/road.png" style="height:  350px; width: 650px; border-radius: 2rem; margin-right: auto; margin-left: auto;">
+                    </div>
+                    <div class="mx-2 d-flex" >
+                        <img class=" simg " style="margin-top: 12px; margin-right: 15px;" src="/images/extra/PXL_20230306_110212450~3.jpg " alt="Profiile Image" id="" />
+                        <input type="text" id="Name" name="Name" placeholder="Share something ..." style="width: 83%; margin-top: 20px; border-radius: 2rem; height: 30px; border: none; padding-left: 10px;">
+                    </div>
+                 </div>
+
+                 <!-- posts 2-->
+                 <div class="serfing-post" style="height: 500px; width: 100%;" >
+                    to be done
+                 </div>
+
+                 <!-- posts 3-->
+                 <div class="serfing-post" style="height: 500px; width: 100%;">
+                    to be done
+                 </div>
+            </div>
+        </div>
+        <div class="right-side">
+            <div class="right-up-activity">
+                <div class="d-flex justify-content-between mx-4">
+                    <p class="mt-3" style=" font-size: medium; font-weight: 700; color:rgba(36, 54, 71, 1);">Activity</p>
+                    <p class="mt-3 text-secondary">see all
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16"  style="color:gray;">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                      </svg>
+                    </p>
+                </div>
+                <!-- activity-->
+                <div class="activty mx-4">
+                    <!--1-->
+                    <div class="d-flex mb-2">
+                        <img class="simg " src="/images/extra/pico.png" alt="Profiile Image" id="" />
+                        <div class="ms-3 mt-1" >
+                        <p  style="margin-bottom: 0; font-size: medium; font-weight: 700; color:rgba(36, 54, 71, 1);">Brian Mathew</p>
+                        <p  style="margin-top: -5px; font-size: small;">Started following you.</p>
+                        </div>
+                        <div class="d-flex">
+                            <p style="margin-left: 10px; align-items: end; font-size: small; font-weight: 500; color:rgba(36, 54, 71, 1); display: flex;">5m</p>
+                            <a href="#" class="link-underline-opacity-0" style="text-decoration: none;">
+                                <p class="d-flex align-items-center" style=" font-size: medium; font-weight: 500; margin-top: 10px; margin-left: 40%;">Follow</p>
+                            </a>
+                        </div>
+                    </div>
+                    <!--2-->
+                    <div class="d-flex mb-2">
+                        <img class="simg " src="/images/extra/pico.png" alt="Profiile Image" id="" />
+                        <div class="ms-3 mt-1" >
+                        <p  style="margin-bottom: 0; font-size: medium; font-weight: 700; color:rgba(36, 54, 71, 1);">Brian Mathew</p>
+                        <p  style="margin-top: -5px; font-size: small;">liked your post.</p>
+                        </div>
+                        <div class="d-flex">
+                            <p style="margin-left: 26px; align-items: end; font-size: small; font-weight: 500; color:rgba(36, 54, 71, 1); display: flex;">10m</p>
+                            <a href="#" class="link-underline-opacity-0" style="text-decoration: none;">
+                                <img class="" style="width: 50px; height: 50px; border-radius: 15px; margin-left: 40%;" src="/images/extra/road.png" alt="Profiile Image" id="" />         
+                            </a>
+                        </div>
+                    </div>
+                    <!--3-->
+                    <div class="d-flex mb-2">
+                        <img class="simg " src="/images/extra/girl.png" alt="Profiile Image" id="" />
+                        <div class="ms-3 mt-1" >
+                        <p  style="margin-bottom: 0; font-size: medium; font-weight: 700; color:rgba(36, 54, 71, 1);">Breden Luios</p>
+                        <p  style="margin-top: -5px; font-size: small;">Commented on post.</p>
+                        </div>
+                        <div class="d-flex">
+                            <p style="margin-left: 12px; align-items: end; font-size: small; font-weight: 500; color:rgba(36, 54, 71, 1); display: flex;">9h</p>
+                            <a href="#" class="link-underline-opacity-0" style="text-decoration: none;">
+                                <img class="" style="width: 50px; height: 50px; border-radius: 15px; margin-left: 55%;" src="/images/extra/road.png" alt="Profiile Image" id="" />         
+                            </a>
+                        </div>
+                    </div>
+                    <!--4-->
+                    <div class="d-flex mb-2">
+                        <img class="simg " src="/images/extra/girl.png" alt="Profiile Image" id="" />
+                        <div class="ms-3 mt-1" >
+                        <p  style="margin-bottom: 0; font-size: medium; font-weight: 700; color:rgba(36, 54, 71, 1);">Breden Luios</p>
+                        <p  style="margin-top: -5px; font-size: small;">liked your post.</p>
+                        </div>
+                        <div class="d-flex">
+                            <p style="margin-left: 35px; align-items: end; font-size: small; font-weight: 500; color:rgba(36, 54, 71, 1); display: flex;">9h</p>
+                            <a href="#" class="link-underline-opacity-0" style="text-decoration: none;">
+                                <img class="" style="width: 50px; height: 50px; border-radius: 15px; margin-left: 55%;" src="/images/extra/road.png" alt="Profiile Image" id="" />         
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+                
+            </div>
+            <div class="right-down-suggetions">
+                <div class="d-flex justify-content-between mx-4">
+                    <p class="mt-3" style=" font-size: medium; font-weight: 700; color:rgba(36, 54, 71, 1);">Suggested</p>
+                    <p class="mt-3 text-secondary">see all
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16"  style="color:gray;">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                      </svg>
+                    </p>
+                </div>
+
+                <div class="suggetions mx-4">
+                    <!-- profile 1-->
+                    <div class="d-flex mb-2">
+                        <img class="simg " src="/images/extra/p1.png" alt="Profiile Image" id="" />
+                        <div class="ms-3 mt-1" >
+                        <p  style="margin-bottom: 0; font-size: medium; font-weight: 700; color:rgba(36, 54, 71, 1);">Mason J</p>
+                        <p  style="margin-top: -5px; font-size: small;">Suggested for you</p>
+                        </div>
+                        <div>
+                            <a href="#" class="link-underline-opacity-0" style="text-decoration: none;">
+                                <p class="d-flex align-items-center" style=" font-size: medium; font-weight: 500; margin-top: 10px; margin-left: 90%;">Follow</p>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- prifile 2-->
+                    <div class="d-flex mb-2">
+                        <img class="simg " src="/images/extra/girl2.png" alt="Profiile Image" id="" />
+                        <div class="ms-3 mt-1" >
+                        <p  style="margin-bottom: 0; font-size: medium; font-weight: 700; color:rgba(36, 54, 71, 1);">Mason J</p>
+                        <p  style="margin-top: -5px; font-size: small;">Suggested for you</p>
+                        </div>
+                        <div>
+                            <a href="#" class="link-underline-opacity-0" style="text-decoration: none;">
+                                <p class="d-flex align-items-center" style=" font-size: medium; font-weight: 500; margin-top: 10px; margin-left: 90%;">Follow</p>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- prifile 3-->
+                    <div class="d-flex mb-2">
+                        <img class="simg " src="/images/extra/girl3.png" alt="Profiile Image" id="" />
+                        <div class="ms-3 mt-1" >
+                        <p  style="margin-bottom: 0; font-size: medium; font-weight: 700; color:rgba(36, 54, 71, 1);">Mason J</p>
+                        <p  style="margin-top: -5px; font-size: small;">Suggested for you</p>
+                        </div>
+                        <div>
+                            <a href="#" class="link-underline-opacity-0" style="text-decoration: none;">
+                                <p class="d-flex align-items-center" style=" font-size: medium; font-weight: 500; margin-top: 10px; margin-left: 90%;">Follow</p>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- profile 4-->
+                    <div class="d-flex mb-2s">
+                        <img class="simg " src="/images/extra/girl.png" alt="Profiile Image" id="" />
+                        <div class="ms-3 mt-1" >
+                        <p  style="margin-bottom: 0; font-size: medium; font-weight: 700; color:rgba(36, 54, 71, 1);">Mason J</p>
+                        <p  style="margin-top: -5px; font-size: small;">Suggested for you</p>
+                        </div>
+                        <div>
+                            <a href="#" class="link-underline-opacity-0" style="text-decoration: none;">
+                                <p class="d-flex align-items-center" style=" font-size: medium; font-weight: 500; margin-top: 10px; margin-left: 90%;">Follow</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+</body>
+</html>
