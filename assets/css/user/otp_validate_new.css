@@ -23,7 +23,7 @@
     width:100%;
 }
 .otp-form .Validate-btn{
-    width:90%;
+    width:70%;
     background:rgba(235, 67, 53, 1);
     height:50px;
     border-radius: 4rem;
@@ -53,9 +53,8 @@
     display:flex;
     align-items: center;
     justify-content: space-between;
-    
     height:90px;
-    width:90%;
+    width:70%;
 
 }
 .otp-container .otp-box{
@@ -74,12 +73,44 @@
     .right-container .container{
         width:65%;
     }
+   
 }
-/*@media  screen and (max-width:900px) {
+@media  screen and (max-width:1000px) {
     .right-container .container{
         width:55%;
     }
-}*/
+    .otp-logo{
+        left:-20%;
+        width:550px;
+    }
+    .otp-form .otp-container{
+        width:100%;
+    }
+    .otp-form .Validate-btn{
+        width:100%;
+    }
+}
+@media  screen and (max-width:850px) {
+    .right-container .container{
+        width:55%;
+    }
+    .otp-logo{
+        left:5%;
+        width:350px;
+    }
+}
+@media  screen and (max-width:750px) {
+    
+    .otp-logo{
+        
+        width:300px;
+    }
+    .otp-form .otp-box{
+        width:50px;
+        height:50px;
+        border-radius: 10px;
+    }
+}
 @media  screen and (max-width:600px) {
     .right-container .container{
         width:80%;
@@ -90,14 +121,20 @@
         justify-content: space-evenly;
         
         height:90px;
-        width:90%;
+        width:100%;
     
     }
     .otp-container .otp-box{
-        height:50px;
-        width:50px;
-        border-radius:15px;
+        height:55px;
+        width:55px;
+    
       
         /*box-shadow: rgb(122, 117, 117) 0px 5px 15px ;*/
+    }
+}
+@media screen and (max-width:400px){
+    .otp-form .otp-box{
+        width:40px;
+        height:40px;
     }
 }
