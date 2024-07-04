@@ -294,58 +294,6 @@ function closePopup() {
 // Call closePopup() on page load (optional)
 closePopup();
 
-// Sample follower data (replace with your actual data)
-const followers = [
-  "Alice",
-  "Bob",
-  "Charlie",
-  "David",
-  "Emily",
-];
-
-function searchFollowers() {
-  const searchBox = document.getElementById("search-box");
-  const searchTerm = searchBox.value.toLowerCase(); // Make search case-insensitive
-  const searchResults = document.getElementById("search-results");
-
-  searchResults.innerHTML = ""; // Clear previous results before adding new ones
-
-  // Filter followers based on search term
-  const filteredFollowers = followers.filter(follower => follower.toLowerCase().includes(searchTerm));
-
-  // Display search results
-  if (filteredFollowers.length > 0) {
-    filteredFollowers.forEach(follower => {
-      const suggestionBox = document.createElement("div"); // Use a div for each suggestion
-      suggestionBox.classList.add("suggestion"); // Add a class for styling
-
-      const suggestionText = document.createElement("span"); // Create a span for the follower name
-      suggestionText.textContent = follower;
-      suggestionBox.appendChild(suggestionText);
-
-      suggestionBox.addEventListener("click", () => {
-        searchBox.value = follower; // Set search box value on click
-        searchResults.innerHTML = ""; // Hide suggestions after selection
-      });
-
-      searchResults.appendChild(suggestionBox);
-    });
-  } else {
-    searchResults.innerHTML = "No results found"; // Display clear message without a dot
-  }
-}
-
-// Add event listener for search box input
-const searchBox1 = document.getElementById("search-box");
-searchBox1.addEventListener("keyup", searchFollowers);
-
-// Add event listener for window close (optional)
-window.addEventListener("beforeunload", () => {
-  localStorage.removeItem("followerSearch");
-});
-
-
-
 
 // ------- following pop up --------- //
 
@@ -373,54 +321,5 @@ function closeFollowingPopup() {
 // Call closeFollowingPopup() on page load (optional)
 closeFollowingPopup();
 
-// Sample following data (replace with your actual data)
-const followings = [
-  "Alice",
-  "Bob",
-  "Charlie",
-  "David",
-  "Emily",
-];
-
-function searchFollowings() {
-  const searchBox = document.getElementById("following-search-box");
-  const searchTerm = searchBox.value.toLowerCase(); // Make search case-insensitive
-  const searchResults = document.getElementById("following-search-results");
-
-  searchResults.innerHTML = ""; // Clear previous results before adding new ones
-
-  // Filter followings based on search term
-  const filteredFollowings = followings.filter(following => following.toLowerCase().includes(searchTerm));
-
-  // Display search results
-  if (filteredFollowings.length > 0) {
-    filteredFollowings.forEach(following => {
-      const suggestionBox = document.createElement("div"); // Use a div for each suggestion
-      suggestionBox.classList.add("following-suggestion"); // Add a class for styling
-
-      const suggestionText = document.createElement("span"); // Create a span for the follower name
-      suggestionText.textContent = following;
-      suggestionBox.appendChild(suggestionText);
-
-      suggestionBox.addEventListener("click", () => {
-        searchBox.value = following; // Set search box value on click
-        searchResults.innerHTML = ""; // Hide suggestions after selection
-      });
-
-      searchResults.appendChild(suggestionBox);
-    });
-  } else {
-    searchResults.innerHTML = "No results found"; // Display clear message without a dot
-  }
-}
-
-// Add event listener for search box input
-const searchBox2 = document.getElementById("following-search-box");
-searchBox2.addEventListener("keyup", searchFollowings);
-
-// Add event listener for window close (optional)
-window.addEventListener("beforeunload", () => {
-  localStorage.removeItem("followingSearch");
-});
 
 

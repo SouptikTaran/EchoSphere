@@ -206,9 +206,9 @@ module.exports.feed = async (req, res) => {
   try {
     const user = await User.findOne({email});
     const friendList = await suggestFriends(user._id);
-    
-    console.log(friendList);
-    res.status(200).render('feed', {user , friendList});
+    const posts = await Post.find().sort({createdAt : -1}).limit(5);
+    // console.log(postDisplay);
+    res.status(200).render('feed', {user , friendList , posts});
     
   } catch (error) {
     
