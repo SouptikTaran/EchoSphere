@@ -31,7 +31,7 @@ searchBox.addEventListener('input', () => {
     try {
       const searchResults = await fetchSearchResults(searchTerm);
       const filteredResults = searchResults.filter((result) =>
-        result.toLowerCase().includes(searchTerm.toLowerCase())
+        result.toLowerCase().startsWith(searchTerm.toLowerCase())
     ).slice(0, 5);
 
       resultsList.innerHTML = '';
@@ -56,3 +56,4 @@ searchBox.addEventListener('input', () => {
     }
   }, debounceDelay);
 });
+
