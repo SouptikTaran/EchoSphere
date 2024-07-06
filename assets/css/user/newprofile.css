@@ -106,11 +106,12 @@
 }
 
 .left-side{
-    height: 1200px;
-    width: 29%;
+    height: 100%;
+    width: 30%;
+    display: flex;
     .left-up-profile{
         width: 90%;
-        height: 47%;
+        height: 100%;
         background-color: lightgray;
         border-radius: 1rem;
         margin-top: 10px;
@@ -138,8 +139,7 @@
     width: 510px;
     height: 800px;
     background-color: lightgray;
-    margin-left: 355px;
-    margin-top: -562px;
+    
     border-radius:1rem;
 }
 
@@ -147,18 +147,15 @@
     width:360px;
     height: 300px;
     background-color: lightgray;
-    margin-top: -800px;
     border-radius:2rem;
-    margin-left: 875px;
+    
 }
 
 .dowm-right{
     width:360px;
     height: 300px;
     background-color: lightgray;
-    margin-top: 10px;
     border-radius:2rem;
-    margin-left: 875px;
 }
 
 .right p{
