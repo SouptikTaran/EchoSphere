@@ -57,3 +57,37 @@ searchBox.addEventListener('input', () => {
   }, debounceDelay);
 });
 
+
+//pop up window-------
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  const popupOverlay = document.getElementById('popupOverlay');
+  const popup = document.getElementById('popup');
+  const closePopup = document.getElementById('closePopup');
+  const openpop = document.getElementById('setbtn');
+
+  function openPopup() {
+      popupOverlay.style.display = 'block';
+  }
+
+  function closePopupFunc() {
+      popupOverlay.style.display = 'none';
+  }
+
+  // Event listeners
+
+  openpop.addEventListener('click',openPopup);
+
+  // Close the popup when the close button is clicked
+
+  closePopup.addEventListener('click', closePopupFunc);
+
+  // Close the popup when clicking outside the popup content
+
+  popupOverlay.addEventListener('click', function (event) {
+      if (event.target === popupOverlay) {
+          closePopupFunc();
+      }
+  });
+});
